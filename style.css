@@ -433,24 +433,70 @@ h1{
   margin: 0 0 12px;
 }
 
-/* Collapse hero text when scrolling */
+/* ===== Collapsing top panel with animation ===== */
+
+/* hero wrapper so we can animate height smoothly */
+.hero-compact{
+  overflow: hidden;
+  max-height: 220px;            /* 충분히 큰 값 */
+  opacity: 1;
+  transform: translateY(0);
+  transition:
+    max-height .28s ease,
+    opacity .20s ease,
+    transform .28s ease;
+}
+
+/* when collapsed: slide up + fade */
 .lyric-top.is-collapsed .hero-compact{
-  display: none;
+  max-height: 0;
+  opacity: 0;
+  transform: translateY(-10px);
 }
 
+/* top panel spacing transition */
+.lyric-top{
+  transition: padding .28s ease;
+}
 .lyric-top.is-collapsed{
-  padding: 12px 14px;
+  padding: 10px 14px;
 }
 
-/* keep search clean when collapsed */
-.lyric-top.is-collapsed .search-wrap.always-on{
-  margin-top: 0;
-}
-
-/* optional: tighter search bar look */
+/* Search bar slimming + hint hide */
 .search-wrap.always-on{
+  display: flex !important;
   width: 100%;
+  transition: padding .28s ease, border-radius .28s ease;
 }
+
 .search-input{
   width: 100%;
+}
+
+/* default (expanded) */
+.search-wrap.always-on{
+  padding: 10px 12px;
+  border-radius: 14px;
+}
+.search-wrap.always-on .search-hint{
+  opacity: 1;
+  max-width: 140px;
+  transition: opacity .18s ease, max-width .18s ease;
+  white-space: nowrap;
+}
+
+/* collapsed (thin) */
+.lyric-top.is-collapsed .search-wrap.always-on{
+  padding: 7px 10px;            /* 얇아짐 */
+  border-radius: 12px;
+}
+.lyric-top.is-collapsed .search-wrap.always-on .search-hint{
+  opacity: 0;
+  max-width: 0;
+  overflow: hidden;
+}
+
+/* optional: slightly smaller input text when collapsed */
+.lyric-top.is-collapsed .search-input{
+  font-size: 12.5px;
 }

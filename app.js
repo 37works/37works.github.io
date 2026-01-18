@@ -79,19 +79,30 @@
       if (e.key === 'Escape') closeModal();
     });
   }
-    // ===== Collapse top text when grid scrolls =====
+  
+  // ===== Collapse top text when grid scrolls (animated) =====
   const lyricTop = document.getElementById('lyricTop');
   const lyricScroll = document.getElementById('lyricScroll');
 
   if (lyricTop && lyricScroll) {
-    const onScroll = () => {
+    let ticking = false;
+
+    const update = () => {
       const y = lyricScroll.scrollTop || 0;
-      if (y > 6) lyricTop.classList.add('is-collapsed');
+      if (y > 8) lyricTop.classList.add('is-collapsed');
       else lyricTop.classList.remove('is-collapsed');
+      ticking = false;
     };
 
-    lyricScroll.addEventListener('scroll', onScroll, { passive: true });
-    onScroll(); // init
+    lyricScroll.addEventListener('scroll', () => {
+      if (!ticking) {
+        window.requestAnimationFrame(update);
+        ticking = true;
+      }
+    }, { passive: true });
+
+    update(); // init
   }
+
 
 })();
