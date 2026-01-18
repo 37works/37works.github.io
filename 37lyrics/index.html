@@ -7,7 +7,7 @@
   <meta name="description" content="37Lyrics — lyric drafts and lines." />
   <link rel="stylesheet" href="/style.css" />
 </head>
-<body>
+<body class="page-lock">
   <div class="bg"></div>
 
   <header class="site-header">
@@ -22,96 +22,92 @@
     </nav>
   </header>
 
-  <main class="container">
-    <section class="hero">
-      <p class="kicker">ARCHIVE</p>
-      <h1>Lines before they become songs.</h1>
-      <p class="lead">
-        Use search to filter by title / genre / keywords.
-        Click a thumbnail to open the lyrics.
-      </p>
+  <main class="container lyric-layout">
+    <!-- ✅ Fixed top panel (always visible) -->
+    <section class="lyric-top">
+      <div class="hero hero-compact">
+        <p class="kicker">ARCHIVE</p>
+        <h1>Lines before they become songs.</h1>
+        <p class="lead">
+          Filter by title / genre / keywords. Click a thumbnail to open the lyrics.
+        </p>
+      </div>
 
-      <!-- ✅ Search button moved under the text -->
-      <div class="lyric-actions">
-        <button class="icon-btn" type="button" data-search-toggle aria-label="Search">
-          🔍 Search
-        </button>
+      <!-- ✅ Search always visible -->
+      <div class="search-wrap active always-on" data-search-wrap>
+        <input class="search-input" data-search-input placeholder="Search… (e.g., night, love, bus, heart)" />
+        <span class="search-hint">type to filter</span>
       </div>
     </section>
 
-    <div class="search-wrap" data-search-wrap>
-      <input class="search-input" data-search-input placeholder="Search… (e.g., night, love, bus, heart)" />
-      <span class="search-hint">type to filter</span>
-    </div>
+    <!-- ✅ Scrollable grid area -->
+    <section class="lyric-scroll">
+      <div class="empty" data-empty>
+        No results. Try a different keyword.
+      </div>
 
-    <section class="cards-grid" aria-label="Lyric items">
-      <!-- Item 1 -->
-      <article class="item-card"
-        data-item
-        data-search="night quiet line lyric draft melancholy"
-        data-lyrics-title="Night Line"
-        data-lyrics-genre="Lyric"
-        data-lyrics-date="2026.01"
-        data-lyrics-body="Night gets quieter,\nand the words get sharper.\n\nI keep them small,\nso they don’t break on the way.">
-        <div class="thumb" data-open-modal>
-          <img src="../assets/t1.jpg" alt="Night Line thumbnail" />
-        </div>
-        <div class="meta">
-          <div>
-            <p class="title">Night Line</p>
-            <p class="genre">Lyric</p>
+      <section class="cards-grid" aria-label="Lyric items">
+        <article class="item-card"
+          data-item
+          data-search="night quiet line lyric draft melancholy"
+          data-lyrics-title="Night Line"
+          data-lyrics-genre="Lyric"
+          data-lyrics-date="2026.01"
+          data-lyrics-body="Night gets quieter,\nand the words get sharper.\n\nI keep them small,\nso they don’t break on the way.">
+          <div class="thumb" data-open-modal>
+            <img src="../assets/t1.jpg" alt="Night Line thumbnail" />
           </div>
-          <p class="genre">2026.01</p>
-        </div>
-      </article>
+          <div class="meta">
+            <div>
+              <p class="title">Night Line</p>
+              <p class="genre">Lyric</p>
+            </div>
+            <p class="genre">2026.01</p>
+          </div>
+        </article>
 
-      <!-- Item 2 -->
-      <article class="item-card"
-        data-item
-        data-search="heart transplant memory silhouette longing"
-        data-lyrics-title="Heartbeat Trace"
-        data-lyrics-genre="Draft"
-        data-lyrics-date="2026.01"
-        data-lyrics-body="A borrowed heartbeat,\nlike a light you can’t turn off.\n\nI walk alone,\nbut the rhythm keeps following.">
-        <div class="thumb" data-open-modal>
-          <img src="../assets/t2.jpg" alt="Heartbeat Trace thumbnail" />
-        </div>
-        <div class="meta">
-          <div>
-            <p class="title">Heartbeat Trace</p>
-            <p class="genre">Draft</p>
+        <article class="item-card"
+          data-item
+          data-search="heart transplant memory silhouette longing"
+          data-lyrics-title="Heartbeat Trace"
+          data-lyrics-genre="Draft"
+          data-lyrics-date="2026.01"
+          data-lyrics-body="A borrowed heartbeat,\nlike a light you can’t turn off.\n\nI walk alone,\nbut the rhythm keeps following.">
+          <div class="thumb" data-open-modal>
+            <img src="../assets/t2.jpg" alt="Heartbeat Trace thumbnail" />
           </div>
-          <p class="genre">2026.01</p>
-        </div>
-      </article>
+          <div class="meta">
+            <div>
+              <p class="title">Heartbeat Trace</p>
+              <p class="genre">Draft</p>
+            </div>
+            <p class="genre">2026.01</p>
+          </div>
+        </article>
 
-      <!-- Item 3 -->
-      <article class="item-card"
-        data-item
-        data-search="kiosk cafe smile hollow service"
-        data-lyrics-title="Not a Kiosk"
-        data-lyrics-genre="Lyric"
-        data-lyrics-date="2026.01"
-        data-lyrics-body="Hello.\nMay I take your order?\n\nMy smile is working.\nMy voice is trembling.\n\nI’m not a kiosk.\nI’m still here.">
-        <div class="thumb" data-open-modal>
-          <img src="../assets/t3.jpg" alt="Not a Kiosk thumbnail" />
-        </div>
-        <div class="meta">
-          <div>
-            <p class="title">Not a Kiosk</p>
-            <p class="genre">Lyric</p>
+        <article class="item-card"
+          data-item
+          data-search="kiosk cafe smile hollow service"
+          data-lyrics-title="Not a Kiosk"
+          data-lyrics-genre="Lyric"
+          data-lyrics-date="2026.01"
+          data-lyrics-body="Hello.\nMay I take your order?\n\nMy smile is working.\nMy voice is trembling.\n\nI’m not a kiosk.\nI’m still here.">
+          <div class="thumb" data-open-modal>
+            <img src="../assets/t3.jpg" alt="Not a Kiosk thumbnail" />
           </div>
-          <p class="genre">2026.01</p>
-        </div>
-      </article>
+          <div class="meta">
+            <div>
+              <p class="title">Not a Kiosk</p>
+              <p class="genre">Lyric</p>
+            </div>
+            <p class="genre">2026.01</p>
+          </div>
+        </article>
+      </section>
     </section>
-
-    <div class="empty" data-empty>
-      No results. Try a different keyword.
-    </div>
   </main>
 
-  <!-- ✅ Modal -->
+  <!-- Modal -->
   <div class="modal" data-modal aria-hidden="true">
     <div class="modal-backdrop" data-modal-close></div>
 
