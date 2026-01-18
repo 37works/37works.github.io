@@ -2,26 +2,52 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
-  <title>37CAT</title>
-  <link rel="stylesheet" href="../style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>37CAT — Music</title>
+  <meta name="description" content="AI 보컬 기반 트랙 아카이브." />
+  <link rel="stylesheet" href="/style.css" />
 </head>
 <body>
+  <div class="bg"></div>
+
+  <header class="site-header">
+    <a class="brand" href="/">
+      <span class="brand-mark">37CAT</span>
+      <span class="brand-sub">music</span>
+    </a>
+    <nav class="top-nav">
+      <a href="/">Home</a>
+      <a href="/lyric/">Lyric</a>
+    </nav>
+  </header>
+
   <main class="container">
-    <h1>37CAT</h1>
+    <section class="hero">
+      <p class="kicker">MUSIC</p>
+      <h1>말에서 시작된 노래들.</h1>
+      <p class="lead">AI 보컬을 중심으로 한 트랙을 정리합니다.</p>
+    </section>
 
-    <p>
-      AI 기반 보컬 중심 음악 프로젝트.
-    </p>
+    <section class="grid">
+      <a class="card" href="#" style="grid-column: span 12;">
+        <div class="card-top">
+          <span class="pill">FEATURED</span>
+          <span class="arrow">↗</span>
+        </div>
+        <h2>Track 01</h2>
+        <p>조용한 대화 같은 노래 · 3:12</p>
+      </a>
 
-    <ul>
-      <li>
-        <strong>Track 01</strong><br />
-        조용한 대화 같은 노래<br />
-        <a href="#">Listen</a>
-      </li>
-    </ul>
+      <div class="card subtle" style="grid-column: span 12;">
+        <div class="card-top">
+          <span class="pill">TRACKLIST</span>
+        </div>
+        <ul class="list">
+          <li><span class="date">2026.01</span> Track 01 — Listen</li>
+          <li><span class="date">2026.01</span> Track 02 — Listen</li>
+        </ul>
+      </div>
+    </section>
 
-    <a href="/">← back</a>
-  </main>
-</body>
-</html>
+    <footer class="footer">
+      <a c

@@ -2,30 +2,60 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
-  <title>Lyric</title>
-  <link rel="stylesheet" href="../style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>37 — Lyric</title>
+  <meta name="description" content="노래가 되기 전의 문장들." />
+  <link rel="stylesheet" href="/style.css" />
 </head>
 <body>
+  <div class="bg"></div>
+
+  <header class="site-header">
+    <a class="brand" href="/">
+      <span class="brand-mark">37</span>
+      <span class="brand-sub">lyric archive</span>
+    </a>
+    <nav class="top-nav">
+      <a href="/">Home</a>
+      <a href="/37cat/">37CAT</a>
+    </nav>
+  </header>
+
   <main class="container">
-    <h1>Lyric</h1>
+    <section class="hero">
+      <p class="kicker">LYRIC</p>
+      <h1>노래가 되기 전의 문장들.</h1>
+      <p class="lead">짧게 남기고, 쌓이면 곡으로 옮깁니다.</p>
+    </section>
 
-    <p>
-      노래가 되기 전의 문장들.
-    </p>
+    <section class="grid">
+      <div class="card subtle" style="grid-column: span 12;">
+        <div class="card-top">
+          <span class="pill">LATEST</span>
+        </div>
+        <h2>오늘의 문장</h2>
+        <p style="margin-top:10px; font-size:15px; color:rgba(243,244,246,.86); line-height:1.8;">
+          밤이 조용해질수록<br/>
+          말들은 더 또렷해진다
+        </p>
+      </div>
 
-    <hr />
+      <div class="card" style="grid-column: span 12;">
+        <div class="card-top">
+          <span class="pill">ARCHIVE</span>
+        </div>
+        <ul class="list">
+          <li><span class="date">2026.01</span> 아직 멜로디가 없는 말들</li>
+          <li><span class="date">2026.01</span> 감정은 대개 리듬부터 생긴다</li>
+          <li><span class="date">2026.01</span> 말이 먼저 남아버린 날들</li>
+        </ul>
+      </div>
+    </section>
 
-    <p>
-      밤이 조용해질수록<br />
-      말들은 더 또렷해진다
-    </p>
-
-    <p>
-      아직 이름 없는 감정은<br />
-      대개 리듬부터 생긴다
-    </p>
-
-    <a href="/">← back</a>
+    <footer class="footer">
+      <a class="muted" href="/">← 37로 돌아가기</a>
+      <a class="muted" href="https://instagram.com/" target="_blank" rel="noopener">Instagram</a>
+    </footer>
   </main>
 </body>
 </html>
