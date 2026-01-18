@@ -1,4 +1,9 @@
 (function () {
+  // ===== path =====
+  const src = fromCard.getAttribute('data-lyrics-src');
+  const url = new URL(src, window.location.href); // 핵심
+  const res = await fetch(url);
+
   // ===== Common selectors =====
   const input = document.querySelector('[data-search-input]');
   const empty = document.querySelector('[data-empty]');
