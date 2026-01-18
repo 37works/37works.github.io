@@ -40,6 +40,27 @@
 
   const modalCloseEls = Array.from(document.querySelectorAll('[data-modal-close]'));
   const openEls = Array.from(document.querySelectorAll('[data-open-modal]'));
+  let lyricsRequestId = 0;
+
+  function setModalBody(text) {
+    if (modalBody) modalBody.textContent = text;
+  }
+
+  function loadLyrics(src, requestId) {
+    fetch(src)
+      .then((response) => {
+        if (!response.ok) throw new Error('Failed to load lyrics');
+        return response.text();
+      })
+      .then((text) => {
+        if (requestId !== lyricsRequestId) return;
+        setModalBody(text);
+      })
+      .catch(() => {
+        if (requestId !== lyricsRequestId) return;
+        setModalBody('Unable to load lyrics.');
+      });
+  }
 
   function openModal(fromCard) {
     if (!modal || !fromCard) return;
@@ -48,10 +69,18 @@
     const genre = fromCard.getAttribute('data-lyrics-genre') || '';
     const date = fromCard.getAttribute('data-lyrics-date') || '';
     const body = fromCard.getAttribute('data-lyrics-body') || '';
+    const src = fromCard.getAttribute('data-lyrics-src') || '';
 
     if (modalTitle) modalTitle.textContent = title;
     if (modalSub) modalSub.textContent = [genre, date].filter(Boolean).join(' · ');
-    if (modalBody) modalBody.textContent = body;
+    if (src) {
+      lyricsRequestId += 1;
+      const requestId = lyricsRequestId;
+      setModalBody('Loading…');
+      loadLyrics(src, requestId);
+    } else {
+      setModalBody(body);
+    }
 
     modal.classList.add('active');
     modal.setAttribute('aria-hidden', 'false');
