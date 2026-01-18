@@ -79,4 +79,19 @@
       if (e.key === 'Escape') closeModal();
     });
   }
+    // ===== Collapse top text when grid scrolls =====
+  const lyricTop = document.getElementById('lyricTop');
+  const lyricScroll = document.getElementById('lyricScroll');
+
+  if (lyricTop && lyricScroll) {
+    const onScroll = () => {
+      const y = lyricScroll.scrollTop || 0;
+      if (y > 6) lyricTop.classList.add('is-collapsed');
+      else lyricTop.classList.remove('is-collapsed');
+    };
+
+    lyricScroll.addEventListener('scroll', onScroll, { passive: true });
+    onScroll(); // init
+  }
+
 })();

@@ -432,3 +432,25 @@ h1{
   display: none;
   margin: 0 0 12px;
 }
+
+/* Collapse hero text when scrolling */
+.lyric-top.is-collapsed .hero-compact{
+  display: none;
+}
+
+.lyric-top.is-collapsed{
+  padding: 12px 14px;
+}
+
+/* keep search clean when collapsed */
+.lyric-top.is-collapsed .search-wrap.always-on{
+  margin-top: 0;
+}
+
+/* optional: tighter search bar look */
+.search-wrap.always-on{
+  width: 100%;
+}
+.search-input{
+  width: 100%;
+}
