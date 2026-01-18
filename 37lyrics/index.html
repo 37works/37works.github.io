@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>37Lyrics</title>
   <meta name="description" content="37Lyrics — lyric drafts and lines." />
-  <link rel="stylesheet" href="../style.css" />
+  <link rel="stylesheet" href="/style.css" />
 </head>
 <body>
   <div class="bg"></div>
@@ -16,34 +16,45 @@
       <span class="brand-sub">writing</span>
     </a>
 
-    <div class="toolbar">
-      <button class="icon-btn" type="button" data-search-toggle aria-label="Search">
-        🔍
-      </button>
-      <nav class="top-nav">
-        <a href="../">37Works</a>
-        <a href="../37cat/">37CAT</a>
-      </nav>
-    </div>
+    <nav class="top-nav">
+      <a href="../">37Works</a>
+      <a href="../37cat/">37CAT</a>
+    </nav>
   </header>
 
   <main class="container">
     <section class="hero">
       <p class="kicker">ARCHIVE</p>
-      <h1>문장으로 먼저 남깁니다.</h1>
-      <p class="lead">검색은 제목/장르/키워드 기준으로 필터링됩니다.</p>
+      <h1>Lines before they become songs.</h1>
+      <p class="lead">
+        Use search to filter by title / genre / keywords.
+        Click a thumbnail to open the lyrics.
+      </p>
+
+      <!-- ✅ Search button moved under the text -->
+      <div class="lyric-actions">
+        <button class="icon-btn" type="button" data-search-toggle aria-label="Search">
+          🔍 Search
+        </button>
+      </div>
     </section>
 
     <div class="search-wrap" data-search-wrap>
       <input class="search-input" data-search-input placeholder="Search… (e.g., night, love, bus, heart)" />
-      <span class="search-hint">enter to filter</span>
+      <span class="search-hint">type to filter</span>
     </div>
 
     <section class="cards-grid" aria-label="Lyric items">
-      <!-- 카드 1 -->
-      <article class="item-card" data-item data-search="night quiet line lyric draft melancholy">
-        <div class="thumb">
-          <img src="../assets/t1.jpg" alt="thumbnail" />
+      <!-- Item 1 -->
+      <article class="item-card"
+        data-item
+        data-search="night quiet line lyric draft melancholy"
+        data-lyrics-title="Night Line"
+        data-lyrics-genre="Lyric"
+        data-lyrics-date="2026.01"
+        data-lyrics-body="Night gets quieter,\nand the words get sharper.\n\nI keep them small,\nso they don’t break on the way.">
+        <div class="thumb" data-open-modal>
+          <img src="../assets/t1.jpg" alt="Night Line thumbnail" />
         </div>
         <div class="meta">
           <div>
@@ -54,10 +65,16 @@
         </div>
       </article>
 
-      <!-- 카드 2 -->
-      <article class="item-card" data-item data-search="heart transplant memory silhouette longing">
-        <div class="thumb">
-          <img src="../assets/t2.jpg" alt="thumbnail" />
+      <!-- Item 2 -->
+      <article class="item-card"
+        data-item
+        data-search="heart transplant memory silhouette longing"
+        data-lyrics-title="Heartbeat Trace"
+        data-lyrics-genre="Draft"
+        data-lyrics-date="2026.01"
+        data-lyrics-body="A borrowed heartbeat,\nlike a light you can’t turn off.\n\nI walk alone,\nbut the rhythm keeps following.">
+        <div class="thumb" data-open-modal>
+          <img src="../assets/t2.jpg" alt="Heartbeat Trace thumbnail" />
         </div>
         <div class="meta">
           <div>
@@ -68,10 +85,16 @@
         </div>
       </article>
 
-      <!-- 카드 3 -->
-      <article class="item-card" data-item data-search="kiosk cafe smile hollow service">
-        <div class="thumb">
-          <img src="../assets/t3.jpg" alt="thumbnail" />
+      <!-- Item 3 -->
+      <article class="item-card"
+        data-item
+        data-search="kiosk cafe smile hollow service"
+        data-lyrics-title="Not a Kiosk"
+        data-lyrics-genre="Lyric"
+        data-lyrics-date="2026.01"
+        data-lyrics-body="Hello.\nMay I take your order?\n\nMy smile is working.\nMy voice is trembling.\n\nI’m not a kiosk.\nI’m still here.">
+        <div class="thumb" data-open-modal>
+          <img src="../assets/t3.jpg" alt="Not a Kiosk thumbnail" />
         </div>
         <div class="meta">
           <div>
@@ -84,10 +107,29 @@
     </section>
 
     <div class="empty" data-empty>
-      검색 결과가 없어요. 키워드를 바꿔볼래?
+      No results. Try a different keyword.
     </div>
   </main>
 
-  <script src="../app.js"></script>
+  <!-- ✅ Modal -->
+  <div class="modal" data-modal aria-hidden="true">
+    <div class="modal-backdrop" data-modal-close></div>
+
+    <div class="modal-panel" role="dialog" aria-modal="true" aria-label="Lyrics">
+      <div class="modal-head">
+        <div class="modal-titles">
+          <h2 class="modal-title" data-modal-title>Title</h2>
+          <p class="modal-sub" data-modal-sub>Genre · Date</p>
+        </div>
+        <button class="icon-btn" type="button" data-modal-close aria-label="Close">✕</button>
+      </div>
+
+      <div class="modal-body">
+        <pre class="lyrics" data-modal-body></pre>
+      </div>
+    </div>
+  </div>
+
+  <script src="/app.js"></script>
 </body>
 </html>

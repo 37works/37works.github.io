@@ -304,3 +304,76 @@ h1{
   .work-tile{ grid-column: span 12; }
   .item-card{ grid-column: span 12; }
 }
+
+/* 37Lyrics: search button under hero text */
+.lyric-actions{
+  margin-top: 12px;
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+}
+
+/* Modal */
+.modal{
+  position: fixed;
+  inset: 0;
+  display: none;
+  z-index: 50;
+}
+.modal.active{ display:block; }
+
+.modal-backdrop{
+  position:absolute;
+  inset:0;
+  background: rgba(0,0,0,.62);
+}
+
+.modal-panel{
+  position: relative;
+  width: min(920px, calc(100vw - 24px));
+  margin: 64px auto;
+  border-radius: 18px;
+  border: 1px solid rgba(255,255,255,.12);
+  background: rgba(11,12,16,.85);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 24px 80px rgba(0,0,0,.65);
+  overflow:hidden;
+}
+
+.modal-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  gap:12px;
+  padding: 14px 14px 10px;
+  border-bottom: 1px solid rgba(255,255,255,.10);
+}
+
+.modal-title{
+  margin:0;
+  font-size: 16px;
+  letter-spacing: -0.01em;
+}
+.modal-sub{
+  margin: 4px 0 0;
+  color: rgba(243,244,246,.65);
+  font-size: 12px;
+}
+
+.modal-body{
+  padding: 14px;
+  max-height: min(72vh, 720px);
+  overflow:auto;
+}
+
+.lyrics{
+  margin:0;
+  white-space: pre-wrap;
+  line-height: 1.85;
+  color: rgba(243,244,246,.88);
+  font-size: 14px;
+}
+
+/* Make thumbnail feel clickable */
+.thumb{ cursor: pointer; }
+.thumb:hover img{ transform: scale(1.02); transition: transform .18s ease; }
