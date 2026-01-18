@@ -4,69 +4,124 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>37 — Home</title>
-  <meta name="description" content="장면으로 남는 이야기들을 만듭니다. 음악, 문장, 이미지." />
-  <link rel="stylesheet" href="/style.css" />
+  <meta name="description" content="장면으로 남는 이야기들을 만듭니다. 문장과 음악을 함께 기록합니다." />
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div class="bg"></div>
 
   <header class="site-header">
-    <a class="brand" href="/">
+    <a class="brand" href="./">
       <span class="brand-mark">37</span>
       <span class="brand-sub">scene-driven creator</span>
     </a>
     <nav class="top-nav">
-      <a href="/lyric/">Lyric</a>
-      <a href="/37cat/">37CAT</a>
+      <a href="#lyric">Lyric</a>
+      <a href="#music">Music</a>
+      <a href="lyric/">Archive</a>
+      <a href="37cat/">37CAT</a>
       <a href="https://instagram.com/" target="_blank" rel="noopener">Instagram</a>
     </nav>
   </header>
 
   <main class="container">
     <section class="hero">
-      <p class="kicker">NOW</p>
+      <p class="kicker">HOME</p>
       <h1>장면으로 남는 이야기들을 만듭니다.</h1>
-      <p class="lead">
-        노래가 되기 전의 문장과, 이미지가 되기 전의 공기를 모읍니다.
-      </p>
+      <p class="lead">문장으로 먼저 남기고, 소리로 옮깁니다.</p>
+    </section>
 
-      <div class="cta-row">
-        <a class="btn" href="/lyric/">Lyric 보러가기</a>
-        <a class="btn ghost" href="/37cat/">37CAT 듣기</a>
+    <!-- LYRIC FIRST -->
+    <section id="lyric" class="section">
+      <div class="section-head">
+        <h2 class="section-title">Lyric</h2>
+        <a class="section-link" href="lyric/">archive ↗</a>
+      </div>
+
+      <div class="grid">
+        <div class="card subtle" style="grid-column: span 12;">
+          <div class="card-top">
+            <span class="pill">LATEST</span>
+            <span class="muted-small">2026.01</span>
+          </div>
+
+          <p class="quote">
+            밤이 조용해질수록<br />
+            말들은 더 또렷해진다
+          </p>
+
+          <div class="mini-row">
+            <a class="mini" href="lyric/">문장 더 보기 →</a>
+          </div>
+        </div>
+
+        <div class="card" style="grid-column: span 6;">
+          <div class="card-top">
+            <span class="pill">NOTE</span>
+            <span class="arrow">↗</span>
+          </div>
+          <h3 class="h3">짧은 메모</h3>
+          <p class="muted-p">노래가 되기 전의 문장들을 여기에 쌓습니다.</p>
+        </div>
+
+        <div class="card" style="grid-column: span 6;">
+          <div class="card-top">
+            <span class="pill">STATUS</span>
+          </div>
+          <h3 class="h3">Latest</h3>
+          <ul class="list">
+            <li><span class="date">2026.01</span> 통합 홈 구성 적용</li>
+            <li><span class="date">2026.01</span> Lyric 아카이브 업데이트</li>
+          </ul>
+        </div>
       </div>
     </section>
 
-    <section class="grid">
-      <a class="card" href="/lyric/">
-        <div class="card-top">
-          <span class="pill">TEXT</span>
-          <span class="arrow">↗</span>
-        </div>
-        <h2>Lyric</h2>
-        <p>노래가 되기 전의 문장들. 짧게, 자주.</p>
-      </a>
+    <!-- THEN MUSIC -->
+    <section id="music" class="section">
+      <div class="section-head">
+        <h2 class="section-title">Music</h2>
+        <a class="section-link" href="37cat/">37CAT ↗</a>
+      </div>
 
-      <a class="card" href="/37cat/">
-        <div class="card-top">
-          <span class="pill">MUSIC</span>
-          <span class="arrow">↗</span>
-        </div>
-        <h2>37CAT</h2>
-        <p>AI 보컬 기반 트랙. 말에서 시작된 리듬.</p>
-      </a>
+      <div class="grid">
+        <a class="card" href="37cat/" style="grid-column: span 12;">
+          <div class="card-top">
+            <span class="pill">FEATURED TRACK</span>
+            <span class="arrow">↗</span>
+          </div>
+          <h2>Track 01</h2>
+          <p>말에서 시작된 리듬 · 3:12</p>
+          <div class="mini-row">
+            <span class="muted-small">Listen: YouTube / SoundCloud 링크를 37CAT 페이지에 붙여두기</span>
+          </div>
+        </a>
 
-      <div class="card subtle">
-        <div class="card-top">
-          <span class="pill">STATUS</span>
+        <div class="card subtle" style="grid-column: span 12;">
+          <div class="card-top">
+            <span class="pill">FLOW</span>
+          </div>
+          <p class="muted-p">
+            문장 → 리듬 → 트랙. <br />
+            홈에서는 흐름만 보여주고, 상세는 37CAT에서 정리합니다.
+          </p>
         </div>
-        <h2>Latest</h2>
-        <ul class="list">
-          <li><span class="date">2026.01</span> Root / Lyric / 37CAT 사이트 오픈</li>
-          <li><span class="date">2026.01</span> Lyric 업데이트 시작</li>
-          <li><span class="date">2026.01</span> 37CAT 대표 트랙 정리</li>
-        </ul>
       </div>
     </section>
 
     <footer class="footer">
-      <div
+      <div class="footer-left">
+        <span class="muted">slowly updated · © <span id="y"></span> 37</span>
+      </div>
+      <div class="footer-right">
+        <a class="muted" href="lyric/">Lyric</a>
+        <a class="muted" href="37cat/">37CAT</a>
+      </div>
+    </footer>
+  </main>
+
+  <script>
+    document.getElementById("y").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
