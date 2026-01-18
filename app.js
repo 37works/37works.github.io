@@ -1,37 +1,35 @@
-(function(){
-  // ===== Search toggle + filter =====
-  const toggleBtn = document.querySelector('[data-search-toggle]');
-  const wrap = document.querySelector('[data-search-wrap]');
+(function () {
+  // ===== Common selectors =====
   const input = document.querySelector('[data-search-input]');
   const empty = document.querySelector('[data-empty]');
   const items = Array.from(document.querySelectorAll('[data-item]'));
 
-  function filter(q){
+  // ===== Search filter (works even without toggle button) =====
+  function filter(q) {
     const query = (q || '').trim().toLowerCase();
     let visibleCount = 0;
 
-    items.forEach(el => {
+    items.forEach((el) => {
       const hay = (el.getAttribute('data-search') || '').toLowerCase();
       const ok = hay.includes(query);
       el.style.display = ok ? '' : 'none';
       if (ok) visibleCount++;
     });
 
-    if (empty) empty.style.display = visibleCount === 0 ? 'block' : 'none';
+    if (empty) {
+      // show empty message only when there are items and none match
+      empty.style.display = items.length && visibleCount === 0 ? 'block' : 'none';
+    }
   }
 
-  if (toggleBtn && wrap && input && items.length) {
-    toggleBtn.addEventListener('click', () => {
-      wrap.classList.toggle('active');
-      if (wrap.classList.contains('active')) {
-        input.focus();
-      } else {
-        input.value = '';
-        filter('');
-      }
-    });
+  // Initialize search if input + items exist
+  if (input && items.length) {
+    // initial state (show all)
+    filter('');
 
-    input.addEventListener('input', (e) => filter(e.target.value));
+    input.addEventListener('input', (e) => {
+      filter(e.target.value);
+    });
   }
 
   // ===== Modal for lyrics (37Lyrics) =====
@@ -43,7 +41,7 @@
   const modalCloseEls = Array.from(document.querySelectorAll('[data-modal-close]'));
   const openEls = Array.from(document.querySelectorAll('[data-open-modal]'));
 
-  function openModal(fromCard){
+  function openModal(fromCard) {
     if (!modal || !fromCard) return;
 
     const title = fromCard.getAttribute('data-lyrics-title') || 'Untitled';
@@ -60,7 +58,7 @@
     document.body.style.overflow = 'hidden';
   }
 
-  function closeModal(){
+  function closeModal() {
     if (!modal) return;
     modal.classList.remove('active');
     modal.setAttribute('aria-hidden', 'true');
@@ -68,14 +66,14 @@
   }
 
   if (modal && openEls.length) {
-    openEls.forEach(el => {
+    openEls.forEach((el) => {
       el.addEventListener('click', () => {
         const card = el.closest('[data-item]');
         openModal(card);
       });
     });
 
-    modalCloseEls.forEach(el => el.addEventListener('click', closeModal));
+    modalCloseEls.forEach((el) => el.addEventListener('click', closeModal));
 
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') closeModal();
