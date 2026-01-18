@@ -1,0 +1,33 @@
+body {
+  margin: 0;
+  font-family: system-ui, sans-serif;
+  background: #0f0f0f;
+  color: #f2f2f2;
+}
+
+.container {
+  max-width: 640px;
+  padding: 80px 24px;
+  margin: auto;
+}
+
+h1 {
+  font-size: 48px;
+  margin-bottom: 24px;
+}
+
+.intro {
+  line-height: 1.6;
+  margin-bottom: 40px;
+}
+
+.links a {
+  display: block;
+  color: #aaa;
+  text-decoration: none;
+  margin-bottom: 12px;
+}
+
+.links a:hover {
+  color: #fff;
+}
