@@ -559,3 +559,47 @@ h1{
   margin: 0;
   white-space: pre-wrap;
 }
+
+/* Hide native scrollbar (best effort) */
+.modal-body{
+  scrollbar-width: none; /* Firefox */
+}
+.modal-body::-webkit-scrollbar{
+  width: 0;
+  height: 0;
+}
+
+/* custom youtube scrollbar */
+.modal-panel{ position: relative; }
+
+.scroll-yt{
+  position: absolute;
+  top: 58px;              /* modal-head 아래로 */
+  right: 10px;
+  bottom: 10px;
+  width: 44px;
+  border-radius: 999px;
+  background: rgba(255,255,255,.05);
+  border: 1px solid rgba(255,255,255,.10);
+}
+
+.scroll-yt-handle{
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 38px;
+  height: 38px;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,.12);
+  background: rgba(255,255,255,.06);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.scroll-yt-handle img{
+  width: 20px;
+  height: 20px;
+}
+
