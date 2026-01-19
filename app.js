@@ -33,6 +33,7 @@
   const modalLink = document.querySelector('[data-modal-link]');
   const modalLinkHelper = document.querySelector('[data-modal-link-helper]');
   const modalCloseEls = Array.from(document.querySelectorAll('[data-modal-close]'));
+  const fallbackDescription = '설명이 아직 준비되지 않았습니다.\nTODO: 곡 데이터와 연결하세요.';
 
   function closeModal() {
     if (!modal) return;
@@ -47,7 +48,7 @@
     const title = fromCard.getAttribute('data-lyrics-title') || 'Untitled';
     const genre = fromCard.getAttribute('data-lyrics-genre') || '';
     const date = fromCard.getAttribute('data-lyrics-date') || '';
-    const description = fromCard.getAttribute('data-lyrics-desc') || '';
+    const description = fromCard.getAttribute('data-lyrics-desc') || fallbackDescription;
     const link =
       fromCard.getAttribute('data-lyrics-link') ||
       fromCard.getAttribute('data-yt-link') ||
@@ -56,7 +57,7 @@
     if (modalTitle) modalTitle.textContent = title;
     if (modalSub) modalSub.textContent = [genre, date].filter(Boolean).join(' · ');
     if (modalBody) modalBody.textContent = 'Loading…';
-    if (modalDescription) modalDescription.value = description;
+    if (modalDescription) modalDescription.textContent = description;
     if (modalLink) {
       if (link) {
         modalLink.href = link;
