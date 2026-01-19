@@ -42,6 +42,7 @@
   const modalTitle = document.querySelector('[data-modal-title]');
   const modalSub = document.querySelector('[data-modal-sub]');
   const modalBody = document.querySelector('[data-modal-body]');
+  const ytBtn = document.querySelector('[data-yt-btn]');
 
   const modalCloseEls = Array.from(document.querySelectorAll('[data-modal-close]'));
   const openEls = Array.from(document.querySelectorAll('[data-open-modal]'));
@@ -75,6 +76,17 @@
     const date = fromCard.getAttribute('data-lyrics-date') || '';
     const body = fromCard.getAttribute('data-lyrics-body') || '';
     const src = fromCard.getAttribute('data-lyrics-src') || '';
+    const ytLink = fromCard.getAttribute('data-yt-link') || '';
+
+    if (ytBtn) {
+      if (ytLink) {
+        ytBtn.href = ytLink;
+        ytBtn.style.display = 'flex';
+      } else {
+        ytBtn.href = '#';
+        ytBtn.style.display = 'none';
+      }
+    }
 
     if (modalTitle) modalTitle.textContent = title;
     if (modalSub) modalSub.textContent = [genre, date].filter(Boolean).join(' · ');
