@@ -549,7 +549,7 @@ h1{
   color: rgba(243,244,246,.7);
 }
 
-.modal-textarea{
+.modal-description{
   flex: 1;
   width: 100%;
   height: 100%;
@@ -561,13 +561,8 @@ h1{
   color: var(--text);
   font-size: 13px;
   line-height: 1.6;
-  resize: none;
-  outline: none;
   overflow-y: auto;
-}
-
-.modal-textarea:focus{
-  border-color: rgba(255,255,255,.25);
+  white-space: pre-wrap;
 }
 
 .modal-panel-right-bottom{
