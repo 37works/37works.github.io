@@ -361,9 +361,10 @@ h1{
 }
 
 .modal-body{
-  padding: 14px;
+  padding: 14px 68px 14px 14px;
   max-height: min(72vh, 720px);
   overflow:auto;
+  position: relative;
 }
 
 .lyrics{
@@ -501,33 +502,6 @@ h1{
   font-size: 12.5px;
 }
 
-/* prettier scrollbars (modal + list) */
-.modal-body{
-  scrollbar-width: thin; /* Firefox */
-  scrollbar-color: rgba(243,244,246,.28) rgba(255,255,255,.06);
-}
-
-.modal-body::-webkit-scrollbar{
-  width: 10px;
-}
-.modal-body::-webkit-scrollbar-track{
-  background: rgba(255,255,255,.05);
-  border-radius: 999px;
-}
-.modal-body::-webkit-scrollbar-thumb{
-  background: rgba(243,244,246,.22);
-  border-radius: 999px;
-  border: 2px solid rgba(255,255,255,.05);
-}
-.modal-body::-webkit-scrollbar-thumb:hover{
-  background: rgba(243,244,246,.35);
-}
-
-/* youtube sticky button inside modal */
-.modal-body{
-  position: relative;
-}
-
 /* youtube sticky button - no column split */
 .yt-sticky{
   position: sticky;
@@ -596,10 +570,10 @@ h1{
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  touch-action: none;
 }
 
 .scroll-yt-handle img{
   width: 20px;
   height: 20px;
 }
-
