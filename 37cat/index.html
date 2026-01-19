@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>37CAT</title>
   <meta name="description" content="37CAT — composition archive." />
-  <link rel="stylesheet" href="../style.css" />
+  <link rel="stylesheet" href="/style.css" />
 </head>
-<body>
+<body class="page-lock">
   <div class="bg"></div>
 
   <header class="site-header">
@@ -16,75 +16,113 @@
       <span class="brand-sub">composition</span>
     </a>
 
-    <div class="toolbar">
-      <button class="icon-btn" type="button" data-search-toggle aria-label="Search">
-        🔍
-      </button>
-      <nav class="top-nav">
-        <a href="../">37Works</a>
-        <a href="../37lyrics/">37Lyrics</a>
-      </nav>
-    </div>
+    <nav class="top-nav">
+      <a href="../">37Works</a>
+      <a href="../37cat/">37Lyrics</a>
+    </nav>
   </header>
 
-  <main class="container">
-    <section class="hero">
-      <p class="kicker">ARCHIVE</p>
-      <h1>트랙을 정리합니다.</h1>
-      <p class="lead">검색은 제목/장르/키워드 기준으로 필터링됩니다.</p>
+  <main class="container song-layout">
+    <!-- ✅ Fixed top panel (always visible) -->
+    <section class="song-top" id="songTop">
+      <div class="hero hero-compact">
+        <p class="kicker">ARCHIVE</p>
+        <h1>Lines before they become songs.</h1>
+        <p class="lead">
+          Filter by title / genre / keywords. Click a thumbnail to listen the songs.
+        </p>
+      </div>
+
+      <!-- ✅ Search always visible -->
+      <div class="search-wrap active always-on" data-search-wrap>
+        <input class="search-input" data-search-input placeholder="Search… (e.g., night, love, bus, heart)" />
+        <span class="search-hint">type to filter</span>
+      </div>
     </section>
 
-    <div class="search-wrap" data-search-wrap>
-      <input class="search-input" data-search-input placeholder="Search… (e.g., hiphop, duet, ambient, bpm)" />
-      <span class="search-hint">type to filter</span>
-    </div>
+    <!-- ✅ Scrollable grid area -->
+    <section class="song-scroll" id="songScroll">
+      <div class="empty" data-empty>
+        No results. Try a different keyword.
+      </div>
 
-    <section class="cards-grid" aria-label="Music items">
-      <article class="item-card" data-item data-search="duet hiphop midtempo couple playful">
-        <div class="thumb">
-          <img src="../assets/m1.jpg" alt="thumbnail" />
-        </div>
-        <div class="meta">
-          <div>
-            <p class="title">Couple Tiki-Taka</p>
-            <p class="genre">Hip-hop</p>
+      <section class="cards-grid" aria-label="Song items">
+        <article class="item-card"
+          data-item
+          data-search="night quiet line lyric draft melancholy"
+          data-lyrics-title="밤의 조각들"
+          data-lyrics-date="2026.01"
+          data-lyrics-src="../lyrics/밤의_조각들.txt">
+          <div class="thumb" data-open-modal>
+            <img src="../assets/song_grid_1.png" alt="밤의 조각들 thumbnail" />
           </div>
-          <p class="genre">2026.01</p>
-        </div>
-      </article>
+          <div class="meta">
+            <div>
+              <p class="title">밤의 조각들</p>
+              <p class="genre">Lyric</p>
+            </div>
+            <p class="genre">2026.01</p>
+          </div>
+        </article>
 
-      <article class="item-card" data-item data-search="newage piano narration low voice melancholy">
-        <div class="thumb">
-          <img src="../assets/m2.jpg" alt="thumbnail" />
-        </div>
-        <div class="meta">
-          <div>
-            <p class="title">Overflow Monologue</p>
-            <p class="genre">Piano / New-age</p>
+        <article class="item-card"
+          data-item
+          data-search="heart transplant memory silhouette longing"
+          data-lyrics-title="Heartbeat Trace"
+          data-lyrics-date="2026.01"
+          data-lyrics-body="A borrowed heartbeat,\nlike a light you can’t turn off.\n\nI walk alone,\nbut the rhythm keeps following.">
+          <div class="thumb" data-open-modal>
+            <img src="../assets/t2.jpg" alt="Heartbeat Trace thumbnail" />
           </div>
-          <p class="genre">2026.01</p>
-        </div>
-      </article>
+          <div class="meta">
+            <div>
+              <p class="title">Heartbeat Trace</p>
+              <p class="genre">Draft</p>
+            </div>
+            <p class="genre">2026.01</p>
+          </div>
+        </article>
 
-      <article class="item-card" data-item data-search="kiosk cafe kalimba female vocal midtempo">
-        <div class="thumb">
-          <img src="../assets/m3.jpg" alt="thumbnail" />
-        </div>
-        <div class="meta">
-          <div>
-            <p class="title">I’m Not a Kiosk</p>
-            <p class="genre">Pop / Indie</p>
+        <article class="item-card"
+          data-item
+          data-search="kiosk cafe smile hollow service"
+          data-lyrics-title="Not a Kiosk"
+          data-lyrics-date="2026.01"
+          data-lyrics-body="Hello.\nMay I take your order?\n\nMy smile is working.\nMy voice is trembling.\n\nI’m not a kiosk.\nI’m still here.">
+          <div class="thumb" data-open-modal>
+            <img src="../assets/t3.jpg" alt="Not a Kiosk thumbnail" />
           </div>
-          <p class="genre">2026.01</p>
-        </div>
-      </article>
+          <div class="meta">
+            <div>
+              <p class="title">Not a Kiosk</p>
+              <p class="genre">Lyric</p>
+            </div>
+            <p class="genre">2026.01</p>
+          </div>
+        </article>
+      </section>
     </section>
-
-    <div class="empty" data-empty>
-      검색 결과가 없어요. 다른 키워드를 넣어볼래?
-    </div>
   </main>
 
-  <script src="../app.js"></script>
+  <!-- Modal -->
+  <div class="modal" data-modal aria-hidden="true">
+    <div class="modal-backdrop" data-modal-close></div>
+
+    <div class="modal-panel" role="dialog" aria-modal="true" aria-label="Lyrics">
+      <div class="modal-head">
+        <div class="modal-titles">
+          <h2 class="modal-title" data-modal-title>Title</h2>
+          <p class="modal-sub" data-modal-sub>Genre · Date</p>
+        </div>
+        <button class="icon-btn" type="button" data-modal-close aria-label="Close">✕</button>
+      </div>
+
+      <div class="modal-body">
+        <pre class="lyrics" data-modal-body></pre>
+      </div>
+    </div>
+  </div>
+
+  <script src="/app.js"></script>
 </body>
 </html>
