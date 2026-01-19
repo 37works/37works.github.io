@@ -526,33 +526,25 @@ h1{
 /* youtube sticky button inside modal */
 .modal-body{
   position: relative;
-  display: flex;
-  gap: 14px;
-  align-items: flex-start;
 }
 
+/* youtube sticky button - no column split */
 .yt-sticky{
   position: sticky;
-  top: 10px;                 /* 스크롤 따라다님 */
+  top: 10px;
+  float: left;                 /* 핵심: 컬럼 대신 옆에 붙임 */
+  margin: 0 14px 10px 0;        /* lyrics와 간격 */
   width: 44px;
   height: 44px;
   border-radius: 14px;
   border: 1px solid rgba(255,255,255,.12);
   background: rgba(255,255,255,.06);
-  display: none;             /* JS가 링크 있을 때만 보여줌 */
+  display: none;               /* JS가 링크 있을 때만 flex로 켬 */
   align-items: center;
   justify-content: center;
   box-shadow: 0 10px 30px rgba(0,0,0,.45);
   backdrop-filter: blur(10px);
   text-decoration: none;
-  flex: 0 0 auto;
-}
-
-.yt-sticky:hover{
-  background: rgba(255,255,255,.10);
-  border-color: rgba(255,255,255,.18);
-  transform: translateY(-1px);
-  transition: transform .12s ease;
 }
 
 .yt-sticky img{
@@ -562,8 +554,8 @@ h1{
   opacity: .92;
 }
 
-/* lyrics area should take the rest width */
+/* float 영향 정리: 가사 블록이 자연스럽게 감싸지도록 */
 .lyrics{
-  flex: 1 1 auto;
-  min-width: 0;
+  margin: 0;
+  white-space: pre-wrap;
 }
