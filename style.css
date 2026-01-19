@@ -500,3 +500,70 @@ h1{
 .lyric-top.is-collapsed .search-input{
   font-size: 12.5px;
 }
+
+/* prettier scrollbars (modal + list) */
+.modal-body{
+  scrollbar-width: thin; /* Firefox */
+  scrollbar-color: rgba(243,244,246,.28) rgba(255,255,255,.06);
+}
+
+.modal-body::-webkit-scrollbar{
+  width: 10px;
+}
+.modal-body::-webkit-scrollbar-track{
+  background: rgba(255,255,255,.05);
+  border-radius: 999px;
+}
+.modal-body::-webkit-scrollbar-thumb{
+  background: rgba(243,244,246,.22);
+  border-radius: 999px;
+  border: 2px solid rgba(255,255,255,.05);
+}
+.modal-body::-webkit-scrollbar-thumb:hover{
+  background: rgba(243,244,246,.35);
+}
+
+/* youtube sticky button inside modal */
+.modal-body{
+  position: relative;
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+}
+
+.yt-sticky{
+  position: sticky;
+  top: 10px;                 /* 스크롤 따라다님 */
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,.12);
+  background: rgba(255,255,255,.06);
+  display: none;             /* JS가 링크 있을 때만 보여줌 */
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10px 30px rgba(0,0,0,.45);
+  backdrop-filter: blur(10px);
+  text-decoration: none;
+  flex: 0 0 auto;
+}
+
+.yt-sticky:hover{
+  background: rgba(255,255,255,.10);
+  border-color: rgba(255,255,255,.18);
+  transform: translateY(-1px);
+  transition: transform .12s ease;
+}
+
+.yt-sticky img{
+  width: 22px;
+  height: 22px;
+  display: block;
+  opacity: .92;
+}
+
+/* lyrics area should take the rest width */
+.lyrics{
+  flex: 1 1 auto;
+  min-width: 0;
+}
