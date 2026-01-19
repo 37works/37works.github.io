@@ -48,7 +48,7 @@
     const title = fromCard.getAttribute('data-lyrics-title') || 'Untitled';
     const genre = fromCard.getAttribute('data-lyrics-genre') || '';
     const date = fromCard.getAttribute('data-lyrics-date') || '';
-    const description = fromCard.getAttribute('data-lyrics-desc') || fallbackDescription;
+    const descriptionSrc = fromCard.getAttribute('data-lyrics-desc');
     const link =
       fromCard.getAttribute('data-lyrics-link') ||
       fromCard.getAttribute('data-yt-link') ||
@@ -57,7 +57,9 @@
     if (modalTitle) modalTitle.textContent = title;
     if (modalSub) modalSub.textContent = [genre, date].filter(Boolean).join(' · ');
     if (modalBody) modalBody.textContent = 'Loading…';
-    if (modalDescription) modalDescription.textContent = description;
+    if (modalDescription) {
+      modalDescription.textContent = descriptionSrc ? 'Loading…' : fallbackDescription;
+    }
     if (modalLink) {
       if (link) {
         modalLink.href = link;
@@ -77,27 +79,48 @@
     document.body.style.overflow = 'hidden';
     if (modalScroll) modalScroll.scrollTop = 0;
 
-    // Load lyrics: prefer external txt via data-lyrics-src, fallback to data-lyrics-body
-    try {
-      const src = fromCard.getAttribute('data-lyrics-src');
-      const inline = fromCard.getAttribute('data-lyrics-body');
-
-      if (src) {
-        const url = new URL(src, window.location.href); // robust for relative paths
-        const res = await fetch(url.toString(), { cache: 'no-cache' });
-        if (!res.ok) throw new Error(`Failed to fetch lyrics: ${res.status}`);
-        const text = await res.text();
-        if (modalBody) modalBody.textContent = text;
-      } else if (inline) {
-        if (modalBody) modalBody.textContent = inline;
-      } else {
-        if (modalBody) modalBody.textContent = '(No lyrics found.)';
+    const loadDescription = async () => {
+      if (!modalDescription) return;
+      if (!descriptionSrc) {
+        modalDescription.textContent = fallbackDescription;
+        return;
       }
-    } catch (err) {
-      if (modalBody) modalBody.textContent = 'Failed to load lyrics.';
-      // console for debugging only
-      console.error(err);
-    }
+
+      try {
+        const url = new URL(descriptionSrc, window.location.href);
+        const res = await fetch(url.toString(), { cache: 'no-cache' });
+        if (!res.ok) throw new Error('Failed to fetch description');
+        const text = await res.text();
+        modalDescription.textContent = text;
+      } catch (err) {
+        modalDescription.textContent = '';
+      }
+    };
+
+    const loadLyrics = async () => {
+      try {
+        const src = fromCard.getAttribute('data-lyrics-src');
+        const inline = fromCard.getAttribute('data-lyrics-body');
+
+        if (src) {
+          const url = new URL(src, window.location.href); // robust for relative paths
+          const res = await fetch(url.toString(), { cache: 'no-cache' });
+          if (!res.ok) throw new Error(`Failed to fetch lyrics: ${res.status}`);
+          const text = await res.text();
+          if (modalBody) modalBody.textContent = text;
+        } else if (inline) {
+          if (modalBody) modalBody.textContent = inline;
+        } else {
+          if (modalBody) modalBody.textContent = '(No lyrics found.)';
+        }
+      } catch (err) {
+        if (modalBody) modalBody.textContent = 'Failed to load lyrics.';
+        // console for debugging only
+        console.error(err);
+      }
+    };
+
+    await Promise.all([loadLyrics(), loadDescription()]);
   }
 
   // Click delegation: any .thumb opens modal
