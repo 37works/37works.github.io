@@ -362,10 +362,12 @@ h1{
 
 .modal-body{
   padding: 14px;
-  height: min(72vh, 720px);
-  max-height: min(72vh, 720px);
+  height: min(80vh, 720px);
+  max-height: min(80vh, 720px);
   position: relative;
   display: flex;
+  flex-direction: column;
+  overflow: hidden;
 }
 
 .lyrics{
@@ -505,10 +507,13 @@ h1{
 
 /* Modal split layout */
 .modal-split{
-  display: flex;
-  gap: 0;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 16px;
   width: 100%;
-  min-height: 100%;
+  height: 100%;
+  flex: 1;
+  min-height: 0;
 }
 
 .modal-panel-left{
@@ -516,6 +521,7 @@ h1{
   padding: 16px 18px;
   border-right: 1px solid rgba(255,255,255,.12);
   overflow-y: auto;
+  min-height: 0;
 }
 
 .modal-panel-right{
@@ -524,6 +530,8 @@ h1{
   display: flex;
   flex-direction: column;
   background: rgba(255,255,255,.02);
+  overflow: hidden;
+  min-height: 0;
 }
 
 .modal-panel-right-top{
@@ -544,7 +552,8 @@ h1{
 .modal-textarea{
   flex: 1;
   width: 100%;
-  min-height: 120px;
+  height: 100%;
+  min-height: 0;
   padding: 10px 12px;
   border-radius: 12px;
   border: 1px solid rgba(255,255,255,.12);
@@ -629,7 +638,8 @@ h1{
 
 @media (max-width: 720px){
   .modal-split{
-    flex-direction: column;
+    grid-template-columns: 1fr;
+    gap: 12px;
   }
   .modal-panel-left{
     border-right: 0;
