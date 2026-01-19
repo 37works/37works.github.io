@@ -120,8 +120,30 @@
         </div>
       </div>
 
-      <div class="modal-body" data-modal-scroll>
-        <pre class="lyrics" data-modal-body></pre>
+      <div class="modal-body">
+        <div class="modal-split">
+          <section class="modal-panel-left" data-modal-scroll>
+            <pre class="lyrics" data-modal-body></pre>
+          </section>
+          <section class="modal-panel-right" aria-label="Song description">
+            <div class="modal-panel-right-top">
+              <label class="modal-label" for="modal-description">곡 설명</label>
+              <textarea
+                id="modal-description"
+                class="modal-textarea"
+                placeholder="곡에 대한 설명을 적어주세요…"
+                data-modal-description
+              ></textarea>
+            </div>
+            <div class="modal-panel-right-bottom">
+              <div class="modal-divider"></div>
+              <div class="modal-link-area">
+                <a class="modal-link-btn" data-modal-link href="#" target="_blank" rel="noreferrer noopener">링크 열기</a>
+                <p class="modal-link-helper" data-modal-link-helper>링크가 없습니다</p>
+              </div>
+            </div>
+          </section>
+        </div>
       </div>
     </div>
   </div>

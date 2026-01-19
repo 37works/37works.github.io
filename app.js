@@ -29,6 +29,9 @@
   const modalSub = document.querySelector('[data-modal-sub]');
   const modalBody = document.querySelector('[data-modal-body]');
   const modalScroll = document.querySelector('[data-modal-scroll]');
+  const modalDescription = document.querySelector('[data-modal-description]');
+  const modalLink = document.querySelector('[data-modal-link]');
+  const modalLinkHelper = document.querySelector('[data-modal-link-helper]');
   const modalCloseEls = Array.from(document.querySelectorAll('[data-modal-close]'));
 
   function closeModal() {
@@ -44,10 +47,28 @@
     const title = fromCard.getAttribute('data-lyrics-title') || 'Untitled';
     const genre = fromCard.getAttribute('data-lyrics-genre') || '';
     const date = fromCard.getAttribute('data-lyrics-date') || '';
+    const description = fromCard.getAttribute('data-lyrics-desc') || '';
+    const link =
+      fromCard.getAttribute('data-lyrics-link') ||
+      fromCard.getAttribute('data-yt-link') ||
+      ''; // TODO: replace with per-song link data
 
     if (modalTitle) modalTitle.textContent = title;
     if (modalSub) modalSub.textContent = [genre, date].filter(Boolean).join(' · ');
     if (modalBody) modalBody.textContent = 'Loading…';
+    if (modalDescription) modalDescription.value = description;
+    if (modalLink) {
+      if (link) {
+        modalLink.href = link;
+        modalLink.classList.remove('is-disabled');
+      } else {
+        modalLink.href = '#';
+        modalLink.classList.add('is-disabled');
+      }
+    }
+    if (modalLinkHelper) {
+      modalLinkHelper.style.display = link ? 'none' : 'block';
+    }
 
     // open first (so user sees feedback)
     modal.classList.add('active');
