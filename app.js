@@ -30,39 +30,6 @@
   const modalBody = document.querySelector('[data-modal-body]');
   const modalScroll = document.querySelector('[data-modal-scroll]');
   const modalCloseEls = Array.from(document.querySelectorAll('[data-modal-close]'));
-  const ytBtn = document.querySelector('[data-yt-btn]');
-  const ytScrollTrack = document.querySelector('[data-scroll-yt]');
-  const ytScrollHandle = document.querySelector('[data-scroll-yt-handle]');
-
-  const clamp = (value, min, max) => Math.min(Math.max(value, min), max);
-
-  function syncYtHandle() {
-    if (!modalScroll || !ytScrollTrack || !ytScrollHandle) return;
-    const maxScroll = modalScroll.scrollHeight - modalScroll.clientHeight;
-    const maxHandleTop = ytScrollTrack.clientHeight - ytScrollHandle.offsetHeight;
-    if (maxScroll <= 0 || maxHandleTop <= 0) {
-      ytScrollHandle.style.top = '0px';
-      return;
-    }
-    const ratio = modalScroll.scrollTop / maxScroll;
-    ytScrollHandle.style.top = `${ratio * maxHandleTop}px`;
-  }
-
-  function syncYtHandleSoon() {
-    window.requestAnimationFrame(syncYtHandle);
-  }
-
-  function setYtButton(fromCard) {
-    if (!ytBtn) return;
-    const ytLink = fromCard?.getAttribute('data-yt-link') || '';
-    if (ytLink) {
-      ytBtn.href = ytLink;
-      ytBtn.style.display = 'flex';
-    } else {
-      ytBtn.href = '#';
-      ytBtn.style.display = 'none';
-    }
-  }
 
   function closeModal() {
     if (!modal) return;
@@ -82,15 +49,11 @@
     if (modalSub) modalSub.textContent = [genre, date].filter(Boolean).join(' · ');
     if (modalBody) modalBody.textContent = 'Loading…';
 
-    // youtube button link (optional)
-    setYtButton(fromCard);
-
     // open first (so user sees feedback)
     modal.classList.add('active');
     modal.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
     if (modalScroll) modalScroll.scrollTop = 0;
-    syncYtHandleSoon();
 
     // Load lyrics: prefer external txt via data-lyrics-src, fallback to data-lyrics-body
     try {
@@ -103,17 +66,13 @@
         if (!res.ok) throw new Error(`Failed to fetch lyrics: ${res.status}`);
         const text = await res.text();
         if (modalBody) modalBody.textContent = text;
-        syncYtHandleSoon();
       } else if (inline) {
         if (modalBody) modalBody.textContent = inline;
-        syncYtHandleSoon();
       } else {
         if (modalBody) modalBody.textContent = '(No lyrics found.)';
-        syncYtHandleSoon();
       }
     } catch (err) {
       if (modalBody) modalBody.textContent = 'Failed to load lyrics.';
-      syncYtHandleSoon();
       // console for debugging only
       console.error(err);
     }
@@ -134,58 +93,6 @@
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') closeModal();
     });
-  }
-
-  if (modalScroll && ytScrollTrack && ytScrollHandle) {
-    let dragging = false;
-    let dragOffset = 0;
-
-    modalScroll.addEventListener('scroll', () => {
-      window.requestAnimationFrame(syncYtHandle);
-    }, { passive: true });
-
-    ytScrollTrack.addEventListener('click', (e) => {
-      if (e.target.closest('[data-scroll-yt-handle]')) return;
-      const maxScroll = modalScroll.scrollHeight - modalScroll.clientHeight;
-      const maxHandleTop = ytScrollTrack.clientHeight - ytScrollHandle.offsetHeight;
-      if (maxScroll <= 0 || maxHandleTop <= 0) return;
-      const rect = ytScrollTrack.getBoundingClientRect();
-      const clickY = e.clientY - rect.top - ytScrollHandle.offsetHeight / 2;
-      const handleTop = clamp(clickY, 0, maxHandleTop);
-      const ratio = handleTop / maxHandleTop;
-      modalScroll.scrollTop = ratio * maxScroll;
-    });
-
-    ytScrollHandle.addEventListener('pointerdown', (e) => {
-      dragging = true;
-      const handleRect = ytScrollHandle.getBoundingClientRect();
-      dragOffset = e.clientY - handleRect.top;
-      ytScrollHandle.setPointerCapture(e.pointerId);
-    });
-
-    window.addEventListener('pointermove', (e) => {
-      if (!dragging) return;
-      const maxScroll = modalScroll.scrollHeight - modalScroll.clientHeight;
-      const maxHandleTop = ytScrollTrack.clientHeight - ytScrollHandle.offsetHeight;
-      if (maxScroll <= 0 || maxHandleTop <= 0) return;
-      const rect = ytScrollTrack.getBoundingClientRect();
-      const nextTop = clamp(e.clientY - rect.top - dragOffset, 0, maxHandleTop);
-      ytScrollHandle.style.top = `${nextTop}px`;
-      const ratio = nextTop / maxHandleTop;
-      modalScroll.scrollTop = ratio * maxScroll;
-    });
-
-    function stopDrag(e) {
-      if (!dragging) return;
-      dragging = false;
-      if (e && e.pointerId !== undefined) {
-        ytScrollHandle.releasePointerCapture(e.pointerId);
-      }
-    }
-
-    window.addEventListener('pointerup', stopDrag);
-    window.addEventListener('pointercancel', stopDrag);
-    window.addEventListener('resize', syncYtHandleSoon);
   }
 
   // ===== Collapse top text when grid scrolls (if those ids exist) =====

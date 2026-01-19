@@ -361,7 +361,7 @@ h1{
 }
 
 .modal-body{
-  padding: 14px 68px 14px 14px;
+  padding: 14px;
   max-height: min(72vh, 720px);
   overflow:auto;
   position: relative;
@@ -502,78 +502,20 @@ h1{
   font-size: 12.5px;
 }
 
-/* youtube sticky button - no column split */
-.yt-sticky{
-  position: sticky;
-  top: 10px;
-  float: left;                 /* 핵심: 컬럼 대신 옆에 붙임 */
-  margin: 0 14px 10px 0;        /* lyrics와 간격 */
-  width: 44px;
-  height: 44px;
-  border-radius: 14px;
-  border: 1px solid rgba(255,255,255,.12);
-  background: rgba(255,255,255,.06);
-  display: none;               /* JS가 링크 있을 때만 flex로 켬 */
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 10px 30px rgba(0,0,0,.45);
-  backdrop-filter: blur(10px);
-  text-decoration: none;
-}
-
-.yt-sticky img{
-  width: 22px;
-  height: 22px;
-  display: block;
-  opacity: .92;
-}
-
-/* float 영향 정리: 가사 블록이 자연스럽게 감싸지도록 */
-.lyrics{
-  margin: 0;
-  white-space: pre-wrap;
-}
-
-/* Hide native scrollbar (best effort) */
+/* Modal scrollbar (native, minimal opacity) */
 .modal-body{
-  scrollbar-width: none; /* Firefox */
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255,255,255,.35) transparent;
 }
 .modal-body::-webkit-scrollbar{
-  width: 0;
-  height: 0;
+  width: 10px;
 }
-
-/* custom youtube scrollbar */
-.modal-panel{ position: relative; }
-
-.scroll-yt{
-  position: absolute;
-  top: 58px;              /* modal-head 아래로 */
-  right: 10px;
-  bottom: 10px;
-  width: 44px;
+.modal-body::-webkit-scrollbar-track{
+  background: transparent;
+}
+.modal-body::-webkit-scrollbar-thumb{
+  background-color: rgba(255,255,255,.35);
   border-radius: 999px;
-  background: rgba(255,255,255,.05);
-  border: 1px solid rgba(255,255,255,.10);
-}
-
-.scroll-yt-handle{
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 38px;
-  height: 38px;
-  border-radius: 14px;
-  border: 1px solid rgba(255,255,255,.12);
-  background: rgba(255,255,255,.06);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  touch-action: none;
-}
-
-.scroll-yt-handle img{
-  width: 20px;
-  height: 20px;
+  border: 2px solid transparent;
+  background-clip: content-box;
 }
