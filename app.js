@@ -36,14 +36,39 @@
   const modalCloseEls = Array.from(document.querySelectorAll('[data-modal-close]'));
   const fallbackDescription = '설명이 아직 준비되지 않았습니다.\nTODO: 곡 데이터와 연결하세요.';
 
+  const lockState = {
+    scrollY: 0,
+    locked: false,
+  };
+
+  function lockBody() {
+    if (lockState.locked) return;
+    lockState.scrollY = window.scrollY || window.pageYOffset || 0;
+    document.body.style.position = 'fixed';
+    document.body.style.top = `-${lockState.scrollY}px`;
+    document.body.style.width = '100%';
+    document.body.style.overflow = 'hidden';
+    lockState.locked = true;
+  }
+
+  function unlockBody() {
+    if (!lockState.locked) return;
+    document.body.style.position = '';
+    document.body.style.top = '';
+    document.body.style.width = '';
+    document.body.style.overflow = '';
+    window.scrollTo(0, lockState.scrollY);
+    lockState.locked = false;
+  }
+
   function closeModal() {
     if (!modal) return;
     modal.classList.remove('active');
     modal.setAttribute('aria-hidden', 'true');
-    document.body.style.overflow = '';
+    unlockBody();
   }
 
-  async function openModal(fromCard) {
+  async function openLyricsModal(fromCard) {
     if (!modal || !fromCard) return;
 
     const title = fromCard.getAttribute('data-lyrics-title') || 'Untitled';
@@ -87,7 +112,7 @@
     // open first (so user sees feedback)
     modal.classList.add('active');
     modal.setAttribute('aria-hidden', 'false');
-    document.body.style.overflow = 'hidden';
+    lockBody();
     if (modalScroll) modalScroll.scrollTop = 0;
 
     const loadDescription = async () => {
@@ -134,6 +159,48 @@
     await Promise.all([loadLyrics(), loadDescription()]);
   }
 
+  const openSceneModal = (fromCard) => {
+    if (!modal || !fromCard) return;
+    const title = fromCard.getAttribute('data-scene-title') || 'Untitled';
+    const desc = fromCard.getAttribute('data-scene-desc') || '';
+    const linksRaw = fromCard.getAttribute('data-scene-links') || '[]';
+    let links = [];
+    try {
+      links = JSON.parse(linksRaw);
+    } catch (err) {
+      links = [];
+    }
+
+    if (modalTitle) modalTitle.textContent = title;
+    if (modalSub) modalSub.textContent = fromCard.getAttribute('data-scene-sub') || '';
+    if (modalBody) modalBody.textContent = desc || '설명이 아직 준비되지 않았습니다.';
+    if (modalDescription) modalDescription.textContent = '';
+
+    const linkArea = modalLinks ? modalLinks.closest('[data-modal-link-area]') : null;
+    if (modalLinks) {
+      modalLinks.innerHTML = '';
+      if (Array.isArray(links) && links.length > 0) {
+        links.forEach((item) => {
+          const anchor = document.createElement('a');
+          anchor.className = 'modal-link-btn';
+          anchor.href = item.url;
+          anchor.textContent = item.label;
+          anchor.target = '_blank';
+          anchor.rel = 'noopener noreferrer';
+          modalLinks.appendChild(anchor);
+        });
+        if (linkArea) linkArea.style.display = '';
+      } else if (linkArea) {
+        linkArea.style.display = 'none';
+      }
+    }
+
+    modal.classList.add('active');
+    modal.setAttribute('aria-hidden', 'false');
+    lockBody();
+    if (modalScroll) modalScroll.scrollTop = 0;
+  };
+
   // Click delegation: any [data-open-modal] opens modal
   if (modal) {
     document.addEventListener('click', (e) => {
@@ -142,7 +209,7 @@
       if (!trigger) return;
       const card = trigger.closest('[data-item]');
       if (!card) return;
-      openModal(card); // async, but we don't await here
+      openLyricsModal(card); // async, but we don't await here
     });
 
     modalCloseEls.forEach((el) => el.addEventListener('click', closeModal));
@@ -152,42 +219,11 @@
     });
   }
 
-  const getSceneCardUrl = (card) => {
-    if (!card) return '';
-    const anchor = card.querySelector('a.card-link[href]');
-    if (anchor) return anchor.getAttribute('href') || '';
-    const dataLink =
-      card.getAttribute('data-link') ||
-      card.getAttribute('data-url') ||
-      card.getAttribute('data-href');
-    if (dataLink) return dataLink;
-    const linksRaw = card.getAttribute('data-lyrics-links');
-    if (!linksRaw) return '';
-    try {
-      const links = JSON.parse(linksRaw);
-      return links?.[0]?.url || '';
-    } catch (err) {
-      console.error('Invalid data-lyrics-links JSON', err);
-      return '';
-    }
-  };
-
-  const navigateSceneCard = (card) => {
-    const url = getSceneCardUrl(card);
-    if (!url) return;
-    const newTab = card.getAttribute('data-newtab') === 'true';
-    if (newTab) {
-      window.open(url, '_blank', 'noopener');
-    } else {
-      window.location.href = url;
-    }
-  };
-
   if (isScenePage) {
     document.addEventListener('DOMContentLoaded', () => {
       const cards = document.querySelectorAll('.item-card');
       cards.forEach((card) => {
-        card.setAttribute('role', 'link');
+        card.setAttribute('role', 'button');
         card.setAttribute('tabindex', '0');
       });
     });
@@ -196,18 +232,19 @@
       const card = e.target.closest('.item-card[data-item]');
       if (!card) return;
       const interactive = e.target.closest('a, button, input, textarea, select, label');
-      if (interactive && !interactive.classList.contains('item-card')) return;
-      navigateSceneCard(card);
+      if (interactive && !interactive.classList.contains('item-card')) {
+        e.preventDefault();
+      }
+      e.preventDefault();
+      openSceneModal(card);
     });
 
     document.addEventListener('keydown', (e) => {
       const card = e.target.closest('.item-card[data-item]');
       if (!card) return;
       if (e.key !== 'Enter' && e.key !== ' ') return;
-      const interactive = e.target.closest('a, button, input, textarea, select, label');
-      if (interactive && !interactive.classList.contains('item-card')) return;
       e.preventDefault();
-      navigateSceneCard(card);
+      openSceneModal(card);
     });
   }
 
