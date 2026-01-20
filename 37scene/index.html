@@ -53,10 +53,10 @@
         <article class="item-card" data-card-id="SCN-001"
           data-item
           data-search="streetlight cold breath cinematic restrained quiet lowered conversation pauses space low quiet between presence emphasis"
-          data-lyrics-title="Under a Streetlight, Cold Breath"
-          data-lyrics-genre="Ambient Music"
-          data-lyrics-date="2026.01"
-          data-lyrics-links='[{"label":"Enter Scene","url":"https://37scene.gumroad.com/l/rktmu"}]'>
+          data-scene-title="Under a Streetlight, Cold Breath"
+          data-scene-sub="Ambient Music · 2026.01"
+          data-scene-desc="A quiet intersection where the light hums. Breath settles like fog and the scene loops without urgency."
+          data-scene-links='[{"label":"Gumroad","url":"https://37scene.gumroad.com/l/rktmu"}]'>
           <div class="thumb">
             <img src="../assets/Under a streetlight Cold breath_THUMBNAIL.png" alt="Under a Streetlight, Cold Breath thumbnail" />
           </div>
@@ -72,6 +72,40 @@
       </section>
     </section>
   </main>
+
+  <!-- Modal -->
+  <div class="modal" data-modal aria-hidden="true">
+    <div class="modal-backdrop" data-modal-close></div>
+
+    <div class="modal-panel" role="dialog" aria-modal="true" aria-label="Scene">
+      <div class="modal-head">
+        <div class="modal-titles">
+          <h2 class="modal-title" data-modal-title>Scene title</h2>
+          <p class="modal-sub" data-modal-sub></p>
+        </div>
+        <button class="modal-close" type="button" data-modal-close aria-label="Close modal">×</button>
+      </div>
+
+      <div class="modal-body">
+        <div class="modal-split">
+          <section class="modal-panel-left" data-modal-scroll>
+            <div class="modal-description" data-modal-body></div>
+          </section>
+          <section class="modal-panel-right" aria-label="Scene links">
+            <div class="modal-panel-right-top">
+              <p class="modal-label">Links</p>
+            </div>
+            <div class="modal-panel-right-bottom">
+              <div class="modal-divider"></div>
+              <div class="modal-link-area" data-modal-link-area>
+                <div data-modal-links></div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <script src="/app.js"></script>
 </body>
