@@ -152,21 +152,62 @@
     });
   }
 
+  const getSceneCardUrl = (card) => {
+    if (!card) return '';
+    const anchor = card.querySelector('a.card-link[href]');
+    if (anchor) return anchor.getAttribute('href') || '';
+    const dataLink =
+      card.getAttribute('data-link') ||
+      card.getAttribute('data-url') ||
+      card.getAttribute('data-href');
+    if (dataLink) return dataLink;
+    const linksRaw = card.getAttribute('data-lyrics-links');
+    if (!linksRaw) return '';
+    try {
+      const links = JSON.parse(linksRaw);
+      return links?.[0]?.url || '';
+    } catch (err) {
+      console.error('Invalid data-lyrics-links JSON', err);
+      return '';
+    }
+  };
+
+  const navigateSceneCard = (card) => {
+    const url = getSceneCardUrl(card);
+    if (!url) return;
+    const newTab = card.getAttribute('data-newtab') === 'true';
+    if (newTab) {
+      window.open(url, '_blank', 'noopener');
+    } else {
+      window.location.href = url;
+    }
+  };
+
   if (isScenePage) {
+    document.addEventListener('DOMContentLoaded', () => {
+      const cards = document.querySelectorAll('.item-card');
+      cards.forEach((card) => {
+        card.setAttribute('role', 'link');
+        card.setAttribute('tabindex', '0');
+      });
+    });
+
     document.addEventListener('click', (e) => {
-      if (e.target.closest('a, button')) return;
       const card = e.target.closest('.item-card[data-item]');
       if (!card) return;
-      const linksRaw = card.getAttribute('data-lyrics-links');
-      if (!linksRaw) return;
-      try {
-        const links = JSON.parse(linksRaw);
-        const url = links?.[0]?.url;
-        if (!url) return;
-        window.open(url, '_blank', 'noopener');
-      } catch (err) {
-        console.error('Invalid data-lyrics-links JSON', err);
-      }
+      const interactive = e.target.closest('a, button, input, textarea, select, label');
+      if (interactive && !interactive.classList.contains('item-card')) return;
+      navigateSceneCard(card);
+    });
+
+    document.addEventListener('keydown', (e) => {
+      const card = e.target.closest('.item-card[data-item]');
+      if (!card) return;
+      if (e.key !== 'Enter' && e.key !== ' ') return;
+      const interactive = e.target.closest('a, button, input, textarea, select, label');
+      if (interactive && !interactive.classList.contains('item-card')) return;
+      e.preventDefault();
+      navigateSceneCard(card);
     });
   }
 
