@@ -4,7 +4,7 @@
   const empty = document.querySelector('[data-empty]');
   const items = Array.from(document.querySelectorAll('[data-item]'));
   const page = document.body ? document.body.dataset.page : '';
-  const isFrogPage = page === 'frog';
+  const isScenePage = page === 'scene';
 
   function filter(q) {
     const query = (q || '').trim().toLowerCase();
@@ -137,7 +137,7 @@
   // Click delegation: any [data-open-modal] opens modal
   if (modal) {
     document.addEventListener('click', (e) => {
-      if (isFrogPage) return;
+      if (isScenePage) return;
       const trigger = e.target.closest('[data-open-modal]');
       if (!trigger) return;
       const card = trigger.closest('[data-item]');
@@ -152,7 +152,7 @@
     });
   }
 
-  if (isFrogPage) {
+  if (isScenePage) {
     document.addEventListener('click', (e) => {
       if (e.target.closest('a, button')) return;
       const card = e.target.closest('.item-card[data-item]');
