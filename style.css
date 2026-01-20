@@ -261,8 +261,8 @@ h1{
 }
 
 .thumb{
-  width:1500px;
-  height:1500px;
+  width:120px;
+  height:120px;
   aspect-ratio: 16 / 11;
   overflow:hidden;
   background: rgba(255,255,255,.06);
