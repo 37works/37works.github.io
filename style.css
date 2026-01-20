@@ -265,6 +265,7 @@ h1{
   height: auto;
   display: block;
   object-fit: contain;
+  pointer-events: none;
 }
 
 .meta{
@@ -384,6 +385,10 @@ h1{
 
 body[data-page="scene"] .item-card{
   cursor: pointer;
+}
+
+body[data-page="scene"] .item-card .overlay{
+  pointer-events: none;
 }
 
 /* ===== 37Lyrics locked layout: top fixed, grid scrolls ===== */
