@@ -536,7 +536,7 @@ h1{
 
 .modal-panel-right-top{
   flex: 1;
-  display: flex;
+  display: inline-flex;
   flex-direction: column;
   gap: 10px;
   min-height: 0;
