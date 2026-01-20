@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>37FROG</title>
+  <meta name="description" content="37FROG — narrative ambient" />
+  <link rel="stylesheet" href="/style.css" />
+  <link rel="icon" href="../assets/37FROG.png"/>
+  <link rel="apple-touch-icon" href="../assets/37FROG.png"/>
+</head>
+<body class="page-lock">
+  <div class="bg"></div>
+
+  <header class="site-header">
+    <a class="brand" href="../">
+      <span class="brand-mark">37FROG</span>
+      <span class="brand-sub">ambient music</span>
+    </a>
+
+    <nav class="top-nav">
+      <a href="../">Home</a>
+      <a href="../">Contact</a>
+    </nav>
+  </header>
+
+  <main class="container lyric-layout">
+    <!-- ✅ Fixed top panel (always visible) -->
+    <section class="lyric-top" id="lyricTop">
+      <div class="hero hero-compact">
+        <p class="kicker">Ambient Music</p>
+        <h1>Music that carries scenes without words.</h1>
+        <p class="lead">
+          Filter by title / genre / keywords. Click a thumbnail to listen and explore.
+        </p>
+      </div>
+
+      <!-- ✅ Search always visible -->
+      <div class="search-wrap active always-on" data-search-wrap>
+        <input class="search-input" data-search-input placeholder="Search… (e.g., night, love, bus, heart)" />
+        <span class="search-hint">type to filter</span>
+      </div>
+    </section>
+
+    <!-- ✅ Scrollable grid area -->
+    <section class="lyric-scroll" id="lyricScroll">
+      <div class="empty" data-empty>
+        No results. Try a different keyword.
+      </div>
+
+      <section class="cards-grid" aria-label="Lyric items">
+        
+        <article class="item-card"
+          data-item
+          data-search="streetlight cold breath cinematic restrained quiet lowered conversation pauses space low quiet between presence emphasis"
+          data-lyrics-title="Under a Streetlight, Cold Breath"
+          data-lyrics-genre="Lyric"
+          data-lyrics-date="2026.01"
+          <div class="thumb">
+           <a href="https://37frog.gumroad.com/l/rktmu" target="_blank" rel="noopener">
+             <img src="../assets/Under a streetlight Cold breath_THUMBNAIL.png" alt="thumbnail" />
+          </div>
+          <div class="meta">
+            <div>
+              <p class="title">Under a Streetlight, Cold Breath</p>
+              <p class="genre">Ambient Music</p>
+            </div>
+            <p class="genre">2026.01</p>
+          </div>
+        </article>
+        
+      </section>
+    </section>
+  </main>
+
+  </div>
+
+  <script src="/app.js"></script>
+</body>
+</html>
