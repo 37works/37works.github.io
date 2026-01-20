@@ -3,6 +3,8 @@
   const input = document.querySelector('[data-search-input]');
   const empty = document.querySelector('[data-empty]');
   const items = Array.from(document.querySelectorAll('[data-item]'));
+  const page = document.body ? document.body.dataset.page : '';
+  const isFrogPage = page === 'frog';
 
   function filter(q) {
     const query = (q || '').trim().toLowerCase();
@@ -132,12 +134,12 @@
     await Promise.all([loadLyrics(), loadDescription()]);
   }
 
-  // Click delegation: any .thumb opens modal
+  // Click delegation: any [data-open-modal] opens modal
   if (modal) {
     document.addEventListener('click', (e) => {
-      const thumb = e.target.closest('.thumb');
-      if (!thumb) return;
-      const card = thumb.closest('[data-item]');
+      const trigger = e.target.closest('[data-open-modal]');
+      if (!trigger) return;
+      const card = trigger.closest('[data-item]');
       if (!card) return;
       openModal(card); // async, but we don't await here
     });
@@ -146,6 +148,24 @@
 
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') closeModal();
+    });
+  }
+
+  if (isFrogPage) {
+    document.addEventListener('click', (e) => {
+      if (e.target.closest('a, button')) return;
+      const card = e.target.closest('[data-item]');
+      if (!card) return;
+      const linksRaw = card.getAttribute('data-lyrics-links') || '[]';
+      let links = [];
+      try {
+        links = JSON.parse(linksRaw);
+      } catch (err) {
+        links = [];
+      }
+      const url = Array.isArray(links) && links[0] ? links[0].url : '';
+      if (!url) return;
+      window.open(url, '_blank', 'noopener');
     });
   }
 
