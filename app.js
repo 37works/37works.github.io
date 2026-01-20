@@ -137,6 +137,7 @@
   // Click delegation: any [data-open-modal] opens modal
   if (modal) {
     document.addEventListener('click', (e) => {
+      if (isFrogPage) return;
       const trigger = e.target.closest('[data-open-modal]');
       if (!trigger) return;
       const card = trigger.closest('[data-item]');
@@ -154,18 +155,18 @@
   if (isFrogPage) {
     document.addEventListener('click', (e) => {
       if (e.target.closest('a, button')) return;
-      const card = e.target.closest('[data-item]');
+      const card = e.target.closest('.item-card[data-item]');
       if (!card) return;
-      const linksRaw = card.getAttribute('data-lyrics-links') || '[]';
-      let links = [];
+      const linksRaw = card.getAttribute('data-lyrics-links');
+      if (!linksRaw) return;
       try {
-        links = JSON.parse(linksRaw);
+        const links = JSON.parse(linksRaw);
+        const url = links?.[0]?.url;
+        if (!url) return;
+        window.open(url, '_blank', 'noopener');
       } catch (err) {
-        links = [];
+        console.error('Invalid data-lyrics-links JSON', err);
       }
-      const url = Array.isArray(links) && links[0] ? links[0].url : '';
-      if (!url) return;
-      window.open(url, '_blank', 'noopener');
     });
   }
 
