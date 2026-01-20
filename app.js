@@ -30,8 +30,7 @@
   const modalBody = document.querySelector('[data-modal-body]');
   const modalScroll = document.querySelector('[data-modal-scroll]');
   const modalDescription = document.querySelector('[data-modal-description]');
-  const modalLink = document.querySelector('[data-modal-link]');
-  const modalLinkHelper = document.querySelector('[data-modal-link-helper]');
+  const modalLinks = document.querySelector('[data-modal-links]');
   const modalCloseEls = Array.from(document.querySelectorAll('[data-modal-close]'));
   const fallbackDescription = '설명이 아직 준비되지 않았습니다.\nTODO: 곡 데이터와 연결하세요.';
 
@@ -49,10 +48,13 @@
     const genre = fromCard.getAttribute('data-lyrics-genre') || '';
     const date = fromCard.getAttribute('data-lyrics-date') || '';
     const descriptionSrc = fromCard.getAttribute('data-lyrics-desc');
-    const link =
-      fromCard.getAttribute('data-lyrics-link') ||
-      fromCard.getAttribute('data-yt-link') ||
-      ''; // TODO: replace with per-song link data
+    const linksRaw = fromCard.getAttribute('data-lyrics-links') || '[]';
+    let links = [];
+    try {
+      links = JSON.parse(linksRaw);
+    } catch (err) {
+      links = [];
+    }
 
     if (modalTitle) modalTitle.textContent = title;
     if (modalSub) modalSub.textContent = [genre, date].filter(Boolean).join(' · ');
@@ -60,17 +62,24 @@
     if (modalDescription) {
       modalDescription.textContent = descriptionSrc ? 'Loading…' : fallbackDescription;
     }
-    if (modalLink) {
-      if (link) {
-        modalLink.href = link;
-        modalLink.classList.remove('is-disabled');
+    if (modalLinks) {
+      modalLinks.innerHTML = '';
+      if (Array.isArray(links) && links.length > 0) {
+        links.forEach((item) => {
+          const anchor = document.createElement('a');
+          anchor.className = 'modal-link-btn';
+          anchor.href = item.url;
+          anchor.textContent = item.label;
+          anchor.target = '_blank';
+          anchor.rel = 'noopener noreferrer';
+          modalLinks.appendChild(anchor);
+        });
       } else {
-        modalLink.href = '#';
-        modalLink.classList.add('is-disabled');
+        const helper = document.createElement('p');
+        helper.className = 'modal-link-helper';
+        helper.textContent = '연결된 링크가 없어요.';
+        modalLinks.appendChild(helper);
       }
-    }
-    if (modalLinkHelper) {
-      modalLinkHelper.style.display = link ? 'none' : 'block';
     }
 
     // open first (so user sees feedback)
