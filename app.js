@@ -61,11 +61,36 @@
     lockState.locked = false;
   }
 
+  function getCardIdFromUrl() {
+    const params = new URLSearchParams(window.location.search);
+    const queryId = params.get('id');
+    if (queryId) return queryId;
+    const hashId = window.location.hash ? decodeURIComponent(window.location.hash.slice(1)) : '';
+    return hashId || '';
+  }
+
+  function updateUrlWithCardId(cardId) {
+    if (!cardId) return;
+    const url = new URL(window.location.href);
+    url.searchParams.set('id', cardId);
+    url.hash = '';
+    window.history.replaceState({}, '', url.toString());
+  }
+
+  function clearCardIdFromUrl() {
+    const url = new URL(window.location.href);
+    if (!url.searchParams.has('id') && !url.hash) return;
+    url.searchParams.delete('id');
+    url.hash = '';
+    window.history.replaceState({}, '', url.toString());
+  }
+
   function closeModal() {
     if (!modal) return;
     modal.classList.remove('active');
     modal.setAttribute('aria-hidden', 'true');
     unlockBody();
+    clearCardIdFromUrl();
   }
 
   async function openLyricsModal(fromCard) {
@@ -201,6 +226,34 @@
     if (modalScroll) modalScroll.scrollTop = 0;
   };
 
+  const openModalFromCard = (card) => {
+    if (!card) return;
+    const cardId = card.getAttribute('data-card-id');
+    if (isScenePage) {
+      openSceneModal(card);
+    } else {
+      openLyricsModal(card);
+    }
+    if (cardId) updateUrlWithCardId(cardId);
+  };
+
+  const openCardFromUrl = () => {
+    const cardId = getCardIdFromUrl();
+    if (!cardId) return;
+    const startedAt = Date.now();
+    const tryOpen = () => {
+      const card = document.querySelector(`[data-card-id="${cardId}"]`);
+      if (card) {
+        openModalFromCard(card);
+        return;
+      }
+      if (Date.now() - startedAt < 2000) {
+        window.setTimeout(tryOpen, 100);
+      }
+    };
+    tryOpen();
+  };
+
   // Click delegation: any [data-open-modal] opens modal
   if (modal) {
     document.addEventListener('click', (e) => {
@@ -209,7 +262,7 @@
       if (!trigger) return;
       const card = trigger.closest('[data-item]');
       if (!card) return;
-      openLyricsModal(card); // async, but we don't await here
+      openModalFromCard(card); // async, but we don't await here
     });
 
     modalCloseEls.forEach((el) => el.addEventListener('click', closeModal));
@@ -236,7 +289,7 @@
         e.preventDefault();
       }
       e.preventDefault();
-      openSceneModal(card);
+      openModalFromCard(card);
     });
 
     document.addEventListener('keydown', (e) => {
@@ -244,7 +297,7 @@
       if (!card) return;
       if (e.key !== 'Enter' && e.key !== ' ') return;
       e.preventDefault();
-      openSceneModal(card);
+      openModalFromCard(card);
     });
   }
 
@@ -271,5 +324,9 @@
       { passive: true }
     );
     update();
+  }
+
+  if (modal) {
+    openCardFromUrl();
   }
 })();
