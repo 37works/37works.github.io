@@ -277,6 +277,12 @@ h1{
   pointer-events: none;
 }
 
+.item-card .title{
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .meta{
   display:flex;
   justify-content:space-between;
