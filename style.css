@@ -240,13 +240,13 @@ h1{
 
 .cards-grid{
   display:grid;
-  grid-template-columns: repeat(12, 1fr);
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
   gap: 14px;
   margin-top: 16px;
 }
 
 .item-card{
-  grid-column: span 4;
+  grid-column: auto;
   border-radius: 18px;
   overflow:hidden;
   border: 1px solid var(--line);
@@ -255,16 +255,18 @@ h1{
 }
 
 .item-card .thumb{
-  width: 100%;
+  width: 320px;
+  height: 320px;
   overflow: hidden;
   background: rgba(255,255,255,.06);
+  flex: 0 0 auto;
 }
 
 .item-card .thumb img{
   width: 100%;
-  height: auto;
+  height: 100%;
   display: block;
-  object-fit: contain;
+  object-fit: cover;
   pointer-events: none;
 }
 
@@ -299,11 +301,11 @@ h1{
 /* Responsive */
 @media (max-width: 900px){
   .work-tile{ grid-column: span 6; }
-  .item-card{ grid-column: span 6; }
+  .item-card{ grid-column: auto; }
 }
 @media (max-width: 560px){
   .work-tile{ grid-column: span 12; }
-  .item-card{ grid-column: span 12; }
+  .item-card{ grid-column: auto; }
 }
 
 /* 37Lyrics: search button under hero text */
