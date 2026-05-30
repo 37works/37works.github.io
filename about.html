@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>About — 37Works</title>
+<link rel="icon" type="image/png" href="assets/favicon.png"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@500&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@100..900&family=JetBrains+Mono:wght@100..900&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+                "on-surface-variant": "#444748",
+                "outline": "#747878",
+                "secondary-container": "#e0dfde",
+                "on-error": "#ffffff",
+                "on-surface": "#1b1c19",
+                "on-tertiary-fixed": "#1a1c1a",
+                "primary-container": "#1c1b1b",
+                "on-primary-container": "#858383",
+                "surface-container-highest": "#e4e2dd",
+                "tertiary": "#000000",
+                "error": "#ba1a1a",
+                "on-secondary-fixed": "#1a1c1b",
+                "on-primary-fixed-variant": "#474646",
+                "on-error-container": "#93000a",
+                "outline-variant": "#c4c7c7",
+                "tertiary-fixed-dim": "#c6c7c3",
+                "inverse-primary": "#c8c6c5",
+                "surface-container": "#efeee9",
+                "surface-variant": "#e4e2dd",
+                "error-container": "#ffdad6",
+                "surface-bright": "#fbf9f4",
+                "secondary-fixed": "#e3e2e0",
+                "on-tertiary": "#ffffff",
+                "inverse-on-surface": "#f2f1eb",
+                "on-tertiary-container": "#838481",
+                "secondary-fixed-dim": "#c7c6c5",
+                "surface-container-lowest": "#ffffff",
+                "primary-fixed": "#e5e2e1",
+                "surface-container-low": "#f5f3ee",
+                "primary-fixed-dim": "#c8c6c5",
+                "on-background": "#1b1c19",
+                "on-primary": "#ffffff",
+                "on-secondary": "#ffffff",
+                "primary": "#000000",
+                "surface-tint": "#5f5e5e",
+                "on-secondary-fixed-variant": "#464746",
+                "surface-container-high": "#eae8e3",
+                "surface": "#fbf9f4",
+                "tertiary-container": "#1a1c1a",
+                "tertiary-fixed": "#e3e3df",
+                "inverse-surface": "#30312d",
+                "on-primary-fixed": "#1c1b1b",
+                "background": "#fbf9f4",
+                "secondary": "#5e5e5d",
+                "on-tertiary-fixed-variant": "#464744"
+        },
+        "borderRadius": {
+                "DEFAULT": "0.125rem",
+                "lg": "0.25rem",
+                "xl": "0.5rem",
+                "full": "0.75rem"
+        },
+        "spacing": {
+          "margin-desktop": "64px",
+          "unit": "4px",
+          "gutter": "32px",
+          "margin-tablet": "32px",
+          "container-max": "1440px",
+          "margin-mobile": "20px"
+        },
+        "fontFamily": {
+          "body-md": ["Hanken Grotesk"],
+          "display-lg": ["Hanken Grotesk"],
+          "label-mono": ["JetBrains Mono"],
+          "headline-xl": ["Hanken Grotesk"],
+          "body-lg": ["Hanken Grotesk"],
+          "headline-lg": ["Hanken Grotesk"],
+          "display-lg-mobile": ["Hanken Grotesk"]
+        },
+        "fontSize": {
+          "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+          "display-lg": ["72px", {"lineHeight": "1.1", "letterSpacing": "-0.04em", "fontWeight": "700"}],
+          "label-mono": ["12px", {"lineHeight": "1.4", "letterSpacing": "0.1em", "fontWeight": "500"}],
+          "headline-xl": ["40px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+          "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+          "headline-lg": ["32px", {"lineHeight": "1.3", "fontWeight": "600"}],
+          "display-lg-mobile": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.04em", "fontWeight": "700"}]
+        }
+      },
+    },
+  }
+</script>
+<style>
+  .material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    display: inline-block;
+    vertical-align: middle;
+  }
+  .hero-reveal {
+    animation: reveal 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+  @keyframes reveal {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .custom-cursor {
+    width: 20px;
+    height: 20px;
+    border: 1px solid #000;
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 9999;
+    transition: transform 0.1s ease-out;
+    mix-blend-mode: difference;
+  }
+  .tag-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 12px;
+    border: 1px solid #c4c7c7;
+    background: #f5f3ee;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #5e5e5d;
+    transition: all 0.3s ease;
+  }
+  .tag-chip:hover {
+    border-color: #000;
+    color: #000;
+    background: #eae8e3;
+  }
+  .stat-card {
+    background: #f5f3ee;
+    border: 1px solid #c4c7c7;
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+  }
+  .stat-card:hover {
+    border-color: #000;
+    background: #eae8e3;
+  }
+  .timeline-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #000;
+    flex-shrink: 0;
+    margin-top: 6px;
+  }
+  .scroll-fade {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.8s cubic-bezier(0.16,1,0.3,1), transform 0.8s cubic-bezier(0.16,1,0.3,1);
+  }
+  .scroll-fade.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
+</head>
+<body class="bg-background text-primary font-body-md overflow-x-hidden selection:bg-primary selection:text-on-primary">
+<div class="custom-cursor hidden md:block" id="cursor"></div>
+
+<!-- TopNavBar -->
+<header class="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-outline-variant">
+  <nav class="flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop py-6 max-w-container-max mx-auto">
+    <a href="index.html" class="font-headline-lg text-headline-lg font-bold text-primary hover:opacity-70 transition-opacity">37Works</a>
+    <div class="hidden md:flex items-center gap-12 font-body-md text-body-md tracking-wider">
+      <a class="text-secondary hover:text-primary transition-colors duration-300" href="index.html">Work</a>
+      <a class="text-primary font-bold border-b border-primary hover:text-primary transition-colors duration-300" href="about.html">About</a>
+    </div>
+    <button id="contact-btn" class="bg-primary text-on-primary px-8 py-3 font-label-mono text-label-mono uppercase tracking-widest hover:scale-102 transition-transform duration-300">
+      Contact
+    </button>
+  </nav>
+</header>
+
+<main class="pt-32">
+
+  <!-- Hero — Profile + Intro -->
+  <section class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-24 md:py-32">
+    <div class="hero-reveal">
+      <span class="font-label-mono text-label-mono uppercase text-secondary mb-8 block tracking-widest">Who I Am</span>
+
+      <div class="flex flex-col md:flex-row gap-12 md:gap-16 items-start">
+        <!-- Profile Image -->
+        <div class="flex-shrink-0 mx-auto md:mx-0">
+          <img
+            src="assets/Profile.jpg"
+            alt="Illustrated portrait of the creator"
+            class="w-56 h-56 md:w-64 md:h-64 object-cover grayscale hover:grayscale-0 transition-all duration-700 border border-outline-variant"
+          />
+          <!-- Tags under photo -->
+          <div class="flex flex-wrap gap-2 mt-5 max-w-[256px]">
+            <span class="tag-chip">Developer</span>
+            <span class="tag-chip">Composer</span>
+            <span class="tag-chip">Designer</span>
+            <span class="tag-chip">Korea</span>
+            <span class="tag-chip">AI-Native</span>
+            <span class="tag-chip">Self-Taught</span>
+          </div>
+        </div>
+
+        <!-- Intro Text -->
+        <div class="flex-1">
+          <h1 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-[56px] leading-[1.05] mb-6">
+            Hi, I'm <span class="text-secondary-container">Doky</span>.
+          </h1>
+          <p class="font-body-lg text-body-lg text-secondary leading-relaxed mb-6">
+            I'm an independent creator based in South Korea — building at the crossroads of software, music, and visual design. I never studied computer science or design formally. Instead, I taught myself everything through obsession, iteration, and now, artificial intelligence.
+          </p>
+          <p class="font-body-lg text-body-lg text-secondary leading-relaxed">
+            I run <strong class="text-primary font-semibold">37Works</strong>, a one-person studio where every project is an experiment in what's possible when curiosity meets the tools of today. Whether it's a SaaS product, an AI-composed piano track, or a visual identity — I make it alone, and I make it from scratch.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats Row -->
+  <section class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop pb-16 scroll-fade">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <div class="stat-card text-center">
+        <p class="font-label-mono text-label-mono uppercase text-secondary tracking-widest mb-2">Discipline</p>
+        <p class="font-headline-lg text-2xl font-bold text-primary">3-in-1</p>
+        <p class="font-body-md text-sm text-secondary mt-1">Dev · Music · Design</p>
+      </div>
+      <div class="stat-card text-center">
+        <p class="font-label-mono text-label-mono uppercase text-secondary tracking-widest mb-2">Background</p>
+        <p class="font-headline-lg text-2xl font-bold text-primary">Self-Taught</p>
+        <p class="font-body-md text-sm text-secondary mt-1">Non-CS Major</p>
+      </div>
+      <div class="stat-card text-center">
+        <p class="font-label-mono text-label-mono uppercase text-secondary tracking-widest mb-2">Base</p>
+        <p class="font-headline-lg text-2xl font-bold text-primary">Seoul, KR</p>
+        <p class="font-body-md text-sm text-secondary mt-1">South Korea</p>
+      </div>
+      <div class="stat-card text-center">
+        <p class="font-label-mono text-label-mono uppercase text-secondary tracking-widest mb-2">Approach</p>
+        <p class="font-headline-lg text-2xl font-bold text-primary">AI-First</p>
+        <p class="font-body-md text-sm text-secondary mt-1">Human at the core</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Three Pillars -->
+  <section class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop pb-24">
+    <div class="mb-12 scroll-fade">
+      <span class="font-label-mono text-label-mono uppercase text-secondary tracking-widest">What I Do</span>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+      <!-- Pillar 1: Developer -->
+      <div class="bg-surface-container-low border border-outline-variant hover:border-primary p-8 scroll-fade group transition-all duration-500">
+        <div class="w-12 h-12 flex items-center justify-center bg-surface-container border border-outline-variant mb-6 group-hover:bg-surface-container-high transition-colors">
+          <span class="material-symbols-outlined text-[22px] text-secondary">code</span>
+        </div>
+        <h3 class="font-headline-lg text-xl font-semibold mb-4 text-primary">Developer</h3>
+        <p class="font-body-md text-body-md text-secondary leading-relaxed mb-6">
+          I build web products and SaaS tools from the ground up — without a CS degree, but with a deep obsession for how things work. I learned to code by shipping, breaking things, and building again. Today I use AI as a co-pilot to amplify what I can create alone.
+        </p>
+        <div class="flex flex-wrap gap-2">
+          <span class="tag-chip">Web Dev</span>
+          <span class="tag-chip">SaaS</span>
+          <span class="tag-chip">AI Tools</span>
+          <span class="tag-chip">Self-Taught</span>
+        </div>
+      </div>
+
+      <!-- Pillar 2: Composer -->
+      <div class="bg-surface-container-low border border-outline-variant hover:border-primary p-8 scroll-fade group transition-all duration-500" style="transition-delay: 0.1s;">
+        <div class="w-12 h-12 flex items-center justify-center bg-surface-container border border-outline-variant mb-6 group-hover:bg-surface-container-high transition-colors">
+          <span class="material-symbols-outlined text-[22px] text-secondary">piano</span>
+        </div>
+        <h3 class="font-headline-lg text-xl font-semibold mb-4 text-primary">Composer</h3>
+        <p class="font-body-md text-body-md text-secondary leading-relaxed mb-6">
+          Under the name <strong class="text-primary">Celsi37</strong>, I compose AI-generated piano music — slow, melancholic, made for quiet hours. I don't have classical training, but I have an ear for emotion and a clear vision for sound. AI turned that vision into real music.
+        </p>
+        <div class="flex flex-wrap gap-2">
+          <span class="tag-chip">AI Music</span>
+          <span class="tag-chip">Solo Piano</span>
+          <span class="tag-chip">Celsi37</span>
+          <span class="tag-chip">Ambient</span>
+        </div>
+      </div>
+
+      <!-- Pillar 3: Designer -->
+      <div class="bg-surface-container-low border border-outline-variant hover:border-primary p-8 scroll-fade group transition-all duration-500" style="transition-delay: 0.2s;">
+        <div class="w-12 h-12 flex items-center justify-center bg-surface-container border border-outline-variant mb-6 group-hover:bg-surface-container-high transition-colors">
+          <span class="material-symbols-outlined text-[22px] text-secondary">palette</span>
+        </div>
+        <h3 class="font-headline-lg text-xl font-semibold mb-4 text-primary">Designer</h3>
+        <p class="font-body-md text-body-md text-secondary leading-relaxed mb-6">
+          Design is the layer that ties everything together. I shape visual identities, interfaces, and creative direction for the things I build — always aiming for the feeling that something was made with intention. Minimalism is my default. Contrast is my tool.
+        </p>
+        <div class="flex flex-wrap gap-2">
+          <span class="tag-chip">UI / UX</span>
+          <span class="tag-chip">Visual Identity</span>
+          <span class="tag-chip">Minimalism</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AI & Philosophy Section -->
+  <section class="bg-surface-container py-24">
+    <div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
+      <div class="scroll-fade grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+        <div>
+          <span class="font-label-mono text-label-mono uppercase text-secondary tracking-widest mb-6 block">My Relationship with AI</span>
+          <h2 class="font-headline-xl text-headline-xl mb-6 leading-tight">
+            AI didn't replace<br/>what I do.<br/>
+            <span class="text-secondary-container">It made me possible.</span>
+          </h2>
+          <p class="font-body-lg text-body-lg text-secondary leading-relaxed">
+            Without a formal background in engineering, music theory, or design school — I had ideas that outpaced my technical abilities. AI closed that gap. Not as a shortcut, but as a collaborator that turns clarity of vision into tangible output.
+          </p>
+        </div>
+        <div class="flex flex-col gap-6">
+          <div class="flex items-start gap-4">
+            <div class="timeline-dot mt-1.5"></div>
+            <div>
+              <p class="font-semibold text-primary mb-1">Non-major, unlimited scope</p>
+              <p class="font-body-md text-body-md text-secondary">I studied neither CS nor music. AI is the bridge between what I want to make and what I can actually ship.</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-4">
+            <div class="timeline-dot mt-1.5"></div>
+            <div>
+              <p class="font-semibold text-primary mb-1">Korean context, global ambition</p>
+              <p class="font-body-md text-body-md text-secondary">Working from Seoul, I build for a global audience — with aesthetics shaped by the quiet intensity of Korean creative culture.</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-4">
+            <div class="timeline-dot mt-1.5"></div>
+            <div>
+              <p class="font-semibold text-primary mb-1">One person. Full stack.</p>
+              <p class="font-body-md text-body-md text-secondary">Product strategy, visual design, code, sound design — all from the same desk. AI makes the solo act sustainable.</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-4">
+            <div class="timeline-dot mt-1.5"></div>
+            <div>
+              <p class="font-semibold text-primary mb-1">Curiosity as method</p>
+              <p class="font-body-md text-body-md text-secondary">Every project starts with a question I can't fully answer yet. That tension is where the work gets interesting.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Preview -->
+  <section class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-24">
+    <div class="mb-12 scroll-fade">
+      <span class="font-label-mono text-label-mono uppercase text-secondary tracking-widest">Current Work</span>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div class="bg-surface-container-low border border-outline-variant hover:border-primary p-8 scroll-fade group transition-all duration-500 flex items-start gap-6">
+        <div class="w-14 h-14 flex items-center justify-center bg-surface-container border border-outline-variant shrink-0 group-hover:bg-surface-container-high transition-colors">
+          <span class="material-symbols-outlined text-[26px] text-secondary">rocket_launch</span>
+        </div>
+        <div>
+          <h3 class="font-headline-lg text-xl font-semibold text-primary mb-2">Soft37</h3>
+          <p class="font-label-mono text-label-mono uppercase text-secondary tracking-widest text-[10px] mb-3">SaaS Product</p>
+          <p class="font-body-md text-body-md text-secondary leading-relaxed">A SaaS product designed for clarity — built solo, from architecture to interface, with AI woven through every layer.</p>
+        </div>
+      </div>
+      <div class="bg-surface-container-low border border-outline-variant hover:border-primary p-8 scroll-fade group transition-all duration-500 flex items-start gap-6" style="transition-delay: 0.1s;">
+        <div class="w-14 h-14 flex items-center justify-center bg-surface-container border border-outline-variant shrink-0 group-hover:bg-surface-container-high transition-colors">
+          <span class="material-symbols-outlined text-[26px] text-secondary">music_note</span>
+        </div>
+        <div>
+          <h3 class="font-headline-lg text-xl font-semibold text-primary mb-2">Celsi37</h3>
+          <p class="font-label-mono text-label-mono uppercase text-secondary tracking-widest text-[10px] mb-3">AI Music Channel</p>
+          <p class="font-body-md text-body-md text-secondary leading-relaxed">Solo piano compositions for late nights and quiet mornings — AI-generated, human-directed, emotionally grounded.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop pb-40">
+    <div class="bg-surface-container border border-outline-variant p-12 md:p-16 text-center scroll-fade">
+      <span class="font-label-mono text-label-mono uppercase text-secondary tracking-widest mb-6 block">Let's Connect</span>
+      <h2 class="font-headline-xl text-headline-xl mb-6 max-w-2xl mx-auto leading-tight">
+        If you're building something that matters, let's talk.
+      </h2>
+      <p class="font-body-lg text-body-lg text-secondary mb-10 max-w-xl mx-auto">
+        I'm open to collaborations, freelance projects, and conversations about AI, design, and what comes next.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <button id="contact-btn-cta" class="bg-primary text-on-primary px-8 py-3.5 font-label-mono text-label-mono uppercase tracking-widest hover:scale-102 transition-transform duration-300">
+          Get in Touch
+        </button>
+        <a href="index.html" class="border border-outline-variant text-secondary px-8 py-3.5 font-label-mono text-label-mono uppercase tracking-widest hover:border-primary hover:text-primary transition-all duration-300">
+          See My Work
+        </a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- Contact Modal -->
+<div id="contact-modal" class="fixed inset-0 z-[100] flex items-center justify-center px-margin-mobile hidden">
+  <div id="contact-backdrop" class="absolute inset-0 bg-black/40 backdrop-blur-sm"></div>
+  <div class="relative bg-surface-container-lowest border border-outline-variant p-10 md:p-14 w-full max-w-md z-10">
+    <button id="contact-close" class="absolute top-5 right-5 w-9 h-9 flex items-center justify-center border border-outline-variant hover:bg-surface-container transition-colors">
+      <span class="material-symbols-outlined text-[18px]">close</span>
+    </button>
+    <span class="font-label-mono text-label-mono uppercase text-secondary tracking-widest mb-6 block">Contact</span>
+    <h2 class="font-headline-lg text-headline-lg mb-10 leading-snug">Let's work<br/>together.</h2>
+    <div class="flex flex-col gap-4">
+      <a href="mailto:kdoky37@gmail.com" class="group flex items-center gap-4 p-5 border border-outline-variant hover:border-primary bg-surface-container-low hover:bg-surface-container transition-all duration-300">
+        <div class="w-10 h-10 flex items-center justify-center bg-surface-container group-hover:bg-surface-container-high transition-colors shrink-0">
+          <span class="material-symbols-outlined text-[18px] text-secondary">mail</span>
+        </div>
+        <div>
+          <p class="font-label-mono text-label-mono uppercase tracking-widest text-secondary mb-0.5">Email</p>
+          <p class="font-body-md text-body-md text-primary">kdoky37@gmail.com</p>
+        </div>
+        <span class="material-symbols-outlined text-[16px] text-outline ml-auto opacity-0 group-hover:opacity-100 transition-opacity">arrow_outward</span>
+      </a>
+      <a href="https://www.linkedin.com/in/kdoky37" target="_blank" rel="noopener noreferrer" class="group flex items-center gap-4 p-5 border border-outline-variant hover:border-primary bg-surface-container-low hover:bg-surface-container transition-all duration-300">
+        <div class="w-10 h-10 flex items-center justify-center bg-surface-container group-hover:bg-surface-container-high transition-colors shrink-0">
+          <span class="material-symbols-outlined text-[18px] text-secondary">link</span>
+        </div>
+        <div>
+          <p class="font-label-mono text-label-mono uppercase tracking-widest text-secondary mb-0.5">LinkedIn</p>
+          <p class="font-body-md text-body-md text-primary">linkedin.com/in/kdoky37</p>
+        </div>
+        <span class="material-symbols-outlined text-[16px] text-outline ml-auto opacity-0 group-hover:opacity-100 transition-opacity">arrow_outward</span>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer class="border-t border-outline-variant">
+  <div class="flex flex-col md:flex-row justify-between items-center w-full px-margin-mobile md:px-margin-desktop py-12 max-w-container-max mx-auto gap-8">
+    <div class="font-body-lg text-body-lg font-bold text-primary">37Works</div>
+    <div class="font-label-mono text-label-mono uppercase text-secondary flex gap-8">
+      <a class="hover:text-primary transition-colors duration-300" href="mailto:kdoky37@gmail.com">Email</a>
+      <a class="hover:text-primary transition-colors duration-300" href="https://www.linkedin.com/in/kdoky37" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+    </div>
+    <p class="font-label-mono text-label-mono uppercase text-secondary">
+      © 2024 37Works. All rights reserved.
+    </p>
+  </div>
+</footer>
+
+<script>
+  // Contact Modal
+  const modal = document.getElementById('contact-modal');
+  const backdrop = document.getElementById('contact-backdrop');
+  const closeBtn = document.getElementById('contact-close');
+
+  function openModal() {
+    modal.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeModal() {
+    modal.classList.add('hidden');
+    document.body.style.overflow = '';
+  }
+
+  document.getElementById('contact-btn').addEventListener('click', openModal);
+  document.getElementById('contact-btn-cta').addEventListener('click', openModal);
+  closeBtn.addEventListener('click', closeModal);
+  backdrop.addEventListener('click', closeModal);
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+  // Custom Cursor
+  const cursor = document.getElementById('cursor');
+  document.addEventListener('mousemove', e => {
+    cursor.style.left = e.clientX + 'px';
+    cursor.style.top = e.clientY + 'px';
+  });
+  document.querySelectorAll('a, button, .group').forEach(el => {
+    el.addEventListener('mouseenter', () => {
+      cursor.style.transform = 'scale(2.5)';
+      cursor.style.backgroundColor = 'rgba(0,0,0,0.05)';
+    });
+    el.addEventListener('mouseleave', () => {
+      cursor.style.transform = 'scale(1)';
+      cursor.style.backgroundColor = 'transparent';
+    });
+  });
+
+  // Scroll Fade Reveal
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.scroll-fade').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
