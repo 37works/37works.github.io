@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Soft37 — Mobile App Studio</title>
+<meta name="description" content="Soft37 is an independent mobile app studio building focused, well-crafted applications."/>
+<link rel="icon" type="image/png" href="../assets/favicon.png"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@500&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+          "on-surface-variant": "#444748",
+          "outline": "#747878",
+          "secondary-container": "#e0dfde",
+          "on-error": "#ffffff",
+          "on-surface": "#1b1c19",
+          "primary-container": "#1c1b1b",
+          "on-primary-container": "#858383",
+          "surface-container-highest": "#e4e2dd",
+          "tertiary": "#000000",
+          "error": "#ba1a1a",
+          "on-secondary-fixed": "#1a1c1b",
+          "on-primary-fixed-variant": "#474646",
+          "on-error-container": "#93000a",
+          "outline-variant": "#c4c7c7",
+          "tertiary-fixed-dim": "#c6c7c3",
+          "inverse-primary": "#c8c6c5",
+          "surface-container": "#efeee9",
+          "surface-variant": "#e4e2dd",
+          "error-container": "#ffdad6",
+          "surface-bright": "#fbf9f4",
+          "secondary-fixed": "#e3e2e0",
+          "on-tertiary": "#ffffff",
+          "inverse-on-surface": "#f2f1eb",
+          "on-tertiary-container": "#838481",
+          "secondary-fixed-dim": "#c7c6c5",
+          "surface-container-lowest": "#ffffff",
+          "primary-fixed": "#e5e2e1",
+          "surface-container-low": "#f5f3ee",
+          "primary-fixed-dim": "#c8c6c5",
+          "on-background": "#1b1c19",
+          "on-primary": "#ffffff",
+          "on-secondary": "#ffffff",
+          "primary": "#000000",
+          "surface-tint": "#5f5e5e",
+          "on-secondary-fixed-variant": "#464746",
+          "surface-container-high": "#eae8e3",
+          "surface": "#fbf9f4",
+          "tertiary-container": "#1a1c1a",
+          "tertiary-fixed": "#e3e3df",
+          "inverse-surface": "#30312d",
+          "on-primary-fixed": "#1c1b1b",
+          "background": "#fbf9f4",
+          "secondary": "#5e5e5d",
+          "on-tertiary-fixed-variant": "#464744"
+        },
+        "borderRadius": {
+          "DEFAULT": "0.125rem",
+          "lg": "0.25rem",
+          "xl": "0.5rem",
+          "full": "0.75rem"
+        },
+        "spacing": {
+          "margin-desktop": "64px",
+          "unit": "4px",
+          "gutter": "32px",
+          "margin-tablet": "32px",
+          "container-max": "1440px",
+          "margin-mobile": "20px"
+        },
+        "fontFamily": {
+          "body-md": ["Hanken Grotesk"],
+          "display-lg": ["Hanken Grotesk"],
+          "label-mono": ["JetBrains Mono"],
+          "headline-xl": ["Hanken Grotesk"],
+          "body-lg": ["Hanken Grotesk"],
+          "headline-lg": ["Hanken Grotesk"],
+          "display-lg-mobile": ["Hanken Grotesk"]
+        },
+        "fontSize": {
+          "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+          "display-lg": ["72px", {"lineHeight": "1.1", "letterSpacing": "-0.04em", "fontWeight": "700"}],
+          "label-mono": ["12px", {"lineHeight": "1.4", "letterSpacing": "0.1em", "fontWeight": "500"}],
+          "headline-xl": ["40px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+          "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+          "headline-lg": ["32px", {"lineHeight": "1.3", "fontWeight": "600"}],
+          "display-lg-mobile": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.04em", "fontWeight": "700"}]
+        }
+      },
+    },
+  }
+</script>
+<style>
+  .material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    display: inline-block;
+    vertical-align: middle;
+  }
+  .hero-reveal {
+    animation: reveal 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+  @keyframes reveal {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .card-glow {
+    box-shadow: 0 0 24px rgba(0, 0, 0, 0.10);
+    transition: box-shadow 0.5s ease;
+  }
+  .card-glow:hover {
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.22);
+  }
+  .custom-cursor {
+    width: 20px;
+    height: 20px;
+    border: 1px solid #000;
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 9999;
+    transition: transform 0.1s ease-out;
+    mix-blend-mode: difference;
+  }
+</style>
+</head>
+<body class="bg-background text-primary font-body-md overflow-x-hidden selection:bg-primary selection:text-on-primary">
+<div class="custom-cursor hidden md:block" id="cursor"></div>
+
+<!-- TopNavBar -->
+<header class="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-outline-variant">
+  <nav class="flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop py-6 max-w-container-max mx-auto">
+    <a href="../" class="font-headline-lg text-headline-lg font-bold text-primary hover:text-secondary transition-colors duration-300">37Works</a>
+    <div class="hidden md:flex items-center gap-12 font-body-md text-body-md tracking-wider">
+      <a class="text-secondary hover:text-primary transition-colors duration-300" href="../">Work</a>
+      <a class="text-primary font-bold border-b border-primary" href="#">Soft37</a>
+    </div>
+    <a href="mailto:kdoky37@working37.net" class="bg-primary text-on-primary px-8 py-3 font-label-mono text-label-mono uppercase tracking-widest hover:scale-102 transition-transform duration-300">
+      Contact
+    </a>
+  </nav>
+</header>
+
+<main class="pt-32">
+  <!-- Hero -->
+  <section class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-24 md:py-40">
+    <div class="hero-reveal max-w-4xl">
+      <span class="font-label-mono text-label-mono uppercase text-secondary mb-6 block tracking-widest">Mobile App Studio</span>
+      <h1 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg mb-12">
+        Soft37
+      </h1>
+      <p class="font-body-lg text-body-lg text-secondary max-w-2xl leading-relaxed">
+        Independent mobile app studio focused on building focused, well-crafted applications. Each product is designed with intention — minimal, purposeful, and built to last.
+      </p>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop pb-24">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+
+      <div class="border border-outline-variant p-8 card-glow">
+        <span class="material-symbols-outlined text-secondary mb-6 block text-[32px]" style="font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 40;">smartphone</span>
+        <h3 class="font-headline-lg text-headline-lg mb-4">Mobile-First</h3>
+        <p class="font-body-md text-body-md text-secondary">
+          Every product starts with the mobile experience. Clean interfaces, thoughtful interactions, and performance that respects users' time.
+        </p>
+      </div>
+
+      <div class="border border-outline-variant p-8 card-glow">
+        <span class="material-symbols-outlined text-secondary mb-6 block text-[32px]" style="font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 40;">auto_awesome</span>
+        <h3 class="font-headline-lg text-headline-lg mb-4">AI-Powered</h3>
+        <p class="font-body-md text-body-md text-secondary">
+          Built at the intersection of design and artificial intelligence. Modern tools, modern products — shaped by curiosity and made real by technology.
+        </p>
+      </div>
+
+      <div class="border border-outline-variant p-8 card-glow">
+        <span class="material-symbols-outlined text-secondary mb-6 block text-[32px]" style="font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 40;">person</span>
+        <h3 class="font-headline-lg text-headline-lg mb-4">Independent</h3>
+        <p class="font-body-md text-body-md text-secondary">
+          Solo studio. No committees, no bloat. Direct ownership from concept to release — with full accountability for every decision.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Apps Section -->
+  <section class="bg-surface-container py-40">
+    <div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
+      <span class="font-label-mono text-label-mono uppercase text-secondary mb-6 block tracking-widest">Products</span>
+      <h2 class="font-headline-xl text-headline-xl mb-16 max-w-2xl">
+        Apps built under the Soft37 label
+      </h2>
+      <div class="border border-outline-variant bg-surface-container-lowest p-8 max-w-xl">
+        <p class="font-body-md text-body-md text-secondary italic">
+          Products launching soon. Stay tuned.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Legal -->
+  <section class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-24">
+    <span class="font-label-mono text-label-mono uppercase text-secondary mb-6 block tracking-widest">Legal</span>
+    <h2 class="font-headline-lg text-headline-lg mb-10">Policy Documents</h2>
+    <div class="flex flex-col sm:flex-row gap-4">
+      <a href="privacy/" class="group flex items-center gap-4 p-6 border border-outline-variant hover:border-primary bg-surface-container-low hover:bg-surface-container transition-all duration-300">
+        <span class="material-symbols-outlined text-secondary group-hover:text-primary transition-colors text-[20px]">shield</span>
+        <div>
+          <p class="font-label-mono text-label-mono uppercase tracking-widest text-secondary mb-0.5">Document</p>
+          <p class="font-body-md text-body-md text-primary font-medium">Privacy Policy</p>
+        </div>
+        <span class="material-symbols-outlined text-[16px] text-outline ml-auto opacity-0 group-hover:opacity-100 transition-opacity">arrow_outward</span>
+      </a>
+      <a href="terms/" class="group flex items-center gap-4 p-6 border border-outline-variant hover:border-primary bg-surface-container-low hover:bg-surface-container transition-all duration-300">
+        <span class="material-symbols-outlined text-secondary group-hover:text-primary transition-colors text-[20px]">gavel</span>
+        <div>
+          <p class="font-label-mono text-label-mono uppercase tracking-widest text-secondary mb-0.5">Document</p>
+          <p class="font-body-md text-body-md text-primary font-medium">Terms of Service</p>
+        </div>
+        <span class="material-symbols-outlined text-[16px] text-outline ml-auto opacity-0 group-hover:opacity-100 transition-opacity">arrow_outward</span>
+      </a>
+    </div>
+  </section>
+</main>
+
+<!-- Footer -->
+<footer class="border-t border-outline-variant">
+  <div class="flex flex-col md:flex-row justify-between items-center w-full px-margin-mobile md:px-margin-desktop py-12 max-w-container-max mx-auto gap-8">
+    <div>
+      <div class="font-body-lg text-body-lg font-bold text-primary">Soft37</div>
+      <div class="font-label-mono text-label-mono uppercase text-secondary mt-1">by 37Works</div>
+    </div>
+    <div class="font-label-mono text-label-mono uppercase text-secondary flex gap-8">
+      <a class="hover:text-primary transition-colors duration-300" href="privacy/">Privacy</a>
+      <a class="hover:text-primary transition-colors duration-300" href="terms/">Terms</a>
+      <a class="hover:text-primary transition-colors duration-300" href="mailto:kdoky37@working37.net">Email</a>
+    </div>
+    <p class="font-label-mono text-label-mono uppercase text-secondary">
+      © 2026 Soft37 / 37Works. All rights reserved.
+    </p>
+  </div>
+</footer>
+
+<script>
+  const cursor = document.getElementById('cursor');
+  document.addEventListener('mousemove', e => {
+    cursor.style.left = e.clientX + 'px';
+    cursor.style.top = e.clientY + 'px';
+  });
+  document.querySelectorAll('a, button, .group').forEach(el => {
+    el.addEventListener('mouseenter', () => {
+      cursor.style.transform = 'scale(2.5)';
+      cursor.style.backgroundColor = 'rgba(0,0,0,0.05)';
+    });
+    el.addEventListener('mouseleave', () => {
+      cursor.style.transform = 'scale(1)';
+      cursor.style.backgroundColor = 'transparent';
+    });
+  });
+</script>
+</body>
+</html>

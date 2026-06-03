@@ -1,305 +1,714 @@
 <!DOCTYPE html>
-
-<html class="light" lang="en"><head>
+<html lang="ko">
+<head>
 <meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>37Works — Design, Build, Compose</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>37Soft</title>
+<meta name="description" content="37Soft — 대한민국 모바일 앱 개발사"/>
 <link rel="icon" type="image/png" href="assets/favicon.png"/>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@100..900&amp;family=JetBrains+Mono:wght@100..900&amp;display=swap" rel="stylesheet"/>
-<script id="tailwind-config">
-      tailwind.config = {
-        darkMode: "class",
-        theme: {
-          extend: {
-            "colors": {
-                    "on-surface-variant": "#444748",
-                    "outline": "#747878",
-                    "secondary-container": "#e0dfde",
-                    "on-error": "#ffffff",
-                    "on-surface": "#1b1c19",
-                    "on-tertiary-fixed": "#1a1c1a",
-                    "primary-container": "#1c1b1b",
-                    "on-primary-container": "#858383",
-                    "surface-container-highest": "#e4e2dd",
-                    "tertiary": "#000000",
-                    "error": "#ba1a1a",
-                    "on-secondary-fixed": "#1a1c1b",
-                    "on-primary-fixed-variant": "#474646",
-                    "on-error-container": "#93000a",
-                    "outline-variant": "#c4c7c7",
-                    "tertiary-fixed-dim": "#c6c7c3",
-                    "inverse-primary": "#c8c6c5",
-                    "surface-container": "#efeee9",
-                    "surface-variant": "#e4e2dd",
-                    "error-container": "#ffdad6",
-                    "surface-bright": "#fbf9f4",
-                    "secondary-fixed": "#e3e2e0",
-                    "on-tertiary": "#ffffff",
-                    "inverse-on-surface": "#f2f1eb",
-                    "on-tertiary-container": "#838481",
-                    "secondary-fixed-dim": "#c7c6c5",
-                    "surface-container-lowest": "#ffffff",
-                    "primary-fixed": "#e5e2e1",
-                    "surface-container-low": "#f5f3ee",
-                    "primary-fixed-dim": "#c8c6c5",
-                    "on-background": "#1b1c19",
-                    "on-primary": "#ffffff",
-                    "on-secondary": "#ffffff",
-                    "primary": "#000000",
-                    "surface-tint": "#5f5e5e",
-                    "on-secondary-fixed-variant": "#464746",
-                    "surface-container-high": "#eae8e3",
-                    "surface": "#fbf9f4",
-                    "tertiary-container": "#1a1c1a",
-                    "tertiary-fixed": "#e3e3df",
-                    "inverse-surface": "#30312d",
-                    "on-primary-fixed": "#1c1b1b",
-                    "background": "#fbf9f4",
-                    "secondary": "#5e5e5d",
-                    "on-tertiary-fixed-variant": "#464744"
-            },
-            "borderRadius": {
-                    "DEFAULT": "0.125rem",
-                    "lg": "0.25rem",
-                    "xl": "0.5rem",
-                    "full": "0.75rem"
-            },
-            "spacing": {
-                    "margin-desktop": "64px",
-                    "unit": "4px",
-                    "gutter": "32px",
-                    "margin-tablet": "32px",
-                    "container-max": "1440px",
-                    "margin-mobile": "20px"
-            },
-            "fontFamily": {
-                    "body-md": ["Hanken Grotesk"],
-                    "display-lg": ["Hanken Grotesk"],
-                    "label-mono": ["JetBrains Mono"],
-                    "headline-xl": ["Hanken Grotesk"],
-                    "body-lg": ["Hanken Grotesk"],
-                    "headline-lg": ["Hanken Grotesk"],
-                    "display-lg-mobile": ["Hanken Grotesk"]
-            },
-            "fontSize": {
-                    "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
-                    "display-lg": ["72px", {"lineHeight": "1.1", "letterSpacing": "-0.04em", "fontWeight": "700"}],
-                    "label-mono": ["12px", {"lineHeight": "1.4", "letterSpacing": "0.1em", "fontWeight": "500"}],
-                    "headline-xl": ["40px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "600"}],
-                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
-                    "headline-lg": ["32px", {"lineHeight": "1.3", "fontWeight": "600"}],
-                    "display-lg-mobile": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.04em", "fontWeight": "700"}]
-            }
-          },
-        },
-      }
-    </script>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
 <style>
-        .material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-            display: inline-block;
-            vertical-align: middle;
-        }
-        .hero-reveal {
-            animation: reveal 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-        }
-        @keyframes reveal {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .card-glow {
-            box-shadow: 0 0 24px rgba(0, 0, 0, 0.10);
-            transition: box-shadow 0.5s ease;
-        }
-        .card-glow:hover {
-            box-shadow: 0 0 40px rgba(0, 0, 0, 0.22);
-        }
-        .custom-cursor {
-            width: 20px;
-            height: 20px;
-            border: 1px solid #000;
-            border-radius: 50%;
-            position: fixed;
-            pointer-events: none;
-            z-index: 9999;
-            transition: transform 0.1s ease-out;
-            mix-blend-mode: difference;
-        }
-    </style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #f9f9f7;
+    --surface: #ffffff;
+    --surface-dim: #f2f1ef;
+    --border: #e5e4e0;
+    --border-strong: #c8c7c3;
+    --text: #111110;
+    --text-secondary: #6b6b68;
+    --text-tertiary: #9b9b98;
+    --accent: #111110;
+    --radius-sm: 6px;
+    --radius: 12px;
+    --radius-lg: 20px;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  /* ── Layout ── */
+  .container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* ── Header ── */
+  header {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(249, 249, 247, 0.85);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 60px;
+  }
+
+  .logo {
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--text);
+    text-decoration: none;
+  }
+
+  .nav-contact {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    text-decoration: none;
+    letter-spacing: 0.01em;
+    transition: color 0.2s;
+  }
+  .nav-contact:hover { color: var(--text); }
+
+  /* ── Hero ── */
+  .hero {
+    padding: 140px 0 80px;
+  }
+
+  .hero-eyebrow {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-tertiary);
+    margin-bottom: 24px;
+  }
+
+  .hero-title {
+    font-size: clamp(40px, 6vw, 64px);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    color: var(--text);
+    margin-bottom: 24px;
+  }
+
+  .hero-desc {
+    font-size: 18px;
+    font-weight: 400;
+    color: var(--text-secondary);
+    max-width: 520px;
+    line-height: 1.7;
+  }
+
+  /* ── Section ── */
+  .section {
+    padding: 80px 0;
+    border-top: 1px solid var(--border);
+  }
+
+  .section-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-tertiary);
+    margin-bottom: 40px;
+  }
+
+  /* ── Company Info Grid ── */
+  .info-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+
+  .info-cell {
+    background: var(--surface);
+    padding: 28px 32px;
+  }
+
+  .info-cell:last-child:nth-child(odd) {
+    grid-column: span 2;
+  }
+
+  .info-cell-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-tertiary);
+    margin-bottom: 8px;
+  }
+
+  .info-cell-value {
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--text);
+    line-height: 1.4;
+  }
+
+  .info-cell-value a {
+    color: var(--text);
+    text-decoration: none;
+    border-bottom: 1px solid var(--border-strong);
+    transition: border-color 0.2s;
+  }
+  .info-cell-value a:hover {
+    border-color: var(--text);
+  }
+
+  /* ── App Portfolio ── */
+  .apps-list {
+    margin-top: 48px;
+  }
+
+  .app-card {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 480px;
+    border-top: 1px solid var(--border);
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .app-card.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .app-card:last-child {
+    border-bottom: 1px solid var(--border);
+  }
+
+  /* Alternate: even cards flip visual to right */
+  .app-card.flip { direction: rtl; }
+  .app-card.flip > * { direction: ltr; }
+
+  .app-visual {
+    position: relative;
+    overflow: hidden;
+    min-height: 360px;
+  }
+
+  .app-visual-inner {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.6s ease;
+  }
+  .app-card:hover .app-visual-inner {
+    transform: scale(1.03);
+  }
+
+  /* App icon on top of gradient */
+  .app-icon-wrap {
+    width: 100px;
+    height: 100px;
+    border-radius: 22px;
+    background: rgba(255,255,255,0.18);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255,255,255,0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 48px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Decorative blobs in visual area */
+  .app-blob {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.55;
+    filter: blur(48px);
+  }
+
+  .app-info {
+    padding: 56px 64px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+    background: var(--surface);
+  }
+
+  .app-category {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-tertiary);
+  }
+
+  .app-name {
+    font-size: 32px;
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    line-height: 1.1;
+    color: var(--text);
+  }
+
+  .app-desc {
+    font-size: 15px;
+    color: var(--text-secondary);
+    line-height: 1.75;
+    max-width: 360px;
+  }
+
+  .app-platforms {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .app-platform-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    background: var(--surface-dim);
+    border: 1px solid var(--border);
+    padding: 4px 10px;
+    border-radius: 4px;
+  }
+
+  .app-actions {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 4px;
+  }
+
+  .app-action-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text);
+    background: var(--bg);
+    border: 1px solid var(--border-strong);
+    padding: 9px 16px;
+    border-radius: var(--radius-sm);
+    text-decoration: none;
+    transition: background 0.2s, border-color 0.2s;
+    white-space: nowrap;
+  }
+  .app-action-btn:hover {
+    background: var(--surface-dim);
+    border-color: var(--text);
+  }
+  .app-action-btn.primary {
+    background: var(--text);
+    color: #fff;
+    border-color: var(--text);
+  }
+  .app-action-btn.primary:hover {
+    opacity: 0.8;
+  }
+
+  .app-legal-links {
+    display: flex;
+    gap: 16px;
+    margin-top: 4px;
+  }
+  .app-legal-links a {
+    font-size: 12px;
+    color: var(--text-tertiary);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .app-legal-links a:hover { color: var(--text-secondary); }
+
+  @media (max-width: 768px) {
+    .app-card {
+      grid-template-columns: 1fr;
+      min-height: auto;
+    }
+    .app-card.flip { direction: ltr; }
+    .app-visual { min-height: 240px; }
+    .app-info { padding: 36px 24px; }
+    .app-name { font-size: 26px; }
+  }
+
+  /* ── Contact Section ── */
+  .contact-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 48px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .contact-title {
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+  }
+
+  .contact-desc {
+    font-size: 16px;
+    color: var(--text-secondary);
+    max-width: 440px;
+    line-height: 1.7;
+  }
+
+  .contact-email {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--text);
+    color: #fff;
+    padding: 14px 24px;
+    border-radius: var(--radius);
+    font-size: 15px;
+    font-weight: 500;
+    text-decoration: none;
+    letter-spacing: -0.01em;
+    transition: opacity 0.2s;
+    width: fit-content;
+  }
+  .contact-email:hover { opacity: 0.8; }
+
+  /* ── Footer ── */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 48px 0;
+  }
+
+  .footer-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .footer-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 32px;
+    flex-wrap: wrap;
+  }
+
+  .footer-logo {
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--text);
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+
+  .footer-links a {
+    font-size: 13px;
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .footer-links a:hover { color: var(--text); }
+
+  .footer-legal {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--text-tertiary);
+    line-height: 1.8;
+    letter-spacing: 0.01em;
+  }
+
+  /* ── Divider line ── */
+  .divider {
+    width: 40px;
+    height: 2px;
+    background: var(--border-strong);
+    margin: 32px 0;
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 600px) {
+    .hero { padding: 120px 0 60px; }
+    .hero-desc { font-size: 16px; }
+    .info-grid { grid-template-columns: 1fr; }
+    .info-cell:last-child:nth-child(odd) { grid-column: span 1; }
+    .contact-card { padding: 32px 24px; }
+    .section { padding: 60px 0; }
+    .footer-top { flex-direction: column; gap: 16px; }
+    .contact-title { font-size: 22px; }
+  }
+
+  /* ── Fade in animation ── */
+  .fade-up {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .fade-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
 </head>
-<body class="bg-background text-primary font-body-md overflow-x-hidden selection:bg-primary selection:text-on-primary">
-<div class="custom-cursor hidden md:block" id="cursor"></div>
-<!-- TopNavBar -->
-<header class="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-outline-variant">
-<nav class="flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop py-6 max-w-container-max mx-auto">
-<div class="font-headline-lg text-headline-lg font-bold text-primary">37Works</div>
-<div class="hidden md:flex items-center gap-12 font-body-md text-body-md tracking-wider">
-<a class="text-primary font-bold border-b border-primary hover:text-primary transition-colors duration-300" href="#">Work</a>
-<a class="text-secondary hover:text-primary transition-colors duration-300" href="about.html">About</a>
-</div>
-<button id="contact-btn" class="bg-primary text-on-primary px-8 py-3 font-label-mono text-label-mono uppercase tracking-widest hover:scale-102 transition-transform duration-300">
-                Contact
-            </button>
-</nav>
+<body>
+
+<!-- Header -->
+<header>
+  <div class="container">
+    <nav class="nav">
+      <a href="/" class="logo">37Soft</a>
+      <a href="mailto:soft37@working37.net" class="nav-contact">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+        고객 문의
+      </a>
+    </nav>
+  </div>
 </header>
-<main class="pt-32">
-<!-- Hero Section -->
-<section class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-24 md:py-40">
-<div class="hero-reveal max-w-4xl">
-<span class="font-label-mono text-label-mono uppercase text-secondary mb-6 block tracking-widest">About</span>
-<h1 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg mb-12">
-                    I design, compose, <br/>
-<span class="text-secondary-container">and build</span> — with AI.
-                </h1>
-<p class="font-body-lg text-body-lg text-secondary max-w-2xl leading-relaxed">
-                    Independent creator working at the intersection of artificial intelligence, visual design, and sound. I build software products, compose AI-generated music, and shape creative work — driven by curiosity, made possible by the tools of today.
-                </p>
-</div>
-</section>
-<!-- Project Grid -->
-<section class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop pb-40">
-<div class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
-<!-- Soft37 Card -->
-<div class="group cursor-pointer">
-<div class="aspect-square bg-surface-container-high overflow-hidden card-glow mb-8">
-<img class="w-full h-full object-cover grayscale opacity-90 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700 group-hover:scale-105" data-alt="A clean, minimalist digital interface visualization with sharp black geometric shapes against a soft off-white background." src="assets/Soft37.png"/>
-</div>
-<div class="flex justify-between items-start">
-<div>
-<h3 class="font-headline-lg text-headline-lg mb-2">Soft37</h3>
-<p class="font-body-md text-body-md text-secondary">SaaS Architecture</p>
-</div>
-<span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors duration-300">arrow_outward</span>
-</div>
-</div>
-<!-- Celsi37 Card -->
-<div class="group cursor-pointer md:mt-24">
-<div class="aspect-square bg-surface-container-high overflow-hidden card-glow mb-8">
-<img class="w-full h-full object-cover grayscale opacity-90 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700 group-hover:scale-105" data-alt="Abstract visualization of music through minimalist sound waves and architectural lines." src="assets/Celsi37.jpg"/>
-</div>
-<div class="flex justify-between items-start">
-<div>
-<h3 class="font-headline-lg text-headline-lg mb-2">Celsi37</h3>
-<p class="font-body-md text-body-md text-secondary">AI Composition</p>
-</div>
-<span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors duration-300">arrow_outward</span>
-</div>
-</div>
-</div>
-</section>
-<!-- Quote/Mission Section -->
-<section class="bg-surface-container py-40">
-<div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop text-center">
-<h2 class="font-headline-xl text-headline-xl mb-12 italic max-w-4xl mx-auto leading-tight">
-                    "Artificial intelligence is not a replacement for creativity, but a multiplier for the human imagination."
-                </h2>
-<div class="h-px w-24 bg-primary mx-auto"></div>
-</div>
-</section>
-</main>
-<!-- Contact Modal -->
-<div id="contact-modal" class="fixed inset-0 z-[100] flex items-center justify-center px-margin-mobile hidden">
-    <div id="contact-backdrop" class="absolute inset-0 bg-black/40 backdrop-blur-sm"></div>
-    <div class="relative bg-surface-container-lowest border border-outline-variant p-10 md:p-14 w-full max-w-md z-10">
-        <button id="contact-close" class="absolute top-5 right-5 w-9 h-9 flex items-center justify-center border border-outline-variant hover:bg-surface-container transition-colors">
-            <span class="material-symbols-outlined text-[18px]">close</span>
-        </button>
-        <span class="font-label-mono text-label-mono uppercase text-secondary tracking-widest mb-6 block">Contact</span>
-        <h2 class="font-headline-lg text-headline-lg mb-10 leading-snug">Let's work<br/>together.</h2>
-        <div class="flex flex-col gap-4">
-            <a href="mailto:kdoky37@working37.net" class="group flex items-center gap-4 p-5 border border-outline-variant hover:border-primary bg-surface-container-low hover:bg-surface-container transition-all duration-300">
-                <div class="w-10 h-10 flex items-center justify-center bg-surface-container group-hover:bg-surface-container-high transition-colors shrink-0">
-                    <span class="material-symbols-outlined text-[18px] text-secondary">mail</span>
-                </div>
-                <div>
-                    <p class="font-label-mono text-label-mono uppercase tracking-widest text-secondary mb-0.5">Email</p>
-                    <p class="font-body-md text-body-md text-primary">kdoky37@working37.net</p>
-                </div>
-                <span class="material-symbols-outlined text-[16px] text-outline ml-auto opacity-0 group-hover:opacity-100 transition-opacity">arrow_outward</span>
-            </a>
-            <a href="https://www.linkedin.com/in/kdoky37" target="_blank" rel="noopener noreferrer" class="group flex items-center gap-4 p-5 border border-outline-variant hover:border-primary bg-surface-container-low hover:bg-surface-container transition-all duration-300">
-                <div class="w-10 h-10 flex items-center justify-center bg-surface-container group-hover:bg-surface-container-high transition-colors shrink-0">
-                    <span class="material-symbols-outlined text-[18px] text-secondary">link</span>
-                </div>
-                <div>
-                    <p class="font-label-mono text-label-mono uppercase tracking-widest text-secondary mb-0.5">LinkedIn</p>
-                    <p class="font-body-md text-body-md text-primary">linkedin.com/in/kdoky37</p>
-                </div>
-                <span class="material-symbols-outlined text-[16px] text-outline ml-auto opacity-0 group-hover:opacity-100 transition-opacity">arrow_outward</span>
-            </a>
-        </div>
+
+<!-- Hero -->
+<main>
+  <section class="hero">
+    <div class="container">
+      <span class="hero-eyebrow fade-up">Mobile App Studio · Korea</span>
+      <h1 class="hero-title fade-up">더 나은 경험을<br/>만드는 소프트웨어</h1>
+      <p class="hero-desc fade-up">
+        37Soft는 대한민국에 본사를 둔 모바일 앱 개발사입니다.<br/>
+        사용자 중심의 디자인과 기술로 일상을 더 편리하게 만들어갑니다.
+      </p>
     </div>
-</div>
+  </section>
+
+  <!-- Company Info -->
+  <section class="section">
+    <div class="container">
+      <p class="section-label fade-up">Company Information</p>
+      <div class="info-grid fade-up">
+        <div class="info-cell">
+          <p class="info-cell-label">회사명</p>
+          <p class="info-cell-value">37Soft</p>
+        </div>
+        <div class="info-cell">
+          <p class="info-cell-label">대표자</p>
+          <p class="info-cell-value">김도경</p>
+        </div>
+        <div class="info-cell">
+          <p class="info-cell-label">사업자 등록번호</p>
+          <p class="info-cell-value">137-73-00738</p>
+        </div>
+        <div class="info-cell">
+          <p class="info-cell-label">설립일</p>
+          <p class="info-cell-value">2026년 5월 22일</p>
+        </div>
+        <div class="info-cell">
+          <p class="info-cell-label">소재지</p>
+          <p class="info-cell-value">대한민국</p>
+        </div>
+        <div class="info-cell">
+          <p class="info-cell-label">고객 문의</p>
+          <p class="info-cell-value">
+            <a href="mailto:soft37@working37.net">soft37@working37.net</a>
+          </p>
+        </div>
+        <div class="info-cell">
+          <p class="info-cell-label">통신판매업 신고번호</p>
+          <p class="info-cell-value">제2026-서울광진-0911 호</p>
+        </div>
+        <div class="info-cell">
+          <p class="info-cell-label">DUNS Number</p>
+          <p class="info-cell-value">696554688</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- App Portfolio -->
+  <section class="section" id="apps">
+    <div class="container">
+      <p class="section-label fade-up">Our Apps</p>
+    </div>
+    <div class="apps-list" id="apps-list"></div>
+  </section>
+
+  <!-- Contact -->
+  <section class="section">
+    <div class="container">
+      <p class="section-label fade-up">Contact & Support</p>
+      <div class="contact-card fade-up">
+        <h2 class="contact-title">도움이 필요하신가요?</h2>
+        <p class="contact-desc">
+          앱 이용 중 불편한 점, 버그 신고, 기능 문의 등<br/>
+          모든 문의 사항을 이메일로 보내주세요.<br/>
+          빠르게 답변 드리겠습니다.
+        </p>
+        <a href="mailto:soft37@working37.net" class="contact-email">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+          soft37@working37.net
+        </a>
+      </div>
+    </div>
+  </section>
+</main>
+
 <!-- Footer -->
-<footer class="border-t border-outline-variant">
-<div class="flex flex-col md:flex-row justify-between items-center w-full px-margin-mobile md:px-margin-desktop py-12 max-w-container-max mx-auto gap-8">
-<div class="font-body-lg text-body-lg font-bold text-primary">37Works</div>
-<div class="font-label-mono text-label-mono uppercase text-secondary flex gap-8">
-<a class="hover:text-primary transition-colors duration-300" href="mailto:kdoky37@working37.net">Email</a>
-<a class="hover:text-primary transition-colors duration-300" href="https://www.linkedin.com/in/kdoky37" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-</div>
-<p class="font-label-mono text-label-mono uppercase text-secondary">
-                © 2026 37Works. All rights reserved.
-            </p>
-</div>
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <span class="footer-logo">37Soft</span>
+        <div class="footer-links">
+          <a href="mailto:soft37@working37.net">고객 문의</a>
+          <a href="/privacy">개인정보처리방침</a>
+          <a href="/terms">이용약관</a>
+        </div>
+      </div>
+      <p class="footer-legal">
+        37Soft &nbsp;|&nbsp; 대표자: 김도경 &nbsp;|&nbsp; 사업자등록번호: 137-73-00738<br/>
+        설립일: 2026.05.22 &nbsp;|&nbsp; 소재지: 대한민국<br/>
+        © 2026 37Soft. All rights reserved.
+      </p>
+    </div>
+  </div>
 </footer>
+
 <script>
-        // Contact Modal
-        const modal = document.getElementById('contact-modal');
-        const backdrop = document.getElementById('contact-backdrop');
-        const closeBtn = document.getElementById('contact-close');
+  // ── App Data ──────────────────────────────────────────────
+  // 앱 추가 방법: 아래 배열에 객체 하나 추가
+  // appStoreUrl 없으면 버튼 숨김
+  const APPS = [
+    // {
+    //   id: 'myapp',
+    //   name: 'My App',
+    //   category: 'Productivity',
+    //   desc: '앱 설명을 여기에 작성합니다.',
+    //   icon: '📱',           // 이모지 or 이미지 경로 (assets/icons/myapp.png)
+    //   color1: '#6366f1',   // 그라디언트 색상 1
+    //   color2: '#8b5cf6',   // 그라디언트 색상 2
+    //   platforms: ['iOS'],
+    //   appStoreUrl: 'https://apps.apple.com/...',
+    // },
+  ];
+  // ──────────────────────────────────────────────────────────
 
-        function openModal() {
-            modal.classList.remove('hidden');
-            document.body.style.overflow = 'hidden';
+  function renderApps() {
+    const list = document.getElementById('apps-list');
+    if (!list) return;
+
+    if (APPS.length === 0) {
+      list.innerHTML = `
+        <div style="padding:48px 24px;max-width:960px;margin:0 auto;">
+          <p style="font-size:15px;color:var(--text-tertiary);line-height:1.7;">
+            앱을 개발하면 이곳에 추가됩니다. App Store를 통해 제공되는 모든 앱의 문의 및 지원은<br>
+            <a href="mailto:soft37@working37.net" style="color:var(--text-secondary);">soft37@working37.net</a>으로 연락해 주세요.
+          </p>
+        </div>`;
+      return;
+    }
+
+    APPS.forEach((app, idx) => {
+      const isFlip = idx % 2 === 1;
+      const isImgIcon = app.icon && (app.icon.startsWith('assets') || app.icon.startsWith('/') || app.icon.startsWith('http'));
+      const iconHtml = isImgIcon
+        ? `<img src="${app.icon}" style="width:72px;height:72px;border-radius:16px;object-fit:cover;" alt="${app.name} icon"/>`
+        : `<span style="font-size:48px;line-height:1;">${app.icon || '📱'}</span>`;
+
+      const platformsHtml = (app.platforms || ['iOS']).map(p => `
+        <span class="app-platform-badge">
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+          ${p}
+        </span>`).join('');
+
+      const actionsHtml = app.appStoreUrl
+        ? `<a href="${app.appStoreUrl}" target="_blank" rel="noopener" class="app-action-btn primary">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+            App Store
+          </a>` : '';
+
+      const card = document.createElement('div');
+      card.className = 'app-card' + (isFlip ? ' flip' : '');
+      card.innerHTML = `
+        <div class="app-visual" style="background:linear-gradient(135deg,${app.color1||'#1a1a2e'} 0%,${app.color2||'#16213e'} 100%);">
+          <div class="app-visual-inner">
+            <div class="app-blob" style="width:260px;height:260px;background:${app.color1||'#fff'};top:-40px;left:-40px;"></div>
+            <div class="app-blob" style="width:200px;height:200px;background:${app.color2||'#fff'};bottom:-30px;right:-30px;"></div>
+            <div class="app-icon-wrap">${iconHtml}</div>
+          </div>
+        </div>
+        <div class="app-info">
+          <p class="app-category">${app.category || 'Mobile App'}</p>
+          <h2 class="app-name">${app.name}</h2>
+          <p class="app-desc">${app.desc || ''}</p>
+          <div class="app-platforms">${platformsHtml}</div>
+          ${actionsHtml ? `<div class="app-actions">${actionsHtml}</div>` : ''}
+          <div class="app-legal-links">
+            <a href="/privacy?app=${encodeURIComponent(app.id || app.name)}">개인정보처리방침</a>
+            <a href="/terms?app=${encodeURIComponent(app.id || app.name)}">이용약관</a>
+          </div>
+        </div>`;
+      list.appendChild(card);
+    });
+
+    // Scroll-triggered entrance for each card
+    const cardObserver = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          cardObserver.unobserve(e.target);
         }
-        function closeModal() {
-            modal.classList.add('hidden');
-            document.body.style.overflow = '';
-        }
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.app-card').forEach(c => cardObserver.observe(c));
+  }
 
-        document.getElementById('contact-btn').addEventListener('click', openModal);
-        closeBtn.addEventListener('click', closeModal);
-        backdrop.addEventListener('click', closeModal);
-        document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+  // ── Fade-up on scroll (general) ──
+  const els = document.querySelectorAll('.fade-up');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 80);
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  els.forEach(el => io.observe(el));
 
-        // Custom Cursor Interaction
-        const cursor = document.getElementById('cursor');
-        document.addEventListener('mousemove', e => {
-            cursor.style.left = e.clientX + 'px';
-            cursor.style.top = e.clientY + 'px';
-        });
+  renderApps();
+</script>
 
-        document.querySelectorAll('a, button, .group').forEach(el => {
-            el.addEventListener('mouseenter', () => {
-                cursor.style.transform = 'scale(2.5)';
-                cursor.style.backgroundColor = 'rgba(0,0,0,0.05)';
-            });
-            el.addEventListener('mouseleave', () => {
-                cursor.style.transform = 'scale(1)';
-                cursor.style.backgroundColor = 'transparent';
-            });
-        });
-
-        // Smooth Scroll Reveal
-        const observerOptions = {
-            threshold: 0.1
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('hero-reveal');
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.group, h2, p').forEach(el => {
-            el.style.opacity = '0';
-            observer.observe(el);
-        });
-    </script>
-</body></html>
+</body>
+</html>
