@@ -26,7 +26,7 @@
 
   /* section background tones */
   --zone-hero:    #ffffff;
-  --zone-apps:    #eeedea;
+  --zone-apps:    #f7f6f3;
   --zone-contact: #ffffff;
   --zone-footer:  #f2f1ee;
 }
@@ -449,8 +449,8 @@ const APPS = [
 ];
 
 // ── State ─────────────────────────────────────
-let currentLang = (navigator.language || 'ko').slice(0, 2);
-if (!I18N[currentLang]) currentLang = 'ko';
+let currentLang = (navigator.language || 'en').slice(0, 2);
+if (!I18N[currentLang]) currentLang = 'en';
 
 function t(key) { return (I18N[currentLang] || I18N.ko)[key] || ''; }
 function loc(val) {
