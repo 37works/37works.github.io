@@ -3,487 +3,294 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>37Soft</title>
-<meta name="description" content="37Soft — 대한민국 모바일 앱 개발사"/>
-<link rel="icon" type="image/png" href="assets/favicon.png"/>
+<title>Soft37</title>
+<meta name="description" content="Soft37 — 대한민국 모바일 앱 개발사"/>
+<link rel="icon" type="image/png" href="assets/Soft37.png"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-  :root {
-    --bg: #f9f9f7;
-    --surface: #ffffff;
-    --surface-dim: #f2f1ef;
-    --border: #e5e4e0;
-    --border-strong: #c8c7c3;
-    --text: #111110;
-    --text-secondary: #6b6b68;
-    --text-tertiary: #9b9b98;
-    --accent: #111110;
-    --radius-sm: 6px;
-    --radius: 12px;
-    --radius-lg: 20px;
-  }
+:root {
+  --bg: #f9f9f7;
+  --surface: #ffffff;
+  --surface-dim: #f2f1ef;
+  --border: #e5e4e0;
+  --border-strong: #c8c7c3;
+  --text: #111110;
+  --text-secondary: #6b6b68;
+  --text-tertiary: #9b9b98;
+  --radius-sm: 6px;
+  --radius: 12px;
+  --radius-lg: 20px;
+}
 
-  html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; }
 
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    font-size: 16px;
-    line-height: 1.6;
-    -webkit-font-smoothing: antialiased;
-    overflow-x: hidden;
-  }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    'Noto Sans', 'Noto Sans KR', 'Noto Sans JP', 'Noto Sans SC', sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
 
-  /* ── Layout ── */
-  .container {
-    max-width: 960px;
-    margin: 0 auto;
-    padding: 0 24px;
-  }
+.container { max-width: 960px; margin: 0 auto; padding: 0 24px; }
 
-  /* ── Header ── */
-  header {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    z-index: 100;
-    background: rgba(249, 249, 247, 0.85);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border-bottom: 1px solid var(--border);
-  }
+/* ── Header ── */
+header {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  background: rgba(249, 249, 247, 0.88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+}
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 60px;
+  gap: 16px;
+}
+.nav-left { display: flex; align-items: center; gap: 9px; }
+.nav-icon {
+  width: 28px; height: 28px;
+  border-radius: 7px;
+  object-fit: cover;
+  display: block;
+}
+.logo {
+  font-size: 17px; font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--text); text-decoration: none;
+}
+.nav-right { display: flex; align-items: center; gap: 20px; }
 
-  .nav {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 60px;
-  }
+/* ── Language switcher ── */
+.lang-switcher { display: flex; align-items: center; gap: 2px; }
+.lang-btn {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; font-weight: 500;
+  letter-spacing: 0.06em; text-transform: uppercase;
+  color: var(--text-tertiary);
+  background: none; border: none;
+  padding: 4px 6px; border-radius: 4px;
+  cursor: pointer;
+  transition: color 0.15s, background 0.15s;
+  line-height: 1;
+}
+.lang-btn:hover { color: var(--text-secondary); background: var(--surface-dim); }
+.lang-btn.active { color: var(--text); background: var(--border); }
 
-  .logo {
-    font-size: 18px;
-    font-weight: 700;
-    letter-spacing: -0.02em;
-    color: var(--text);
-    text-decoration: none;
-  }
+.nav-contact {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 13px; font-weight: 500;
+  color: var(--text-secondary); text-decoration: none;
+  letter-spacing: 0.01em;
+  transition: color 0.2s; white-space: nowrap;
+}
+.nav-contact:hover { color: var(--text); }
 
-  .nav-contact {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    font-size: 13px;
-    font-weight: 500;
-    color: var(--text-secondary);
-    text-decoration: none;
-    letter-spacing: 0.01em;
-    transition: color 0.2s;
-  }
-  .nav-contact:hover { color: var(--text); }
+/* ── Hero ── */
+.hero { padding: 140px 0 80px; }
+.hero-eyebrow {
+  display: inline-block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px; font-weight: 500;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--text-tertiary); margin-bottom: 24px;
+}
+.hero-title {
+  font-size: clamp(40px, 6vw, 64px); font-weight: 700;
+  line-height: 1.1; letter-spacing: -0.03em;
+  color: var(--text); margin-bottom: 24px;
+}
+.hero-desc {
+  font-size: 18px; color: var(--text-secondary);
+  max-width: 520px; line-height: 1.7;
+}
 
-  /* ── Hero ── */
-  .hero {
-    padding: 140px 0 80px;
-  }
+/* ── Section ── */
+.section { padding: 80px 0; border-top: 1px solid var(--border); }
+.section-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px; font-weight: 500;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--text-tertiary); margin-bottom: 40px;
+}
 
-  .hero-eyebrow {
-    display: inline-block;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--text-tertiary);
-    margin-bottom: 24px;
-  }
+/* ── App Portfolio ── */
+.apps-list { margin-top: 32px; }
 
-  .hero-title {
-    font-size: clamp(40px, 6vw, 64px);
-    font-weight: 700;
-    line-height: 1.1;
-    letter-spacing: -0.03em;
-    color: var(--text);
-    margin-bottom: 24px;
-  }
+.app-card {
+  display: flex; align-items: flex-start; gap: 20px;
+  padding: 28px 0; border-bottom: 1px solid var(--border);
+  opacity: 0; transform: translateY(12px);
+  transition: opacity 0.55s ease, transform 0.55s ease;
+}
+.app-card:first-child { border-top: 1px solid var(--border); }
+.app-card.visible { opacity: 1; transform: translateY(0); }
 
-  .hero-desc {
-    font-size: 18px;
-    font-weight: 400;
-    color: var(--text-secondary);
-    max-width: 520px;
-    line-height: 1.7;
-  }
+.app-icon-wrap {
+  width: 68px; height: 68px; border-radius: 16px; flex-shrink: 0;
+  background: var(--surface-dim); border: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 34px; overflow: hidden;
+}
+.app-icon-wrap img { width: 68px; height: 68px; border-radius: 16px; object-fit: cover; }
 
-  /* ── Section ── */
-  .section {
-    padding: 80px 0;
-    border-top: 1px solid var(--border);
-  }
+.app-body { flex: 1; min-width: 0; }
 
-  .section-label {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--text-tertiary);
-    margin-bottom: 40px;
-  }
+.app-header {
+  display: flex; align-items: flex-start;
+  justify-content: space-between; gap: 16px;
+  margin-bottom: 8px;
+}
+.app-header-left { display: flex; flex-direction: column; gap: 3px; }
+.app-category {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; font-weight: 500;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--text-tertiary);
+}
+.app-name { font-size: 18px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.2; color: var(--text); }
+.app-desc { font-size: 14px; color: var(--text-secondary); line-height: 1.7; margin-bottom: 14px; }
 
-  /* ── Company Info Grid ── */
-  .info-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1px;
-    background: var(--border);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    overflow: hidden;
-  }
+.app-footer { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+.app-platforms { display: flex; gap: 6px; flex-wrap: wrap; }
+.app-platform-badge {
+  display: inline-flex; align-items: center; gap: 4px;
+  font-size: 10px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
+  color: var(--text-tertiary); background: var(--surface-dim);
+  border: 1px solid var(--border); padding: 3px 8px; border-radius: 4px;
+}
+.app-legal-links { display: flex; gap: 12px; }
+.app-legal-links a { font-size: 12px; color: var(--text-tertiary); text-decoration: none; transition: color 0.2s; }
+.app-legal-links a:hover { color: var(--text-secondary); }
 
-  .info-cell {
-    background: var(--surface);
-    padding: 28px 32px;
-  }
+.app-store-btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 12px; font-weight: 600; letter-spacing: 0.01em;
+  color: var(--text); background: var(--surface);
+  border: 1px solid var(--border-strong);
+  padding: 7px 13px; border-radius: var(--radius-sm);
+  text-decoration: none; white-space: nowrap; flex-shrink: 0;
+  transition: background 0.15s, border-color 0.15s;
+}
+.app-store-btn:hover { background: var(--surface-dim); border-color: var(--text); }
 
-  .info-cell:last-child:nth-child(odd) {
-    grid-column: span 2;
-  }
+.app-cs-badge {
+  display: inline-flex; flex-direction: column; align-items: flex-end;
+  gap: 4px; flex-shrink: 0;
+}
+.app-cs-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--text-tertiary); background: var(--surface-dim);
+  border: 1px solid var(--border); padding: 3px 8px; border-radius: 4px;
+}
+.app-cs-date { font-size: 11px; color: var(--text-tertiary); }
 
-  .info-cell-label {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 10px;
-    font-weight: 500;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--text-tertiary);
-    margin-bottom: 8px;
-  }
+/* ── Coming Soon ── */
+.coming-soon-wrap {
+  padding: 48px 0 8px;
+  display: flex; align-items: center; justify-content: center;
+}
+.coming-soon-card {
+  display: flex; flex-direction: column; align-items: center;
+  gap: 16px; text-align: center;
+  border: 1.5px dashed var(--border-strong);
+  border-radius: var(--radius-lg);
+  padding: 48px 56px;
+  background: var(--surface);
+  max-width: 480px; width: 100%;
+}
+.coming-soon-icon {
+  width: 64px; height: 64px; border-radius: 16px;
+  background: var(--surface-dim);
+  border: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 28px; margin-bottom: 4px;
+}
+.coming-soon-badge {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; font-weight: 500;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--text-tertiary);
+  background: var(--surface-dim);
+  border: 1px solid var(--border);
+  padding: 4px 10px; border-radius: 4px;
+}
+.coming-soon-title {
+  font-size: 20px; font-weight: 700;
+  letter-spacing: -0.02em; color: var(--text); line-height: 1.2;
+}
+.coming-soon-desc {
+  font-size: 14px; color: var(--text-tertiary); line-height: 1.7;
+}
+@media (max-width: 600px) {
+  .coming-soon-card { padding: 36px 24px; }
+  .coming-soon-title { font-size: 18px; }
+}
 
-  .info-cell-value {
-    font-size: 16px;
-    font-weight: 500;
-    color: var(--text);
-    line-height: 1.4;
-  }
+/* ── Contact ── */
+.contact-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); padding: 48px;
+  display: flex; flex-direction: column; gap: 24px;
+}
+.contact-title { font-size: 28px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.2; }
+.contact-desc { font-size: 16px; color: var(--text-secondary); max-width: 440px; line-height: 1.7; }
+.contact-email {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: var(--text); color: #fff;
+  padding: 14px 24px; border-radius: var(--radius);
+  font-size: 15px; font-weight: 500; text-decoration: none;
+  letter-spacing: -0.01em; transition: opacity 0.2s; width: fit-content;
+}
+.contact-email:hover { opacity: 0.8; }
 
-  .info-cell-value a {
-    color: var(--text);
-    text-decoration: none;
-    border-bottom: 1px solid var(--border-strong);
-    transition: border-color 0.2s;
-  }
-  .info-cell-value a:hover {
-    border-color: var(--text);
-  }
+/* ── Footer ── */
+footer { border-top: 1px solid var(--border); padding: 48px 0; }
+.footer-inner { display: flex; flex-direction: column; gap: 16px; }
+.footer-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 32px; flex-wrap: wrap; }
+.footer-logo-wrap { display: flex; align-items: center; gap: 8px; }
+.footer-logo-icon { width: 22px; height: 22px; border-radius: 5px; object-fit: cover; }
+.footer-logo { font-size: 15px; font-weight: 700; letter-spacing: -0.02em; color: var(--text); }
+.footer-links { display: flex; gap: 24px; flex-wrap: wrap; }
+.footer-links a { font-size: 13px; color: var(--text-secondary); text-decoration: none; transition: color 0.2s; }
+.footer-links a:hover { color: var(--text); }
+.footer-legal {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px; color: var(--text-tertiary); line-height: 1.8; letter-spacing: 0.01em;
+}
 
-  /* ── App Portfolio ── */
-  .apps-list {
-    margin-top: 48px;
-  }
+/* ── Fade animations ── */
+.fade-up { opacity: 0; transform: translateY(16px); transition: opacity 0.6s ease, transform 0.6s ease; }
+.fade-up.visible { opacity: 1; transform: translateY(0); }
 
-  .app-card {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    min-height: 480px;
-    border-top: 1px solid var(--border);
-    overflow: hidden;
-    opacity: 0;
-    transform: translateY(40px);
-    transition: opacity 0.7s ease, transform 0.7s ease;
-  }
-  .app-card.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  .app-card:last-child {
-    border-bottom: 1px solid var(--border);
-  }
-
-  /* Alternate: even cards flip visual to right */
-  .app-card.flip { direction: rtl; }
-  .app-card.flip > * { direction: ltr; }
-
-  .app-visual {
-    position: relative;
-    overflow: hidden;
-    min-height: 360px;
-  }
-
-  .app-visual-inner {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: transform 0.6s ease;
-  }
-  .app-card:hover .app-visual-inner {
-    transform: scale(1.03);
-  }
-
-  /* App icon on top of gradient */
-  .app-icon-wrap {
-    width: 100px;
-    height: 100px;
-    border-radius: 22px;
-    background: rgba(255,255,255,0.18);
-    backdrop-filter: blur(8px);
-    border: 1px solid rgba(255,255,255,0.3);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 48px;
-    box-shadow: 0 8px 32px rgba(0,0,0,0.15);
-    position: relative;
-    z-index: 1;
-  }
-
-  /* Decorative blobs in visual area */
-  .app-blob {
-    position: absolute;
-    border-radius: 50%;
-    opacity: 0.55;
-    filter: blur(48px);
-  }
-
-  .app-info {
-    padding: 56px 64px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 20px;
-    background: var(--surface);
-  }
-
-  .app-category {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 10px;
-    font-weight: 500;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--text-tertiary);
-  }
-
-  .app-name {
-    font-size: 32px;
-    font-weight: 700;
-    letter-spacing: -0.025em;
-    line-height: 1.1;
-    color: var(--text);
-  }
-
-  .app-desc {
-    font-size: 15px;
-    color: var(--text-secondary);
-    line-height: 1.75;
-    max-width: 360px;
-  }
-
-  .app-platforms {
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
-  }
-
-  .app-platform-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 5px;
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-    color: var(--text-secondary);
-    background: var(--surface-dim);
-    border: 1px solid var(--border);
-    padding: 4px 10px;
-    border-radius: 4px;
-  }
-
-  .app-actions {
-    display: flex;
-    gap: 12px;
-    flex-wrap: wrap;
-    margin-top: 4px;
-  }
-
-  .app-action-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 7px;
-    font-size: 13px;
-    font-weight: 500;
-    color: var(--text);
-    background: var(--bg);
-    border: 1px solid var(--border-strong);
-    padding: 9px 16px;
-    border-radius: var(--radius-sm);
-    text-decoration: none;
-    transition: background 0.2s, border-color 0.2s;
-    white-space: nowrap;
-  }
-  .app-action-btn:hover {
-    background: var(--surface-dim);
-    border-color: var(--text);
-  }
-  .app-action-btn.primary {
-    background: var(--text);
-    color: #fff;
-    border-color: var(--text);
-  }
-  .app-action-btn.primary:hover {
-    opacity: 0.8;
-  }
-
-  .app-legal-links {
-    display: flex;
-    gap: 16px;
-    margin-top: 4px;
-  }
-  .app-legal-links a {
-    font-size: 12px;
-    color: var(--text-tertiary);
-    text-decoration: none;
-    transition: color 0.2s;
-  }
-  .app-legal-links a:hover { color: var(--text-secondary); }
-
-  @media (max-width: 768px) {
-    .app-card {
-      grid-template-columns: 1fr;
-      min-height: auto;
-    }
-    .app-card.flip { direction: ltr; }
-    .app-visual { min-height: 240px; }
-    .app-info { padding: 36px 24px; }
-    .app-name { font-size: 26px; }
-  }
-
-  /* ── Contact Section ── */
-  .contact-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-lg);
-    padding: 48px;
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-  }
-
-  .contact-title {
-    font-size: 28px;
-    font-weight: 700;
-    letter-spacing: -0.02em;
-    line-height: 1.2;
-  }
-
-  .contact-desc {
-    font-size: 16px;
-    color: var(--text-secondary);
-    max-width: 440px;
-    line-height: 1.7;
-  }
-
-  .contact-email {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    background: var(--text);
-    color: #fff;
-    padding: 14px 24px;
-    border-radius: var(--radius);
-    font-size: 15px;
-    font-weight: 500;
-    text-decoration: none;
-    letter-spacing: -0.01em;
-    transition: opacity 0.2s;
-    width: fit-content;
-  }
-  .contact-email:hover { opacity: 0.8; }
-
-  /* ── Footer ── */
-  footer {
-    border-top: 1px solid var(--border);
-    padding: 48px 0;
-  }
-
-  .footer-inner {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-  }
-
-  .footer-top {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: 32px;
-    flex-wrap: wrap;
-  }
-
-  .footer-logo {
-    font-size: 16px;
-    font-weight: 700;
-    letter-spacing: -0.02em;
-    color: var(--text);
-  }
-
-  .footer-links {
-    display: flex;
-    gap: 24px;
-    flex-wrap: wrap;
-  }
-
-  .footer-links a {
-    font-size: 13px;
-    color: var(--text-secondary);
-    text-decoration: none;
-    transition: color 0.2s;
-  }
-  .footer-links a:hover { color: var(--text); }
-
-  .footer-legal {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 11px;
-    color: var(--text-tertiary);
-    line-height: 1.8;
-    letter-spacing: 0.01em;
-  }
-
-  /* ── Divider line ── */
-  .divider {
-    width: 40px;
-    height: 2px;
-    background: var(--border-strong);
-    margin: 32px 0;
-  }
-
-  /* ── Responsive ── */
-  @media (max-width: 600px) {
-    .hero { padding: 120px 0 60px; }
-    .hero-desc { font-size: 16px; }
-    .info-grid { grid-template-columns: 1fr; }
-    .info-cell:last-child:nth-child(odd) { grid-column: span 1; }
-    .contact-card { padding: 32px 24px; }
-    .section { padding: 60px 0; }
-    .footer-top { flex-direction: column; gap: 16px; }
-    .contact-title { font-size: 22px; }
-  }
-
-  /* ── Fade in animation ── */
-  .fade-up {
-    opacity: 0;
-    transform: translateY(16px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
-  }
-  .fade-up.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
+/* ── Responsive ── */
+@media (max-width: 600px) {
+  .app-card { gap: 14px; padding: 22px 0; }
+  .app-icon-wrap { width: 54px; height: 54px; border-radius: 13px; font-size: 26px; }
+  .app-icon-wrap img { width: 54px; height: 54px; border-radius: 13px; }
+  .app-name { font-size: 16px; }
+  .app-header { flex-direction: column; gap: 10px; align-items: flex-start; }
+}
+@media (max-width: 600px) {
+  .hero { padding: 120px 0 60px; }
+  .hero-desc { font-size: 16px; }
+  .contact-card { padding: 32px 24px; }
+  .contact-title { font-size: 22px; }
+  .section { padding: 60px 0; }
+  .footer-top { flex-direction: column; gap: 16px; }
+  .nav-right { gap: 12px; }
+}
 </style>
 </head>
 <body>
@@ -492,90 +299,54 @@
 <header>
   <div class="container">
     <nav class="nav">
-      <a href="/" class="logo">37Soft</a>
-      <a href="mailto:soft37@working37.net" class="nav-contact">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-        고객 문의
-      </a>
+      <div class="nav-left">
+        <img src="assets/Soft37.png" alt="Soft37" class="nav-icon"/>
+        <a href="/" class="logo">Soft37</a>
+      </div>
+      <div class="nav-right">
+        <div class="lang-switcher" role="group" aria-label="Language">
+          <button class="lang-btn active" data-lang="ko">KO</button>
+          <button class="lang-btn" data-lang="en">EN</button>
+          <button class="lang-btn" data-lang="ja">JA</button>
+          <button class="lang-btn" data-lang="zh">ZH</button>
+        </div>
+        <a href="mailto:soft37@working37.net" class="nav-contact" data-i18n="nav_contact">고객 문의</a>
+      </div>
     </nav>
   </div>
 </header>
 
-<!-- Hero -->
+<!-- Main -->
 <main>
   <section class="hero">
     <div class="container">
-      <span class="hero-eyebrow fade-up">Mobile App Studio · Korea</span>
-      <h1 class="hero-title fade-up">더 나은 경험을<br/>만드는 소프트웨어</h1>
-      <p class="hero-desc fade-up">
-        37Soft는 대한민국에 본사를 둔 모바일 앱 개발사입니다.<br/>
-        사용자 중심의 디자인과 기술로 일상을 더 편리하게 만들어갑니다.
-      </p>
+      <span class="hero-eyebrow fade-up" data-i18n="hero_eyebrow">모바일 앱 스튜디오 · 대한민국</span>
+      <h1 class="hero-title fade-up" data-i18n="hero_title">더 나은 경험을<br/>만드는 소프트웨어</h1>
+      <p class="hero-desc fade-up" data-i18n="hero_desc">Soft37는 대한민국에 본사를 둔 모바일 앱 개발사입니다.<br/>사용자 중심의 디자인과 기술로 일상을 더 편리하게 만들어갑니다.</p>
     </div>
   </section>
 
-  <!-- Company Info -->
-  <section class="section">
+  <section class="section" id="apps">
     <div class="container">
-      <p class="section-label fade-up">Company Information</p>
-      <div class="info-grid fade-up">
-        <div class="info-cell">
-          <p class="info-cell-label">회사명</p>
-          <p class="info-cell-value">37Soft</p>
-        </div>
-        <div class="info-cell">
-          <p class="info-cell-label">대표자</p>
-          <p class="info-cell-value">김도경</p>
-        </div>
-        <div class="info-cell">
-          <p class="info-cell-label">사업자 등록번호</p>
-          <p class="info-cell-value">137-73-00738</p>
-        </div>
-        <div class="info-cell">
-          <p class="info-cell-label">설립일</p>
-          <p class="info-cell-value">2026년 5월 22일</p>
-        </div>
-        <div class="info-cell">
-          <p class="info-cell-label">소재지</p>
-          <p class="info-cell-value">대한민국</p>
-        </div>
-        <div class="info-cell">
-          <p class="info-cell-label">고객 문의</p>
-          <p class="info-cell-value">
-            <a href="mailto:soft37@working37.net">soft37@working37.net</a>
-          </p>
-        </div>
-        <div class="info-cell">
-          <p class="info-cell-label">통신판매업 신고번호</p>
-          <p class="info-cell-value">제2026-서울광진-0911 호</p>
-        </div>
-        <div class="info-cell">
-          <p class="info-cell-label">DUNS Number</p>
-          <p class="info-cell-value">696554688</p>
+      <p class="section-label fade-up" data-i18n="apps_label">OUR APPS</p>
+      <div class="apps-list" id="apps-list"></div>
+      <div class="coming-soon-wrap fade-up">
+        <div class="coming-soon-card">
+          <div class="coming-soon-icon">🚀</div>
+          <span class="coming-soon-badge">COMING SOON</span>
+          <p class="coming-soon-title" data-i18n="coming_soon_title">새로운 앱을 준비 중입니다</p>
+          <p class="coming-soon-desc" data-i18n="coming_soon_desc">더 나은 경험을 위한 앱을 열심히 만들고 있어요.<br/>출시되면 이곳에서 가장 먼저 만나보실 수 있습니다.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- App Portfolio -->
-  <section class="section" id="apps">
-    <div class="container">
-      <p class="section-label fade-up">Our Apps</p>
-    </div>
-    <div class="apps-list" id="apps-list"></div>
-  </section>
-
-  <!-- Contact -->
   <section class="section">
     <div class="container">
-      <p class="section-label fade-up">Contact & Support</p>
+      <p class="section-label fade-up" data-i18n="contact_label">CONTACT &amp; SUPPORT</p>
       <div class="contact-card fade-up">
-        <h2 class="contact-title">도움이 필요하신가요?</h2>
-        <p class="contact-desc">
-          앱 이용 중 불편한 점, 버그 신고, 기능 문의 등<br/>
-          모든 문의 사항을 이메일로 보내주세요.<br/>
-          빠르게 답변 드리겠습니다.
-        </p>
+        <h2 class="contact-title" data-i18n="contact_title">도움이 필요하신가요?</h2>
+        <p class="contact-desc" data-i18n="contact_desc">앱 이용 중 불편한 점, 버그 신고, 기능 문의 등<br/>모든 문의 사항을 이메일로 보내주세요.<br/>빠르게 답변 드리겠습니다.</p>
         <a href="mailto:soft37@working37.net" class="contact-email">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
           soft37@working37.net
@@ -590,125 +361,246 @@
   <div class="container">
     <div class="footer-inner">
       <div class="footer-top">
-        <span class="footer-logo">37Soft</span>
+        <div class="footer-logo-wrap">
+          <img src="assets/Soft37.png" alt="Soft37" class="footer-logo-icon"/>
+          <span class="footer-logo">Soft37</span>
+        </div>
         <div class="footer-links">
-          <a href="mailto:soft37@working37.net">고객 문의</a>
-          <a href="/privacy">개인정보처리방침</a>
-          <a href="/terms">이용약관</a>
+          <a href="mailto:soft37@working37.net" data-i18n="footer_contact">고객 문의</a>
+          <a href="/privacy" data-i18n="footer_privacy">개인정보처리방침</a>
+          <a href="/terms" data-i18n="footer_terms">이용약관</a>
         </div>
       </div>
-      <p class="footer-legal">
-        37Soft &nbsp;|&nbsp; 대표자: 김도경 &nbsp;|&nbsp; 사업자등록번호: 137-73-00738<br/>
-        설립일: 2026.05.22 &nbsp;|&nbsp; 소재지: 대한민국<br/>
-        © 2026 37Soft. All rights reserved.
-      </p>
+      <p class="footer-legal" data-i18n="footer_legal">Soft37 &nbsp;|&nbsp; 대표자: 김도경 &nbsp;|&nbsp; 사업자등록번호: 137-73-00738<br/>통신판매업 신고번호: 제2026-서울광진-0911 호 &nbsp;|&nbsp; DUNS: 696554688<br/>설립일: 2026.05.22 &nbsp;|&nbsp; 소재지: 대한민국<br/>© 2026 Soft37. All rights reserved.</p>
     </div>
   </div>
 </footer>
 
 <script>
-  // ── App Data ──────────────────────────────────────────────
-  // 앱 추가 방법: 아래 배열에 객체 하나 추가
-  // appStoreUrl 없으면 버튼 숨김
-  const APPS = [
-    // {
-    //   id: 'myapp',
-    //   name: 'My App',
-    //   category: 'Productivity',
-    //   desc: '앱 설명을 여기에 작성합니다.',
-    //   icon: '📱',           // 이모지 or 이미지 경로 (assets/icons/myapp.png)
-    //   color1: '#6366f1',   // 그라디언트 색상 1
-    //   color2: '#8b5cf6',   // 그라디언트 색상 2
-    //   platforms: ['iOS'],
-    //   appStoreUrl: 'https://apps.apple.com/...',
-    // },
-  ];
-  // ──────────────────────────────────────────────────────────
+// ── i18n ──────────────────────────────────────
+const I18N = {
+  ko: {
+    nav_contact:   '고객 문의',
+    hero_eyebrow:  '모바일 앱 스튜디오 · 대한민국',
+    hero_title:    '더 나은 경험을<br/>만드는 소프트웨어',
+    hero_desc:     'Soft37는 대한민국에 본사를 둔 모바일 앱 개발사입니다.<br/>사용자 중심의 디자인과 기술로 일상을 더 편리하게 만들어갑니다.',
+    apps_label:    'OUR APPS',
+    apps_empty:    '앱을 개발하면 이곳에 추가됩니다. App Store를 통해 제공되는 모든 앱의 문의 및 지원은 <a href="mailto:soft37@working37.net">soft37@working37.net</a>으로 연락해 주세요.',
+    contact_label: 'CONTACT &amp; SUPPORT',
+    contact_title: '도움이 필요하신가요?',
+    contact_desc:  '앱 이용 중 불편한 점, 버그 신고, 기능 문의 등<br/>모든 문의 사항을 이메일로 보내주세요.<br/>빠르게 답변 드리겠습니다.',
+    footer_contact:'고객 문의',
+    footer_privacy:'개인정보처리방침',
+    footer_terms:  '이용약관',
+    footer_legal:  'Soft37 &nbsp;|&nbsp; 대표자: 김도경 &nbsp;|&nbsp; 사업자등록번호: 137-73-00738<br/>통신판매업 신고번호: 제2026-서울광진-0911 호 &nbsp;|&nbsp; DUNS: 696554688<br/>설립일: 2026.05.22 &nbsp;|&nbsp; 소재지: 대한민국<br/>© 2026 Soft37. All rights reserved.',
+    app_privacy:   '개인정보처리방침',
+    app_terms:     '이용약관',
+    app_appstore:  'App Store',
+    coming_soon_title: '새로운 앱을 준비 중입니다',
+    coming_soon_desc:  '더 나은 경험을 위한 앱을 열심히 만들고 있어요.<br/>출시되면 이곳에서 가장 먼저 만나보실 수 있습니다.',
+    html_lang:     'ko',
+  },
+  en: {
+    nav_contact:   'Contact',
+    hero_eyebrow:  'Mobile App Studio · Korea',
+    hero_title:    'Software that creates<br/>better experiences',
+    hero_desc:     'Soft37 is a mobile app development company based in South Korea.<br/>We create everyday convenience through user-centered design and technology.',
+    apps_label:    'OUR APPS',
+    apps_empty:    'Apps will be listed here as they are developed. For support or inquiries about our App Store apps, please contact <a href="mailto:soft37@working37.net">soft37@working37.net</a>.',
+    contact_label: 'CONTACT &amp; SUPPORT',
+    contact_title: 'Need help?',
+    contact_desc:  'For any inconvenience, bug reports, or feature questions,<br/>send us an email and we\'ll get back to you quickly.',
+    footer_contact:'Contact',
+    footer_privacy:'Privacy Policy',
+    footer_terms:  'Terms of Service',
+    footer_legal:  'Soft37 &nbsp;|&nbsp; CEO: Dokyung Kim &nbsp;|&nbsp; Business Reg. No.: 137-73-00738<br/>Mail-Order No.: 제2026-서울광진-0911 호 &nbsp;|&nbsp; DUNS: 696554688<br/>Founded: 2026.05.22 &nbsp;|&nbsp; Location: Republic of Korea<br/>© 2026 Soft37. All rights reserved.',
+    app_privacy:   'Privacy Policy',
+    app_terms:     'Terms of Service',
+    app_appstore:  'App Store',
+    coming_soon_title: 'New apps are on the way',
+    coming_soon_desc:  'We\'re working hard to build apps that make life better.<br/>Stay tuned — you\'ll see them here first.',
+    html_lang:     'en',
+  },
+  ja: {
+    nav_contact:   'お問い合わせ',
+    hero_eyebrow:  'モバイルアプリスタジオ · 韓国',
+    hero_title:    'より良い体験を<br/>生み出すソフトウェア',
+    hero_desc:     'Soft37は韓国に本社を置くモバイルアプリ開発会社です。<br/>ユーザー中心のデザインと技術で、日常をより便利にします。',
+    apps_label:    'アプリ一覧',
+    apps_empty:    'アプリが開発され次第、こちらに追加されます。App Storeのアプリに関するお問い合わせは <a href="mailto:soft37@working37.net">soft37@working37.net</a> までご連絡ください。',
+    contact_label: 'お問い合わせ',
+    contact_title: 'お困りですか？',
+    contact_desc:  '不具合のご報告、機能に関するご質問など、<br/>何でもメールでお送りください。迅速にご回答いたします。',
+    footer_contact:'お問い合わせ',
+    footer_privacy:'プライバシーポリシー',
+    footer_terms:  '利用規約',
+    footer_legal:  'Soft37 &nbsp;|&nbsp; 代表者: キム・ドギョン &nbsp;|&nbsp; 事業者登録番号: 137-73-00738<br/>通信販売業申告番号: 제2026-서울광진-0911 호 &nbsp;|&nbsp; DUNS: 696554688<br/>設立日: 2026.05.22 &nbsp;|&nbsp; 所在地: 大韓民国<br/>© 2026 Soft37. All rights reserved.',
+    app_privacy:   'プライバシーポリシー',
+    app_terms:     '利用規約',
+    app_appstore:  'App Store',
+    coming_soon_title: '新しいアプリを準備中です',
+    coming_soon_desc:  'より良い体験のためのアプリを鋭意開発中です。<br/>リリースされたらこちらで最初にご確認いただけます。',
+    html_lang:     'ja',
+  },
+  zh: {
+    nav_contact:   '联系我们',
+    hero_eyebrow:  '移动应用工作室 · 韩国',
+    hero_title:    '创造更好体验<br/>的软件',
+    hero_desc:     'Soft37是一家总部位于韩国的移动应用开发公司。<br/>我们通过以用户为中心的设计和技术，让日常生活更便捷。',
+    apps_label:    '我们的应用',
+    apps_empty:    '应用开发完成后将在此处添加。如需支持或咨询我们的App Store应用，请联系 <a href="mailto:soft37@working37.net">soft37@working37.net</a>。',
+    contact_label: '联系与支持',
+    contact_title: '需要帮助？',
+    contact_desc:  '如有使用问题、错误报告或功能咨询，<br/>请发送邮件，我们将尽快回复。',
+    footer_contact:'联系我们',
+    footer_privacy:'隐私政策',
+    footer_terms:  '服务条款',
+    footer_legal:  'Soft37 &nbsp;|&nbsp; 代表: 金道庚 &nbsp;|&nbsp; 商业登记号: 137-73-00738<br/>通信销售业申报号: 제2026-서울광진-0911 호 &nbsp;|&nbsp; DUNS: 696554688<br/>成立日期: 2026.05.22 &nbsp;|&nbsp; 地址: 大韩民国<br/>© 2026 Soft37. All rights reserved.',
+    app_privacy:   '隐私政策',
+    app_terms:     '服务条款',
+    app_appstore:  'App Store',
+    coming_soon_title: '新应用即将推出',
+    coming_soon_desc:  '我们正在努力打造更好体验的应用。<br/>发布后，您将在这里第一时间看到。',
+    html_lang:     'zh',
+  },
+};
 
-  function renderApps() {
-    const list = document.getElementById('apps-list');
-    if (!list) return;
+// ── App Data ──────────────────────────────────
+// 앱 추가: 아래 배열에 객체 하나 추가
+// name/category/desc 는 { ko, en, ja, zh } 객체 or 단일 문자열
+const APPS = [
+  {
+    id: 'subwallet',
+    name: 'SubWallet',
+    category: { ko: '고정비 지출 관리', en: 'Finance', ja: '固定費管理', zh: '固定支出管理' },
+    desc: {
+      ko: '구독, 보험, 월세 등 매달 나가는 고정 지출을 한눈에 파악하고 스마트하게 관리하세요.',
+      en: 'Track and manage your recurring expenses — subscriptions, insurance, rent, and more.',
+      ja: 'サブスク、保険、家賃など毎月の固定費をひと目で把握・管理できます。',
+      zh: '轻松追踪并管理每月固定支出，包括订阅、保险、房租等。',
+    },
+    icon: 'assets/subwallet.png',
+    platforms: ['iOS'],
+    comingSoon: true,
+    releaseNote: { ko: '6월 출시 예정', en: 'Coming June', ja: '6月リリース予定', zh: '预计6月上线' },
+  },
+];
 
-    if (APPS.length === 0) {
-      list.innerHTML = `
-        <div style="padding:48px 24px;max-width:960px;margin:0 auto;">
-          <p style="font-size:15px;color:var(--text-tertiary);line-height:1.7;">
-            앱을 개발하면 이곳에 추가됩니다. App Store를 통해 제공되는 모든 앱의 문의 및 지원은<br>
-            <a href="mailto:soft37@working37.net" style="color:var(--text-secondary);">soft37@working37.net</a>으로 연락해 주세요.
-          </p>
-        </div>`;
-      return;
-    }
+// ── State ─────────────────────────────────────
+let currentLang = (navigator.language || 'ko').slice(0, 2);
+if (!I18N[currentLang]) currentLang = 'ko';
 
-    APPS.forEach((app, idx) => {
-      const isFlip = idx % 2 === 1;
-      const isImgIcon = app.icon && (app.icon.startsWith('assets') || app.icon.startsWith('/') || app.icon.startsWith('http'));
-      const iconHtml = isImgIcon
-        ? `<img src="${app.icon}" style="width:72px;height:72px;border-radius:16px;object-fit:cover;" alt="${app.name} icon"/>`
-        : `<span style="font-size:48px;line-height:1;">${app.icon || '📱'}</span>`;
+function t(key) { return (I18N[currentLang] || I18N.ko)[key] || ''; }
+function loc(val) {
+  if (!val) return '';
+  if (typeof val === 'object') return val[currentLang] || val.en || val.ko || Object.values(val)[0] || '';
+  return val;
+}
 
-      const platformsHtml = (app.platforms || ['iOS']).map(p => `
-        <span class="app-platform-badge">
-          <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
-          ${p}
-        </span>`).join('');
+// ── Apply translations ────────────────────────
+function applyI18n() {
+  document.documentElement.lang = t('html_lang');
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const str = t(el.getAttribute('data-i18n'));
+    if (str) el.innerHTML = str;
+  });
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.lang === currentLang);
+  });
+}
 
-      const actionsHtml = app.appStoreUrl
-        ? `<a href="${app.appStoreUrl}" target="_blank" rel="noopener" class="app-action-btn primary">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
-            App Store
+// ── Render app cards ──────────────────────────
+function renderApps() {
+  const list = document.getElementById('apps-list');
+  if (!list) return;
+  list.innerHTML = '';
+
+  const csWrap = document.querySelector('.coming-soon-wrap');
+  if (csWrap) csWrap.style.display = APPS.length === 0 ? '' : 'none';
+  if (APPS.length === 0) return;
+
+  APPS.forEach((app) => {
+    const name = loc(app.name);
+    const category = loc(app.category);
+    const desc = loc(app.desc);
+    const isImgIcon = app.icon && !app.icon.includes(' ') &&
+      (app.icon.startsWith('assets') || app.icon.startsWith('/') || app.icon.startsWith('http'));
+    const iconHtml = isImgIcon
+      ? `<img src="${app.icon}" alt="${name}"/>`
+      : `<span>${app.icon || '📱'}</span>`;
+    const platformsHtml = (app.platforms || ['iOS']).map(p =>
+      `<span class="app-platform-badge">
+        <svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+        ${p}
+      </span>`).join('');
+    const storeBtnHtml = app.comingSoon
+      ? `<div class="app-cs-badge">
+          <span class="app-cs-label">Coming Soon</span>
+          <span class="app-cs-date">${loc(app.releaseNote)}</span>
+        </div>`
+      : app.appStoreUrl
+        ? `<a href="${app.appStoreUrl}" target="_blank" rel="noopener" class="app-store-btn">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+            ${t('app_appstore')}
           </a>` : '';
 
-      const card = document.createElement('div');
-      card.className = 'app-card' + (isFlip ? ' flip' : '');
-      card.innerHTML = `
-        <div class="app-visual" style="background:linear-gradient(135deg,${app.color1||'#1a1a2e'} 0%,${app.color2||'#16213e'} 100%);">
-          <div class="app-visual-inner">
-            <div class="app-blob" style="width:260px;height:260px;background:${app.color1||'#fff'};top:-40px;left:-40px;"></div>
-            <div class="app-blob" style="width:200px;height:200px;background:${app.color2||'#fff'};bottom:-30px;right:-30px;"></div>
-            <div class="app-icon-wrap">${iconHtml}</div>
+    const card = document.createElement('div');
+    card.className = 'app-card';
+    card.innerHTML = `
+      <div class="app-icon-wrap">${iconHtml}</div>
+      <div class="app-body">
+        <div class="app-header">
+          <div class="app-header-left">
+            <p class="app-category">${category}</p>
+            <h2 class="app-name">${name}</h2>
+          </div>
+          ${storeBtnHtml}
+        </div>
+        <p class="app-desc">${desc}</p>
+        <div class="app-footer">
+          <div class="app-platforms">${platformsHtml}</div>
+          <div class="app-legal-links">
+            <a href="/privacy?app=${encodeURIComponent(app.id || name)}">${t('app_privacy')}</a>
+            <a href="/terms?app=${encodeURIComponent(app.id || name)}">${t('app_terms')}</a>
           </div>
         </div>
-        <div class="app-info">
-          <p class="app-category">${app.category || 'Mobile App'}</p>
-          <h2 class="app-name">${app.name}</h2>
-          <p class="app-desc">${app.desc || ''}</p>
-          <div class="app-platforms">${platformsHtml}</div>
-          ${actionsHtml ? `<div class="app-actions">${actionsHtml}</div>` : ''}
-          <div class="app-legal-links">
-            <a href="/privacy?app=${encodeURIComponent(app.id || app.name)}">개인정보처리방침</a>
-            <a href="/terms?app=${encodeURIComponent(app.id || app.name)}">이용약관</a>
-          </div>
-        </div>`;
-      list.appendChild(card);
-    });
+      </div>`;
+    list.appendChild(card);
+  });
 
-    // Scroll-triggered entrance for each card
-    const cardObserver = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          e.target.classList.add('visible');
-          cardObserver.unobserve(e.target);
-        }
-      });
-    }, { threshold: 0.1 });
-    document.querySelectorAll('.app-card').forEach(c => cardObserver.observe(c));
-  }
+  const cardIO = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); cardIO.unobserve(e.target); } });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.app-card').forEach(c => cardIO.observe(c));
+}
 
-  // ── Fade-up on scroll (general) ──
-  const els = document.querySelectorAll('.fade-up');
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach((e, i) => {
-      if (e.isIntersecting) {
-        setTimeout(() => e.target.classList.add('visible'), i * 80);
-        io.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.12 });
-  els.forEach(el => io.observe(el));
+// ── Language buttons ──────────────────────────
+document.querySelectorAll('.lang-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    currentLang = btn.dataset.lang;
+    applyI18n();
+    renderApps();
+    observeFadeUps();
+  });
+});
 
-  renderApps();
+// ── Fade-up ───────────────────────────────────
+const fadeIO = new IntersectionObserver((entries) => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      setTimeout(() => e.target.classList.add('visible'), i * 80);
+      fadeIO.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.12 });
+function observeFadeUps() {
+  document.querySelectorAll('.fade-up:not(.visible)').forEach(el => fadeIO.observe(el));
+}
+
+// ── Init ──────────────────────────────────────
+applyI18n();
+renderApps();
+observeFadeUps();
 </script>
-
 </body>
 </html>
