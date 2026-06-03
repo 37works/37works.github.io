@@ -23,6 +23,12 @@
   --radius-sm: 6px;
   --radius: 12px;
   --radius-lg: 20px;
+
+  /* section background tones */
+  --zone-hero:    #ffffff;
+  --zone-apps:    #eeedea;
+  --zone-contact: #ffffff;
+  --zone-footer:  #f2f1ee;
 }
 
 html { scroll-behavior: smooth; }
@@ -48,7 +54,6 @@ header {
   background: rgba(249, 249, 247, 0.88);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border-bottom: 1px solid var(--border);
 }
 .nav {
   display: flex;
@@ -97,7 +102,7 @@ header {
 .nav-contact:hover { color: var(--text); }
 
 /* ── Hero ── */
-.hero { padding: 140px 0 80px; }
+.hero { padding: 140px 0 80px; background: var(--zone-hero); }
 .hero-eyebrow {
   display: inline-block;
   font-family: 'JetBrains Mono', monospace;
@@ -116,7 +121,9 @@ header {
 }
 
 /* ── Section ── */
-.section { padding: 80px 0; border-top: 1px solid var(--border); }
+.section { padding: 80px 0; }
+#apps { background: var(--zone-apps); }
+.section-contact { background: var(--zone-contact); }
 .section-label {
   font-family: 'JetBrains Mono', monospace;
   font-size: 11px; font-weight: 500;
@@ -129,11 +136,12 @@ header {
 
 .app-card {
   display: flex; align-items: flex-start; gap: 20px;
-  padding: 28px 0; border-bottom: 1px solid var(--border);
+  padding: 28px 0;
+  border-bottom: 1px solid rgba(0,0,0,0.06);
   opacity: 0; transform: translateY(12px);
   transition: opacity 0.55s ease, transform 0.55s ease;
 }
-.app-card:first-child { border-top: 1px solid var(--border); }
+.app-card:first-child { border-top: 1px solid rgba(0,0,0,0.06); }
 .app-card.visible { opacity: 1; transform: translateY(0); }
 
 .app-icon-wrap {
@@ -256,7 +264,7 @@ header {
 .contact-email:hover { opacity: 0.8; }
 
 /* ── Footer ── */
-footer { border-top: 1px solid var(--border); padding: 48px 0; }
+footer { background: var(--zone-footer); padding: 48px 0; }
 .footer-inner { display: flex; flex-direction: column; gap: 16px; }
 .footer-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 32px; flex-wrap: wrap; }
 .footer-logo-wrap { display: flex; align-items: center; gap: 8px; }
@@ -307,8 +315,6 @@ footer { border-top: 1px solid var(--border); padding: 48px 0; }
         <div class="lang-switcher" role="group" aria-label="Language">
           <button class="lang-btn active" data-lang="ko">KO</button>
           <button class="lang-btn" data-lang="en">EN</button>
-          <button class="lang-btn" data-lang="ja">JA</button>
-          <button class="lang-btn" data-lang="zh">ZH</button>
         </div>
         <a href="mailto:soft37@working37.net" class="nav-contact" data-i18n="nav_contact">고객 문의</a>
       </div>
@@ -341,7 +347,7 @@ footer { border-top: 1px solid var(--border); padding: 48px 0; }
     </div>
   </section>
 
-  <section class="section">
+  <section class="section section-contact">
     <div class="container">
       <p class="section-label fade-up" data-i18n="contact_label">CONTACT &amp; SUPPORT</p>
       <div class="contact-card fade-up">
@@ -421,48 +427,6 @@ const I18N = {
     coming_soon_desc:  'We\'re working hard to build apps that make life better.<br/>Stay tuned — you\'ll see them here first.',
     html_lang:     'en',
   },
-  ja: {
-    nav_contact:   'お問い合わせ',
-    hero_eyebrow:  'モバイルアプリスタジオ · 韓国',
-    hero_title:    'より良い体験を<br/>生み出すソフトウェア',
-    hero_desc:     'Soft37は韓国に本社を置くモバイルアプリ開発会社です。<br/>ユーザー中心のデザインと技術で、日常をより便利にします。',
-    apps_label:    'アプリ一覧',
-    apps_empty:    'アプリが開発され次第、こちらに追加されます。App Storeのアプリに関するお問い合わせは <a href="mailto:soft37@working37.net">soft37@working37.net</a> までご連絡ください。',
-    contact_label: 'お問い合わせ',
-    contact_title: 'お困りですか？',
-    contact_desc:  '不具合のご報告、機能に関するご質問など、<br/>何でもメールでお送りください。迅速にご回答いたします。',
-    footer_contact:'お問い合わせ',
-    footer_privacy:'プライバシーポリシー',
-    footer_terms:  '利用規約',
-    footer_legal:  'Soft37 &nbsp;|&nbsp; 代表者: キム・ドギョン &nbsp;|&nbsp; 事業者登録番号: 137-73-00738<br/>通信販売業申告番号: 제2026-서울광진-0911 호 &nbsp;|&nbsp; DUNS: 696554688<br/>設立日: 2026.05.22 &nbsp;|&nbsp; 所在地: 大韓民国<br/>© 2026 Soft37. All rights reserved.',
-    app_privacy:   'プライバシーポリシー',
-    app_terms:     '利用規約',
-    app_appstore:  'App Store',
-    coming_soon_title: '新しいアプリを準備中です',
-    coming_soon_desc:  'より良い体験のためのアプリを鋭意開発中です。<br/>リリースされたらこちらで最初にご確認いただけます。',
-    html_lang:     'ja',
-  },
-  zh: {
-    nav_contact:   '联系我们',
-    hero_eyebrow:  '移动应用工作室 · 韩国',
-    hero_title:    '创造更好体验<br/>的软件',
-    hero_desc:     'Soft37是一家总部位于韩国的移动应用开发公司。<br/>我们通过以用户为中心的设计和技术，让日常生活更便捷。',
-    apps_label:    '我们的应用',
-    apps_empty:    '应用开发完成后将在此处添加。如需支持或咨询我们的App Store应用，请联系 <a href="mailto:soft37@working37.net">soft37@working37.net</a>。',
-    contact_label: '联系与支持',
-    contact_title: '需要帮助？',
-    contact_desc:  '如有使用问题、错误报告或功能咨询，<br/>请发送邮件，我们将尽快回复。',
-    footer_contact:'联系我们',
-    footer_privacy:'隐私政策',
-    footer_terms:  '服务条款',
-    footer_legal:  'Soft37 &nbsp;|&nbsp; 代表: 金道庚 &nbsp;|&nbsp; 商业登记号: 137-73-00738<br/>通信销售业申报号: 제2026-서울광진-0911 호 &nbsp;|&nbsp; DUNS: 696554688<br/>成立日期: 2026.05.22 &nbsp;|&nbsp; 地址: 大韩民国<br/>© 2026 Soft37. All rights reserved.',
-    app_privacy:   '隐私政策',
-    app_terms:     '服务条款',
-    app_appstore:  'App Store',
-    coming_soon_title: '新应用即将推出',
-    coming_soon_desc:  '我们正在努力打造更好体验的应用。<br/>发布后，您将在这里第一时间看到。',
-    html_lang:     'zh',
-  },
 };
 
 // ── App Data ──────────────────────────────────
@@ -472,17 +436,15 @@ const APPS = [
   {
     id: 'subwallet',
     name: 'SubWallet',
-    category: { ko: '고정비 지출 관리', en: 'Finance', ja: '固定費管理', zh: '固定支出管理' },
+    category: { ko: '고정비 지출 관리', en: 'Finance' },
     desc: {
       ko: '구독, 보험, 월세 등 매달 나가는 고정 지출을 한눈에 파악하고 스마트하게 관리하세요.',
       en: 'Track and manage your recurring expenses — subscriptions, insurance, rent, and more.',
-      ja: 'サブスク、保険、家賃など毎月の固定費をひと目で把握・管理できます。',
-      zh: '轻松追踪并管理每月固定支出，包括订阅、保险、房租等。',
     },
     icon: 'assets/subwallet.png',
-    platforms: ['iOS'],
+    platforms: ['iOS', 'Android'],
     comingSoon: true,
-    releaseNote: { ko: '6월 출시 예정', en: 'Coming June', ja: '6月リリース予定', zh: '预计6月上线' },
+    releaseNote: { ko: '6월 출시 예정', en: 'Coming June' },
   },
 ];
 
@@ -528,9 +490,13 @@ function renderApps() {
     const iconHtml = isImgIcon
       ? `<img src="${app.icon}" alt="${name}"/>`
       : `<span>${app.icon || '📱'}</span>`;
+    const PLATFORM_ICONS = {
+      iOS: `<svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>`,
+      Android: `<svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M17.523 15.341 14.98 10.8A5.98 5.98 0 0 0 18 5H6a5.98 5.98 0 0 0 3.02 5.8l-2.543 4.541A1 1 0 0 0 7.354 17h9.292a1 1 0 0 0 .877-1.659zM12 3a1 1 0 1 1 0 2 1 1 0 0 1 0-2zM7 3h-.5a.5.5 0 0 1 0-1H7a.5.5 0 0 1 0 1zm10.5 0H17a.5.5 0 0 1 0-1h.5a.5.5 0 0 1 0 1z"/><rect x="9" y="18" width="6" height="2" rx="1"/><rect x="11" y="20" width="2" height="2" rx="1"/></svg>`,
+    };
     const platformsHtml = (app.platforms || ['iOS']).map(p =>
       `<span class="app-platform-badge">
-        <svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+        ${PLATFORM_ICONS[p] || PLATFORM_ICONS.iOS}
         ${p}
       </span>`).join('');
     const storeBtnHtml = app.comingSoon
