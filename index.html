@@ -446,6 +446,20 @@ const APPS = [
     comingSoon: true,
     releaseNote: { ko: '6월 출시 예정', en: 'Coming June' },
   },
+  {
+    id: 'senditwhenever',
+    name: 'Send It Whenever',
+    category: { ko: 'SaaS', en: 'SaaS' },
+    desc: {
+      ko: '이메일, SMS, 푸시 등 다양한 채널의 알림을 하나의 API로 통합 관리하고, 원하는 시점에 안정적으로 전달하세요.',
+      en: 'Unified notification delivery across email, SMS, push, and more — one API, delivered anytime, anywhere.',
+    },
+    icon: 'assets/senditwhenever.png',
+    iconFit: 'contain',
+    platforms: ['Web', 'API'],
+    comingSoon: true,
+    releaseNote: { ko: '준비 중', en: 'In Development' },
+  },
 ];
 
 // ── State ─────────────────────────────────────
@@ -487,12 +501,15 @@ function renderApps() {
     const desc = loc(app.desc);
     const isImgIcon = app.icon && !app.icon.includes(' ') &&
       (app.icon.startsWith('assets') || app.icon.startsWith('/') || app.icon.startsWith('http'));
+    const iconFit = app.iconFit || 'cover';
     const iconHtml = isImgIcon
-      ? `<img src="${app.icon}" alt="${name}"/>`
+      ? `<img src="${app.icon}" alt="${name}" style="object-fit:${iconFit}"/>`
       : `<span>${app.icon || '📱'}</span>`;
     const PLATFORM_ICONS = {
       iOS: `<svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>`,
       Android: `<svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M17.523 15.341 14.98 10.8A5.98 5.98 0 0 0 18 5H6a5.98 5.98 0 0 0 3.02 5.8l-2.543 4.541A1 1 0 0 0 7.354 17h9.292a1 1 0 0 0 .877-1.659zM12 3a1 1 0 1 1 0 2 1 1 0 0 1 0-2zM7 3h-.5a.5.5 0 0 1 0-1H7a.5.5 0 0 1 0 1zm10.5 0H17a.5.5 0 0 1 0-1h.5a.5.5 0 0 1 0 1z"/><rect x="9" y="18" width="6" height="2" rx="1"/><rect x="11" y="20" width="2" height="2" rx="1"/></svg>`,
+      Web: `<svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>`,
+      API: `<svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7V4h16v3M9 20h6M12 4v16"/></svg>`,
     };
     const platformsHtml = (app.platforms || ['iOS']).map(p =>
       `<span class="app-platform-badge">
