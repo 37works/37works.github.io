@@ -6,6 +6,12 @@
       "runtimeExecutable": "npx",
       "runtimeArgs": ["serve", "-p", "4300", "."],
       "port": 4300
+    },
+    {
+      "name": "soft37",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["--prefix", "soft37", "run", "dev", "--", "-p", "3700"],
+      "port": 3700
     }
   ]
 }
