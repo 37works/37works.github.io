@@ -43,6 +43,8 @@ export interface Product {
   /** 출시 상태 배지 문구, 예: "6월 출시 예정", "준비 중" */
   releaseNote: string;
   comingSoon: boolean;
+  /** 외부 사이트 링크. 있으면 카드가 클릭 가능해진다. */
+  url?: string;
 }
 
 export const products = {
@@ -69,6 +71,7 @@ export const products = {
       platforms: ["Web", "API"],
       releaseNote: "준비 중",
       comingSoon: true,
+      url: "https://www.sendit-whenever.com",
     },
   ] satisfies Product[],
 } as const;

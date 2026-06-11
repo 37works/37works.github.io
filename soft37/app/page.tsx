@@ -104,9 +104,11 @@ export default function Home() {
             </p>
           </Reveal>
           <div className="mt-12 grid grid-cols-1 gap-4 md:grid-cols-2">
-            {products.items.map((p, i) => (
-              <Reveal key={p.id} delay={i * 80}>
-                <div className="flex h-full flex-col rounded-lg border border-ink-200 bg-surface p-6 shadow-e1 transition-[box-shadow,transform] duration-200 ease-out hover:-translate-y-0.5 hover:shadow-e2">
+            {products.items.map((p, i) => {
+              const cardClass =
+                "group flex h-full flex-col rounded-lg border border-ink-200 bg-surface p-6 shadow-e1 transition-[box-shadow,transform] duration-200 ease-out hover:-translate-y-0.5 hover:shadow-e2";
+              const inner = (
+                <>
                   <div className="flex items-start justify-between gap-4">
                     <div className="min-w-0">
                       <p className="text-caption font-medium uppercase tracking-[0.16em] text-ink-500">
@@ -125,19 +127,45 @@ export default function Home() {
                   <p className="mt-3 flex-1 text-body leading-relaxed text-ink-700">
                     {p.description}
                   </p>
-                  <div className="mt-5 flex flex-wrap gap-2">
-                    {p.platforms.map((pl) => (
-                      <span
-                        key={pl}
-                        className="rounded-xs border border-ink-200 bg-ink-100 px-2 py-1 text-caption font-medium uppercase tracking-wide text-ink-500"
-                      >
-                        {pl}
-                      </span>
-                    ))}
+                  <div className="mt-5 flex flex-wrap items-center justify-between gap-2">
+                    <div className="flex flex-wrap gap-2">
+                      {p.platforms.map((pl) => (
+                        <span
+                          key={pl}
+                          className="rounded-xs border border-ink-200 bg-ink-100 px-2 py-1 text-caption font-medium uppercase tracking-wide text-ink-500"
+                        >
+                          {pl}
+                        </span>
+                      ))}
+                    </div>
+                    {p.url && (
+                      <ArrowUpRight
+                        size={18}
+                        strokeWidth={1.75}
+                        absoluteStrokeWidth
+                        className="shrink-0 text-ink-500 transition-transform duration-200 ease-out group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-sage-deep"
+                      />
+                    )}
                   </div>
-                </div>
-              </Reveal>
-            ))}
+                </>
+              );
+              return (
+                <Reveal key={p.id} delay={i * 80}>
+                  {p.url ? (
+                    <a
+                      href={p.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={cardClass}
+                    >
+                      {inner}
+                    </a>
+                  ) : (
+                    <div className={cardClass}>{inner}</div>
+                  )}
+                </Reveal>
+              );
+            })}
           </div>
         </div>
       </section>
