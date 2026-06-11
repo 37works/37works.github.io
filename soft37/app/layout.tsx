@@ -46,6 +46,9 @@ export default function RootLayout({
       className={`${inter.variable} ${jetbrainsMono.variable} h-full`}
     >
       <body className="flex min-h-full flex-col antialiased">
+        <noscript>
+          <style>{`.reveal{opacity:1;transform:none}`}</style>
+        </noscript>
         <ThemeProvider>
           <Header />
           <main className="flex-1 pt-[69px]">{children}</main>
