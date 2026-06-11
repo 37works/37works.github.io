@@ -1,4 +1,4 @@
-/* Pretendard (국문) — variable, covers 400/500/600. Must precede other rules. */
+/* Pretendard (국문) — variable, covers 400~700. Must precede other rules. */
 @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendard-variable.min.css");
 @import "tailwindcss";
 
@@ -6,46 +6,46 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 /* ─────────────────────────────────────────────
-   Semantic color variables (SOFT37 Design System §4)
-   Light = Warm Neutral; .dark overrides below.
+   Semantic color variables (SOFT37 Design System §4, v2.0)
+   Cool Minimalism — Cool Neutral + Blue. .dark overrides below.
    ───────────────────────────────────────────── */
 :root {
-  --canvas: #f3f0e9; /* page background (Warm Sand) */
-  --surface: #fcfbf7; /* cards / panels */
+  --canvas: #f6f7f9; /* page background (Cool Off-white) */
+  --surface: #ffffff; /* cards / panels */
 
-  --ink-900: #2c2b27;
-  --ink-700: #5c5a54;
-  --ink-500: #8a877f;
-  --ink-300: #c9c6bd;
-  --ink-200: #e2dfd7;
-  --ink-100: #edeae2;
+  --ink-900: #15181d;
+  --ink-700: #3e444e;
+  --ink-500: #6b7280;
+  --ink-300: #aeb4be;
+  --ink-200: #e2e5ea;
+  --ink-100: #eef0f3;
 
-  --sage: #6e8b6a;
-  --sage-deep: #5a7457;
-  --sage-tint: #c9d6c4;
-  --sage-wash: #eaf0e8;
+  --blue: #2f6bff;
+  --blue-deep: #2253da;
+  --blue-tint: #dce6ff;
+  --blue-wash: #eef3ff;
 
-  --success: #4f8a5b;
-  --warning: #c08a3e;
-  --error: #c05a4d;
-  --info: #5b7a99;
+  --success: #12a971;
+  --warning: #e5a23b;
+  --error: #e5484d;
+  --info: #3b82f6;
 }
 
 .dark {
-  --canvas: #1b1a18;
-  --surface: #262420;
+  --canvas: #0e1116;
+  --surface: #161a20;
 
-  --ink-900: #eceae2;
-  --ink-700: #b4b1a8;
-  --ink-500: #8f8c83;
-  --ink-300: #4a4842;
-  --ink-200: #3a3833;
-  --ink-100: #2f2d29;
+  --ink-900: #edeff2;
+  --ink-700: #b6bcc6;
+  --ink-500: #7e8694;
+  --ink-300: #3a414c;
+  --ink-200: #2a2f37;
+  --ink-100: #1c2128;
 
-  --sage: #85a37f;
-  --sage-deep: #9db897;
-  --sage-tint: #3c4a39;
-  --sage-wash: #23291f;
+  --blue: #4d81ff; /* 밝게 보정 (§4 다크 모드) */
+  --blue-deep: #6e97ff; /* hover — 다크에서는 밝은 쪽으로 */
+  --blue-tint: #233252;
+  --blue-wash: #171d2b;
 }
 
 /* ─────────────────────────────────────────────
@@ -61,10 +61,10 @@
   --color-ink-300: var(--ink-300);
   --color-ink-200: var(--ink-200);
   --color-ink-100: var(--ink-100);
-  --color-sage: var(--sage);
-  --color-sage-deep: var(--sage-deep);
-  --color-sage-tint: var(--sage-tint);
-  --color-sage-wash: var(--sage-wash);
+  --color-blue: var(--blue);
+  --color-blue-deep: var(--blue-deep);
+  --color-blue-tint: var(--blue-tint);
+  --color-blue-wash: var(--blue-wash);
   --color-success: var(--success);
   --color-warning: var(--warning);
   --color-error: var(--error);
@@ -77,39 +77,40 @@
     system-ui, sans-serif;
   --font-mono: var(--font-jetbrains), "JetBrains Mono", ui-monospace, monospace;
 
-  /* radius (§5) */
+  /* radius (§5, v2.0 — 한 단계 단단하게) */
   --radius-xs: 6px;
-  --radius-sm: 10px;
-  --radius-md: 14px;
-  --radius-lg: 20px;
-  --radius-xl: 28px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
   --radius-full: 999px;
 
-  /* elevation (§5) — warm, faint */
-  --shadow-e1: 0 1px 2px rgba(44, 43, 39, 0.06);
-  --shadow-e2: 0 2px 8px rgba(44, 43, 39, 0.08);
-  --shadow-e3: 0 8px 24px rgba(44, 43, 39, 0.1);
+  /* elevation (§5) — cool, restrained */
+  --shadow-e1: 0 1px 2px rgba(20, 24, 30, 0.06);
+  --shadow-e2: 0 4px 12px rgba(20, 24, 30, 0.08);
+  --shadow-e3: 0 12px 32px rgba(20, 24, 30, 0.12);
+  --shadow-focus: 0 0 0 3px rgba(47, 107, 255, 0.3);
 
-  /* type scale (§6) */
-  --text-display: 32px;
-  --text-display--line-height: 40px;
+  /* type scale (§6, v2.0) */
+  --text-display: 40px;
+  --text-display--line-height: 48px;
   --text-display--letter-spacing: -0.02em;
-  --text-display--font-weight: 600;
+  --text-display--font-weight: 700;
 
-  --text-h1: 28px;
-  --text-h1--line-height: 36px;
-  --text-h1--letter-spacing: -0.01em;
+  --text-h1: 32px;
+  --text-h1--line-height: 40px;
+  --text-h1--letter-spacing: -0.02em;
   --text-h1--font-weight: 600;
 
-  --text-h2: 24px;
-  --text-h2--line-height: 32px;
+  --text-h2: 26px;
+  --text-h2--line-height: 34px;
   --text-h2--letter-spacing: -0.01em;
   --text-h2--font-weight: 600;
 
   --text-h3: 20px;
   --text-h3--line-height: 28px;
   --text-h3--letter-spacing: -0.01em;
-  --text-h3--font-weight: 500;
+  --text-h3--font-weight: 600;
 
   --text-title: 17px;
   --text-title--line-height: 24px;
@@ -152,8 +153,13 @@ body {
 }
 
 ::selection {
-  background: var(--sage-tint);
+  background: var(--blue-tint);
   color: var(--ink-900);
+}
+
+:focus-visible {
+  outline: none;
+  box-shadow: var(--shadow-focus);
 }
 
 /* quiet entrance (§9) — fade + 8px rise, settles, no bounce */
@@ -171,53 +177,21 @@ body {
   animation: settle 0.4s var(--ease-out) both;
 }
 
-/* scroll reveal (§9) — fade + 8px rise, settles on enter, no bounce.
+/* scroll reveal (§9) — fade + 10px rise, settles on enter, no bounce.
    초기 숨김은 여기서, JS 없으면 layout 의 <noscript> 가 복구한다. v2 */
 .reveal {
   opacity: 0;
-  transform: translateY(8px);
-  transition: opacity 0.5s var(--ease-out), transform 0.5s var(--ease-out);
+  transform: translateY(10px);
+  transition: opacity 0.45s var(--ease-out), transform 0.45s var(--ease-out);
 }
 .reveal.is-in {
   opacity: 1;
   transform: none;
 }
 
-/* mark "한 획" draw-in (§2) — ㅅ 이 흐르듯 그려지고 Sage 스파크가 뒤이어 안착 */
-@keyframes draw {
-  to {
-    stroke-dashoffset: 0;
-  }
-}
-.mark-stroke {
-  stroke-dasharray: 1;
-  stroke-dashoffset: 1;
-  animation: draw 1s var(--ease-out) 0.1s forwards;
-}
-.spark-line {
-  stroke-dasharray: 1;
-  stroke-dashoffset: 1;
-  animation: draw 0.4s var(--ease-out) forwards;
-}
-.spark-line:nth-child(1) {
-  animation-delay: 0.78s;
-}
-.spark-line:nth-child(2) {
-  animation-delay: 0.9s;
-}
-.spark-line:nth-child(3) {
-  animation-delay: 1.02s;
-}
-
 @media (prefers-reduced-motion: reduce) {
-  .settle,
-  .mark-stroke,
-  .spark-line {
+  .settle {
     animation: none;
-  }
-  .mark-stroke,
-  .spark-line {
-    stroke-dashoffset: 0;
   }
   .reveal {
     opacity: 1;
@@ -248,7 +222,7 @@ body {
 .prose h3 {
   font-size: var(--text-body);
   font-weight: 600;
-  color: var(--sage-deep);
+  color: var(--blue-deep);
   margin: 20px 0 6px;
 }
 .prose p {
@@ -273,16 +247,16 @@ body {
   font-weight: 600;
 }
 .prose a {
-  color: var(--sage-deep);
+  color: var(--blue);
   text-decoration: none;
-  border-bottom: 1px solid currentColor;
 }
 .prose a:hover {
-  color: var(--sage);
+  color: var(--blue-deep);
+  text-decoration: underline;
 }
 .prose .disclaimer-box {
-  background: var(--sage-wash);
-  border-left: 3px solid var(--sage);
+  background: var(--blue-wash);
+  border-left: 3px solid var(--blue);
   border-radius: var(--radius-sm);
   padding: 14px 18px;
   margin: 16px 0;

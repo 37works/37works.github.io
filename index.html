@@ -6,46 +6,50 @@
 <title>37Works</title>
 <meta name="description" content="37Works — 소프트웨어를 만드는 작은 스튜디오"/>
 <link rel="icon" type="image/png" href="/assets/favicon.png"/>
+<meta name="theme-color" content="#0E1116"/>
 
 <!-- Pretendard (국문, variable) -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendard-variable.min.css"/>
 <!-- Inter (라틴·숫자) · JetBrains Mono (마이크로 라벨) -->
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
 
 <style>
 /* ─────────────────────────────────────────────
-   37Works — calm maker studio hub.
-   Tokens follow the SOFT37 Design System, dialed
-   one notch quieter: near-monochrome Warm Sand,
-   Sage as a single thread (hover arrow · selection).
+   37Works — immersive maker studio hub.
+   SOFT37 Design System v2.0 (Cool Minimalism),
+   dark canvas edition: ink near-black + one blue.
+   Motion: quiet, precise, no bounce (§9).
    ───────────────────────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  /* Warm Neutral — 99% of the page */
-  --canvas:    #f3f0e9;   /* page background (Warm Sand) */
-  --surface:   #fcfbf7;   /* cards / panels */
-  --ink-900:   #2c2b27;   /* primary text / mark */
-  --ink-700:   #5c5a54;   /* secondary text */
-  --ink-500:   #8a877f;   /* tertiary / mono labels */
-  --ink-300:   #c9c6bd;   /* strong border */
-  --ink-200:   #e2dfd7;   /* divider / base border */
-  --ink-100:   #edeae2;   /* subtle fill */
+  /* Cool Neutral — dark canvas (§4 다크 모드) */
+  --canvas:   #0E1116;
+  --surface:  #161A20;
+  --ink-900:  #EDEFF2;
+  --ink-700:  #B6BCC6;
+  --ink-500:  #7E8694;
+  --ink-300:  #3A414C;
+  --ink-200:  #2A2F37;
+  --ink-100:  #1C2128;
 
-  /* Sage — the single point colour, used sparingly */
-  --sage:      #6e8b6a;
-  --sage-deep: #5a7457;
-  --sage-tint: #c9d6c4;
+  /* Brand blue — the only accent, used sparingly */
+  --blue:      #4D81FF;
+  --blue-deep: #6E97FF;   /* hover (lighter on dark) */
 
-  /* shape */
-  --radius-sm: 8px;
-  --radius-md: 14px;
-  --radius-lg: 20px;
+  /* shape (§5) */
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
 
-  /* motion (§9) — quiet, settles, no bounce */
-  --ease-out: cubic-bezier(0.2, 0, 0, 1);
+  /* motion (§9) */
+  --ease-out:    cubic-bezier(0.2, 0, 0, 1);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --t-fast: 120ms;
+  --t-base: 200ms;
+  --t-slow: 280ms;
 
   --font-sans: 'Inter', 'Pretendard Variable', Pretendard, -apple-system,
     BlinkMacSystemFont, 'Segoe UI', 'Noto Sans KR', sans-serif;
@@ -65,45 +69,51 @@ body {
   overflow-x: hidden;
 }
 
-::selection { background: var(--sage-tint); color: var(--ink-900); }
+::selection { background: rgba(77, 129, 255, 0.32); color: var(--ink-900); }
 
 a { color: inherit; }
 
-.wrap { max-width: 760px; margin: 0 auto; padding: 0 28px; }
+:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(77, 129, 255, 0.4);
+  border-radius: 6px;
+}
+
+.wrap { width: 100%; max-width: 1080px; margin: 0 auto; padding: 0 32px; }
 
 /* mono micro-label */
 .mono {
   font-family: var(--font-mono);
   font-size: 11px; font-weight: 500;
-  letter-spacing: 0.16em; text-transform: uppercase;
+  letter-spacing: 0.18em; text-transform: uppercase;
   color: var(--ink-500);
 }
 
 /* ── Header ───────────────────────────────── */
 header {
   position: fixed; inset: 0 0 auto 0; z-index: 100;
-  background: rgba(243, 240, 233, 0.82);
+  background: rgba(14, 17, 22, 0.72);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border-bottom: 1px solid transparent;
-  transition: border-color 0.2s var(--ease-out);
+  transition: border-color var(--t-base) var(--ease-out);
 }
 header.scrolled { border-bottom-color: var(--ink-200); }
 .nav {
   display: flex; align-items: center; justify-content: space-between;
-  height: 64px; gap: 16px;
+  height: 68px; gap: 16px;
 }
 .nav-left { display: flex; align-items: center; gap: 10px; text-decoration: none; }
 .wordmark { font-size: 16px; font-weight: 600; letter-spacing: -0.02em; color: var(--ink-900); }
-.nav-right { display: flex; align-items: center; gap: 18px; }
+.nav-right { display: flex; align-items: center; gap: 20px; }
 
-.lang { display: flex; align-items: center; gap: 1px; }
+.lang { display: flex; align-items: center; gap: 2px; }
 .lang-btn {
   font-family: var(--font-mono);
   font-size: 10px; font-weight: 500; letter-spacing: 0.06em;
   color: var(--ink-500); background: none; border: none;
-  padding: 4px 6px; border-radius: 5px; cursor: pointer; line-height: 1;
-  transition: color 0.12s, background 0.12s;
+  padding: 5px 7px; border-radius: 6px; cursor: pointer; line-height: 1;
+  transition: color var(--t-fast) var(--ease-out), background var(--t-fast) var(--ease-out);
 }
 .lang-btn:hover { color: var(--ink-700); }
 .lang-btn.active { color: var(--ink-900); background: var(--ink-100); }
@@ -111,115 +121,203 @@ header.scrolled { border-bottom-color: var(--ink-200); }
 .nav-contact {
   font-size: 14px; font-weight: 500; color: var(--ink-700);
   text-decoration: none; white-space: nowrap;
-  transition: color 0.2s var(--ease-out);
+  transition: color var(--t-base) var(--ease-out);
 }
 .nav-contact:hover { color: var(--ink-900); }
 
 /* ── Hero ─────────────────────────────────── */
-.hero { padding: 184px 0 96px; }
-.hero-eyebrow { display: inline-block; margin-bottom: 28px; }
-.hero-title {
-  font-size: clamp(52px, 11vw, 88px); font-weight: 600;
-  letter-spacing: -0.035em; line-height: 1; color: var(--ink-900);
-  margin-bottom: 28px;
+.hero {
+  position: relative;
+  min-height: 92svh;
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 140px 0 96px;
 }
+/* faint blue depth — far under the 10% accent budget */
+.hero::before {
+  content: '';
+  position: absolute; inset: 0; pointer-events: none;
+  background:
+    radial-gradient(900px 560px at 78% -12%, rgba(47, 107, 255, 0.12), transparent 62%),
+    radial-gradient(700px 480px at -10% 110%, rgba(47, 107, 255, 0.05), transparent 60%);
+}
+.hero .wrap { position: relative; }
+
+.hero-eyebrow { display: inline-block; margin-bottom: 36px; }
+.hero-title {
+  font-size: clamp(68px, 13vw, 136px);
+  font-weight: 700;                      /* display 한정 700 (§6) */
+  letter-spacing: -0.04em; line-height: 0.98;
+  color: var(--ink-900);
+  margin-bottom: 40px;
+}
+.hero-title .dot { color: var(--blue); }
 .hero-lead {
-  font-size: clamp(19px, 2.6vw, 23px); font-weight: 500;
-  letter-spacing: -0.01em; color: var(--ink-900);
-  line-height: 1.4; margin-bottom: 18px;
+  font-size: clamp(22px, 3.4vw, 32px); font-weight: 600;
+  letter-spacing: -0.02em; color: var(--ink-900);
+  line-height: 1.3; margin-bottom: 20px;
 }
 .hero-desc {
-  font-size: 16px; color: var(--ink-700); line-height: 1.75;
-  max-width: 52ch;
+  font-size: clamp(15px, 1.8vw, 17px); color: var(--ink-700);
+  line-height: 1.75; max-width: 54ch;
+}
+
+/* line-mask rise — trendy entrance, still settles quietly */
+.line { display: block; overflow: hidden; }
+.line-inner {
+  display: inline-block;
+  transform: translateY(112%);
+  animation: rise 0.9s var(--ease-out) forwards;
+}
+@keyframes rise { to { transform: translateY(0); } }
+.d1 { animation-delay: 0.05s; }
+.d2 { animation-delay: 0.16s; }
+.d3 { animation-delay: 0.27s; }
+
+.fade-in {
+  opacity: 0; transform: translateY(10px);
+  animation: fadeup 0.7s var(--ease-out) 0.42s forwards;
+}
+@keyframes fadeup { to { opacity: 1; transform: translateY(0); } }
+
+/* scroll hint */
+.hero-scroll {
+  position: absolute; left: 32px; bottom: -28px;
+  display: flex; align-items: center; gap: 12px;
+  opacity: 0; animation: fadeup 0.7s var(--ease-out) 0.9s forwards;
+}
+.hero-scroll .bar {
+  width: 36px; height: 1.5px; border-radius: 999px;
+  background: var(--ink-300); position: relative; overflow: hidden;
+}
+.hero-scroll .bar::after {
+  content: ''; position: absolute; inset: 0;
+  background: var(--blue); border-radius: 999px;
+  transform: translateX(-100%);
+  animation: slide 2.6s var(--ease-in-out) 1.4s infinite;
+}
+@keyframes slide {
+  0% { transform: translateX(-100%); }
+  55% { transform: translateX(0); }
+  100% { transform: translateX(100%); }
 }
 
 /* ── Section ──────────────────────────────── */
-.section { padding: 56px 0; }
+.section { padding: 96px 0 64px; }
 .section-head {
-  display: flex; align-items: baseline; gap: 14px;
-  padding-bottom: 22px; margin-bottom: 8px;
+  display: flex; align-items: baseline; justify-content: space-between;
+  padding-bottom: 24px; margin-bottom: 32px;
   border-bottom: 1px solid var(--ink-200);
 }
 
 /* ── Works ────────────────────────────────── */
 .work {
-  display: flex; align-items: center; gap: 22px;
-  padding: 26px 4px;
+  position: relative; display: flex; align-items: center; gap: 32px;
+  padding: 36px 40px;
   text-decoration: none;
-  border-radius: var(--radius-md);
-  transition: background 0.2s var(--ease-out), transform 0.2s var(--ease-out);
-}
-.work:hover { background: var(--surface); transform: translateY(-1px); }
-
-.work-icon {
-  width: 60px; height: 60px; flex-shrink: 0;
-  display: flex; align-items: center; justify-content: center;
   background: var(--surface);
   border: 1px solid var(--ink-200);
-  border-radius: 14px;       /* ≈ Soft37 squircle */
+  border-radius: var(--radius-lg);
   overflow: hidden;
+  transition:
+    transform var(--t-base) var(--ease-out),
+    border-color var(--t-base) var(--ease-out);
 }
-.work-icon img { width: 64%; height: 64%; object-fit: contain; }
+.work:hover { transform: translateY(-2px); border-color: var(--ink-300); }
+
+/* cursor spotlight — subtle blue light that follows the pointer */
+.work::after {
+  content: ''; position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(420px circle at var(--mx, 50%) var(--my, 50%),
+    rgba(77, 129, 255, 0.08), transparent 65%);
+  opacity: 0; transition: opacity var(--t-slow) var(--ease-out);
+}
+.work:hover::after { opacity: 1; }
+
+.work-icon {
+  width: 72px; height: 72px; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--ink-100);
+  border: 1px solid var(--ink-200);
+  border-radius: 16px;            /* squircle 근사 (§5) */
+}
+.work-icon img { width: 76%; height: 76%; object-fit: contain; display: block; }
 
 .work-body { flex: 1; min-width: 0; }
-.work-cat { display: block; margin-bottom: 6px; }
+.work-cat { display: block; margin-bottom: 8px; }
 .work-name {
-  font-size: 21px; font-weight: 600; letter-spacing: -0.02em;
-  color: var(--ink-900); line-height: 1.2; margin-bottom: 7px;
+  font-size: clamp(24px, 3vw, 30px); font-weight: 600; letter-spacing: -0.02em;
+  color: var(--ink-900); line-height: 1.2; margin-bottom: 8px;
 }
-.work-desc { font-size: 15px; color: var(--ink-700); line-height: 1.6; }
+.work-desc { font-size: 15px; color: var(--ink-700); line-height: 1.65; max-width: 56ch; }
 
 .work-go {
-  display: flex; align-items: center; gap: 6px; flex-shrink: 0;
-  font-family: var(--font-mono); font-size: 11px; font-weight: 500;
-  letter-spacing: 0.04em; color: var(--ink-500);
-  transition: color 0.2s var(--ease-out);
+  display: flex; align-items: center; justify-content: center;
+  width: 46px; height: 46px; flex-shrink: 0;
+  border: 1px solid var(--ink-200); border-radius: 999px;
+  color: var(--ink-500);
+  transition:
+    border-color var(--t-base) var(--ease-out),
+    background var(--t-base) var(--ease-out),
+    color var(--t-base) var(--ease-out);
 }
-.work-go svg { transition: transform 0.2s var(--ease-out); }
-.work:hover .work-go { color: var(--sage-deep); }
-.work:hover .work-go svg { transform: translate(2px, -2px); }
+.work-go svg { transition: transform var(--t-base) var(--ease-out); }
+.work:hover .work-go {
+  border-color: var(--blue); background: var(--blue); color: #FFFFFF;
+}
+.work:hover .work-go svg { transform: translate(1.5px, -1.5px); }
 
 .work-more {
-  padding: 22px 4px 0;
+  padding: 28px 6px 0;
   font-size: 14px; color: var(--ink-500); line-height: 1.6;
 }
 
 /* ── Footer ───────────────────────────────── */
 footer {
-  margin-top: 56px;
+  margin-top: 96px;
   border-top: 1px solid var(--ink-200);
-  padding: 44px 0 56px;
+  padding: 48px 0 60px;
 }
 .foot-top {
   display: flex; align-items: center; justify-content: space-between;
-  gap: 24px; flex-wrap: wrap; margin-bottom: 26px;
+  gap: 24px; flex-wrap: wrap; margin-bottom: 28px;
 }
 .foot-brand { display: flex; align-items: center; gap: 10px; }
-.foot-links { display: flex; align-items: center; gap: 22px; }
+.foot-links { display: flex; align-items: center; gap: 24px; }
 .foot-links a {
   display: inline-flex; align-items: center; gap: 5px;
   font-size: 14px; color: var(--ink-700); text-decoration: none;
-  transition: color 0.2s var(--ease-out);
+  transition: color var(--t-base) var(--ease-out);
 }
-.foot-links a:hover { color: var(--ink-900); }
-.foot-legal { font-family: var(--font-mono); font-size: 11px; color: var(--ink-500); line-height: 1.9; letter-spacing: 0.01em; }
+.foot-links a:hover { color: var(--blue-deep); }
+.foot-legal {
+  font-family: var(--font-mono); font-size: 11px;
+  color: var(--ink-500); line-height: 1.9; letter-spacing: 0.01em;
+}
 
-/* ── Quiet entrance (§9) ──────────────────── */
-.reveal { opacity: 0; transform: translateY(10px); transition: opacity 0.55s var(--ease-out), transform 0.55s var(--ease-out); }
+/* ── Quiet scroll reveal (§9) ─────────────── */
+.reveal {
+  opacity: 0; transform: translateY(10px);
+  transition: opacity 0.5s var(--ease-out), transform 0.5s var(--ease-out);
+}
 .reveal.in { opacity: 1; transform: translateY(0); }
+
 @media (prefers-reduced-motion: reduce) {
   .reveal { opacity: 1; transform: none; transition: none; }
+  .line-inner { transform: none; animation: none; }
+  .fade-in, .hero-scroll { opacity: 1; transform: none; animation: none; }
+  .hero-scroll .bar::after { animation: none; transform: none; }
   html { scroll-behavior: auto; }
 }
 
 /* ── Responsive ───────────────────────────── */
-@media (max-width: 600px) {
+@media (max-width: 640px) {
   .wrap { padding: 0 22px; }
-  .hero { padding: 132px 0 64px; }
-  .section { padding: 44px 0; }
-  .work { gap: 16px; padding: 22px 0; }
-  .work-icon { width: 52px; height: 52px; }
-  .work-go span { display: none; }
+  .hero { min-height: 86svh; padding: 120px 0 80px; }
+  .hero-scroll { left: 22px; }
+  .section { padding: 64px 0 40px; }
+  .work { flex-wrap: wrap; gap: 18px; padding: 26px 24px; }
+  .work-icon { width: 56px; height: 56px; border-radius: 14px; }
+  .work-go { width: 40px; height: 40px; }
   .nav-right { gap: 14px; }
 }
 </style>
@@ -248,10 +346,18 @@ footer {
   <!-- Hero -->
   <section class="hero">
     <div class="wrap">
-      <span class="mono hero-eyebrow reveal" data-i18n="hero_eyebrow">메이커 스튜디오 · 대한민국</span>
-      <h1 class="hero-title reveal">37Works</h1>
-      <p class="hero-lead reveal" data-i18n="hero_lead">소프트웨어를 만드는 작은 스튜디오</p>
-      <p class="hero-desc reveal" data-i18n="hero_desc">과장하지 않고, 오래 곁에 둘 수 있는 도구를 만듭니다.<br/>작게 시작해 덜어내며 다듬고, 새로움보다 반복으로 신뢰를 쌓습니다.</p>
+      <span class="line"><span class="line-inner d1 mono hero-eyebrow" data-i18n="hero_eyebrow">메이커 스튜디오 · 대한민국</span></span>
+      <h1 class="hero-title">
+        <span class="line"><span class="line-inner d2">37Works<span class="dot">.</span></span></span>
+      </h1>
+      <p class="hero-lead">
+        <span class="line"><span class="line-inner d3" data-i18n="hero_lead">소프트웨어를 만드는 작은 스튜디오</span></span>
+      </p>
+      <p class="hero-desc fade-in" data-i18n="hero_desc">과장하지 않고, 오래 곁에 둘 수 있는 도구를 만듭니다.<br/>작게 시작해 덜어내며 다듬고, 새로움보다 반복으로 신뢰를 쌓습니다.</p>
+      <div class="hero-scroll" aria-hidden="true">
+        <span class="bar"></span>
+        <span class="mono">Scroll</span>
+      </div>
     </div>
   </section>
 
@@ -260,20 +366,21 @@ footer {
     <div class="wrap">
       <div class="section-head reveal">
         <span class="mono" data-i18n="works_label">WORKS</span>
+        <span class="mono">01</span>
       </div>
 
       <a class="work reveal" href="https://soft37.working37.net" target="_blank" rel="noopener">
-        <span class="work-icon">
-          <img src="/assets/soft37/soft37_logo_light_trans.png" alt="Soft37"/>
+        <span class="work-icon" aria-hidden="true">
+          <!-- ㅅㅊ 마크 — 다크 배경용 공식 PNG -->
+          <img src="/assets/soft37/soft37_logo_dark_trans.png" alt=""/>
         </span>
         <div class="work-body">
           <span class="mono work-cat" data-i18n="soft37_cat">SaaS · Mobile App</span>
           <h2 class="work-name">Soft37</h2>
           <p class="work-desc" data-i18n="soft37_desc">일상에 스며드는 자연스러움. SaaS와 모바일 앱을 만드는 스튜디오입니다.</p>
         </div>
-        <span class="work-go">
-          <span data-i18n="work_visit">방문하기</span>
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M7 7h10v10"/></svg>
+        <span class="work-go" aria-hidden="true">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M7 7h10v10"/></svg>
         </span>
       </a>
 
@@ -313,7 +420,6 @@ const I18N = {
     works_label:  'WORKS',
     soft37_cat:   'SaaS · Mobile App',
     soft37_desc:  '일상에 스며드는 자연스러움. SaaS와 모바일 앱을 만드는 스튜디오입니다.',
-    work_visit:   '방문하기',
     works_more:   '다른 프로젝트들이 차차 더해집니다.',
     footer_contact: '문의',
     footer_legal: '37Works는 김도경이 운영합니다. &nbsp;·&nbsp; 사업자등록번호 137-73-00738 &nbsp;·&nbsp; 대한민국<br/>© 2026 37Works. All rights reserved.',
@@ -327,7 +433,6 @@ const I18N = {
     works_label:  'WORKS',
     soft37_cat:   'SaaS · Mobile App',
     soft37_desc:  'Naturalness that blends into everyday life — a studio for SaaS and mobile apps.',
-    work_visit:   'Visit',
     works_more:   'More works, added in time.',
     footer_contact: 'Contact',
     footer_legal: '37Works is operated by Dokyung Kim. &nbsp;·&nbsp; Business Reg. 137-73-00738 &nbsp;·&nbsp; Republic of Korea<br/>© 2026 37Works. All rights reserved.',
@@ -366,6 +471,15 @@ const header = document.getElementById('header');
 const onScroll = () => header.classList.toggle('scrolled', window.scrollY > 8);
 onScroll();
 window.addEventListener('scroll', onScroll, { passive: true });
+
+// ── Card cursor spotlight ─────────────────────
+document.querySelectorAll('.work').forEach(card => {
+  card.addEventListener('pointermove', (e) => {
+    const r = card.getBoundingClientRect();
+    card.style.setProperty('--mx', `${e.clientX - r.left}px`);
+    card.style.setProperty('--my', `${e.clientY - r.top}px`);
+  });
+});
 
 applyI18n();
 </script>

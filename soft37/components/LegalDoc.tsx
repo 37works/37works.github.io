@@ -67,7 +67,7 @@ export function LegalDoc({
           {"  ·  "}
           <a
             href={`mailto:${doc.contactEmail}`}
-            className="text-sage-deep hover:text-sage"
+            className="text-blue hover:text-blue-deep"
           >
             {doc.contactEmail}
           </a>
@@ -88,7 +88,7 @@ export function LegalDoc({
               data-lang={s.id}
               className={`inline-flex shrink-0 items-center gap-1.5 rounded-full border px-3 py-1 text-body-sm font-medium transition-colors duration-200 ease-out ${
                 active === s.id
-                  ? "border-ink-200 bg-sage-wash text-sage-deep"
+                  ? "border-blue-tint bg-blue-wash text-blue"
                   : "border-transparent text-ink-500 hover:bg-ink-100 hover:text-ink-700"
               }`}
             >
@@ -107,11 +107,11 @@ export function LegalDoc({
             id={s.id}
             className="mt-11 scroll-mt-32 overflow-hidden rounded-lg border border-ink-200 bg-surface"
           >
-            <div className="flex items-center gap-2.5 border-b border-ink-200 bg-sage-wash px-7 py-4">
-              <span className="shrink-0 rounded-xs bg-sage px-2 py-0.5 text-caption font-semibold tracking-wider text-surface">
+            <div className="flex items-center gap-2.5 border-b border-ink-200 bg-blue-wash px-7 py-4">
+              <span className="shrink-0 rounded-xs bg-blue px-2 py-0.5 text-caption font-semibold tracking-wider text-white">
                 {s.badge}
               </span>
-              <span className="text-body font-medium text-sage-deep">
+              <span className="text-body font-medium text-blue-deep">
                 {s.label}
               </span>
             </div>

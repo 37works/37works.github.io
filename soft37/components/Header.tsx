@@ -10,7 +10,7 @@ export function Header() {
         <Link
           href="/"
           aria-label="Soft37 home"
-          className="flex items-center gap-3"
+          className="flex items-center gap-3 rounded-md"
         >
           {/* 0.5X clearspace via padding around the mark */}
           <span className="p-1">
@@ -21,19 +21,24 @@ export function Header() {
           </span>
         </Link>
 
-        <div className="flex items-center gap-6 md:gap-8">
+        <div className="flex items-center gap-5 md:gap-8">
           <div className="hidden items-center gap-8 text-body text-ink-700 sm:flex">
+            <a
+              href="/#products"
+              className="transition-colors duration-200 ease-out hover:text-ink-900"
+            >
+              Products
+            </a>
             <a
               href={site.rootUrl}
               className="transition-colors duration-200 ease-out hover:text-ink-900"
             >
-              Work
+              37Works
             </a>
-            <span className="font-medium text-ink-900">Soft37</span>
           </div>
           <a
             href={`mailto:${site.contactEmail}`}
-            className="rounded-md bg-sage px-5 py-2 text-label font-medium text-surface transition-colors duration-200 ease-out hover:bg-sage-deep"
+            className="rounded-md bg-blue px-5 py-2 text-label font-medium text-white transition-colors duration-200 ease-out hover:bg-blue-deep"
           >
             Contact
           </a>
