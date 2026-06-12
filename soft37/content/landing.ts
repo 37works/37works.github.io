@@ -10,16 +10,16 @@ export const hero = {
 } as const;
 
 export interface Feature {
-  icon: "smartphone" | "sparkles" | "user";
+  icon: "shield" | "sparkles" | "user";
   title: string;
   body: string;
 }
 
 export const features: Feature[] = [
   {
-    icon: "smartphone",
-    title: "모바일 우선",
-    body: "모든 제품은 모바일 경험에서 시작합니다. 정돈된 화면, 사려 깊은 인터랙션, 그리고 사용자의 시간을 존중하는 성능을 지향합니다.",
+    icon: "shield",
+    title: "안정성 우선",
+    body: "스케줄러와 워치독처럼 멈추면 안 되는 서비스를 만듭니다. 정확한 시점에, 끊김 없이 동작하는 것을 가장 중요하게 생각합니다.",
   },
   {
     icon: "sparkles",
@@ -40,42 +40,43 @@ export interface Product {
   name: string;
   description: string;
   platforms: string[];
-  /** 출시 상태 배지 문구, 예: "6월 출시 예정", "준비 중" */
+  /** 출시 상태 배지 문구, 예: "운영 중", "준비 중" */
   releaseNote: string;
   comingSoon: boolean;
-  /** 제품 아이콘 (public/ 기준 경로) */
-  icon: string;
+  /** 가로형 OG 배너 이미지 (public/ 기준 경로) */
+  image: string;
   /** 외부 사이트 링크. 있으면 카드가 클릭 가능해진다. */
   url?: string;
 }
 
 export const products = {
   eyebrow: "Products",
-  heading: "Soft37의 이름으로 만든 앱",
-  note: "App Store와 웹을 통해 선보일 제품을 준비하고 있습니다.",
+  heading: "Soft37의 이름으로 만든 서비스",
+  note: "웹을 통해 선보이는 서비스를 만들고 운영합니다.",
   items: [
     {
-      id: "subwallet",
-      category: "고정비 지출 관리",
-      name: "SubWallet",
-      description:
-        "구독, 보험, 월세 등 매달 나가는 고정 지출을 한눈에 파악하고 스마트하게 관리하세요.",
-      platforms: ["iOS", "Android"],
-      releaseNote: "6월 출시 예정",
-      comingSoon: true,
-      icon: "/products/subwallet.png",
-    },
-    {
       id: "senditwhenever",
-      category: "SaaS",
+      category: "웹훅 스케줄러",
       name: "Send It Whenever",
       description:
-        "이메일, SMS, 푸시 등 다양한 채널의 알림을 하나의 API로 통합 관리하고, 원하는 시점에 안정적으로 전달하세요.",
+        "웹훅을 초 단위로 정밀하게 예약하고, 원하는 시점에 정확히 실행되도록 안정적으로 전달하는 초정밀 스케줄러입니다.",
       platforms: ["Web", "API"],
-      releaseNote: "준비 중",
-      comingSoon: true,
-      icon: "/products/senditwhenever.png",
+      releaseNote: "운영 중",
+      comingSoon: false,
+      image: "/products/senditwhenever.png",
       url: "https://www.sendit-whenever.com",
+    },
+    {
+      id: "isitgoingwell",
+      category: "워치독 · 모니터링",
+      name: "Is It Going Well",
+      description:
+        "자동화 서비스가 멈추지 않도록 지켜보는 워치독입니다. 이상 징후를 감지해 즉시 알려, 지금 잘 되고 있는지 한눈에 확인하세요.",
+      platforms: ["Web"],
+      releaseNote: "운영 중",
+      comingSoon: false,
+      image: "/products/isitgoingwell.png",
+      url: "https://www.itgoingwell.com",
     },
   ] satisfies Product[],
 } as const;

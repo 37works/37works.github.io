@@ -1,13 +1,13 @@
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowUpRight, Smartphone, Sparkles, User } from "lucide-react";
+import { ArrowUpRight, ShieldCheck, Sparkles, User } from "lucide-react";
 import { hero, features, products, legal, site } from "@/content/landing";
 import { Eyebrow } from "@/components/Eyebrow";
 import { Logo } from "@/components/Logo";
 import { Reveal } from "@/components/Reveal";
 
 const ICONS = {
-  smartphone: Smartphone,
+  shield: ShieldCheck,
   sparkles: Sparkles,
   user: User,
 } as const;
@@ -49,7 +49,7 @@ export default function Home() {
 
           {/* 시그니처 ㅅㅊ 마크 — 브랜드 앵커 */}
           <div className="settle hidden shrink-0 justify-self-end md:block">
-            <div className="rounded-xl bg-blue-wash p-14">
+            <div className="p-14">
               <Logo size={224} />
             </div>
           </div>
@@ -70,57 +70,54 @@ export default function Home() {
         <div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2">
           {products.items.map((p, i) => {
             const cardClass =
-              "group flex h-full flex-col rounded-lg border border-ink-200 bg-surface p-8 shadow-e1 transition-[box-shadow,transform,border-color] duration-280 ease-out hover:-translate-y-1 hover:border-ink-300 hover:shadow-e2";
+              "group flex h-full flex-col overflow-hidden rounded-lg border border-ink-200 bg-surface shadow-e1 transition-[box-shadow,transform,border-color] duration-280 ease-out hover:-translate-y-1 hover:border-ink-300 hover:shadow-e2";
             const inner = (
               <>
-                <div className="flex items-start justify-between gap-4">
-                  {/* 앱 아이콘 — 스퀴클 근사, 토큰 곡률 */}
-                  <span className="flex h-16 w-16 shrink-0 items-center justify-center overflow-hidden rounded-md border border-ink-200 bg-white shadow-e1">
-                    <Image
-                      src={p.icon}
-                      alt=""
-                      width={64}
-                      height={64}
-                      className="h-full w-full object-cover"
-                    />
-                  </span>
+                {/* 가로형 OG 배너 — 서비스 로고가 카드의 주인공 */}
+                <div className="relative aspect-[1200/630] w-full border-b border-ink-200 bg-white">
+                  <Image
+                    src={p.image}
+                    alt={p.name}
+                    fill
+                    sizes="(min-width: 768px) 588px, 100vw"
+                    className="object-contain p-6 transition-transform duration-280 ease-out group-hover:scale-[1.02]"
+                  />
                   {p.comingSoon && (
-                    <span className="shrink-0 rounded-full bg-blue-tint px-3 py-1 text-caption font-medium text-blue-deep">
+                    <span className="absolute right-4 top-4 rounded-full bg-blue-tint px-3 py-1 text-caption font-medium text-blue-deep">
                       {p.releaseNote}
                     </span>
                   )}
                 </div>
-                <p className="mt-7 text-caption font-medium uppercase tracking-[0.16em] text-ink-500">
-                  {p.category}
-                </p>
-                <h3 className="mt-1.5 text-h2 tracking-tight text-ink-900">
-                  {p.name}
-                </h3>
-                <p className="mt-3 flex-1 text-body leading-relaxed text-ink-700">
-                  {p.description}
-                </p>
-                <div className="mt-7 flex flex-wrap items-center justify-between gap-2 border-t border-ink-200 pt-5">
-                  <div className="flex flex-wrap gap-2">
-                    {p.platforms.map((pl) => (
-                      <span
-                        key={pl}
-                        className="rounded-xs bg-ink-100 px-2 py-1 text-caption font-medium uppercase tracking-wide text-ink-700"
-                      >
-                        {pl}
+                <div className="flex flex-1 flex-col p-8">
+                  <p className="text-caption font-medium uppercase tracking-[0.16em] text-ink-500">
+                    {p.category}
+                  </p>
+                  <p className="mt-3 flex-1 text-body leading-relaxed text-ink-700">
+                    {p.description}
+                  </p>
+                  <div className="mt-7 flex flex-wrap items-center justify-between gap-2 border-t border-ink-200 pt-5">
+                    <div className="flex flex-wrap gap-2">
+                      {p.platforms.map((pl) => (
+                        <span
+                          key={pl}
+                          className="rounded-xs bg-ink-100 px-2 py-1 text-caption font-medium uppercase tracking-wide text-ink-700"
+                        >
+                          {pl}
+                        </span>
+                      ))}
+                    </div>
+                    {p.url && (
+                      <span className="inline-flex items-center gap-1 text-body-sm font-medium text-ink-500 transition-colors duration-200 ease-out group-hover:text-blue">
+                        방문하기
+                        <ArrowUpRight
+                          size={16}
+                          strokeWidth={1.75}
+                          absoluteStrokeWidth
+                          className="transition-transform duration-200 ease-out group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                        />
                       </span>
-                    ))}
+                    )}
                   </div>
-                  {p.url && (
-                    <span className="inline-flex items-center gap-1 text-body-sm font-medium text-ink-500 transition-colors duration-200 ease-out group-hover:text-blue">
-                      방문하기
-                      <ArrowUpRight
-                        size={16}
-                        strokeWidth={1.75}
-                        absoluteStrokeWidth
-                        className="transition-transform duration-200 ease-out group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
-                      />
-                    </span>
-                  )}
                 </div>
               </>
             );
